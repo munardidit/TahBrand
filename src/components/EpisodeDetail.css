@@ -1,0 +1,213 @@
+.episode-detail-section {
+  width: 100%;
+  background-color: #FFF2EE;
+  padding: 3rem 0 4rem 0;
+  margin-top: 4.5rem;
+}
+
+.episode-detail-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* Episode Header */
+.episode-detail-header {
+  margin-bottom: 2rem;
+}
+
+.episode-detail-title {
+  font-size: 3rem;
+  font-weight: 800;
+  color: #270E07;
+  line-height: 1.3;
+  margin: 0 0 1rem 0;
+  text-align: left;
+  font-family: "Kumbh Sans", sans-serif;
+}
+
+.episode-detail-meta {
+  display: flex;
+  gap: 1.5rem;
+  font-size: 0.99rem;
+  font-family: "Kumbh Sans", sans-serif;
+}
+
+.episode-category {
+  font-weight: 600;
+  color: #666;
+  margin-left: 4%;
+  font-family: "Kumbh Sans", sans-serif;
+}
+
+.episode-date {
+  font-weight: 600;
+  color: #666;
+  justify-content: flex-end;
+   font-family: "Kumbh Sans", sans-serif;
+  
+}
+
+/* Episode Video */
+.episode-video-container {
+  margin-bottom: 2rem;
+}
+
+.episode-video-placeholder {
+  width: 100%;
+  aspect-ratio: 15 / 7;
+  background:#5F58F4;
+}
+
+/* Platforms */
+.episode-platforms {
+  margin-bottom: 3rem;
+  font-family: "Kumbh Sans", sans-serif;
+}
+
+.platforms-title {
+  font-size: 1.39rem;
+  text-align: left;
+  color: #000000;
+  margin: 0 0 1rem 0;
+  font-weight: 700;
+}
+
+.platforms-buttons {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  font-family: "Kumbh Sans", sans-serif;
+}
+
+.platform-btn {
+  padding: 0.625rem 1.5rem;
+  background-color: #EAE8E8;
+  border: 1px solid #EAE8E8;
+  border-radius: 50px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #1a1a1a;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: "Kumbh Sans", sans-serif;
+}
+
+.platform-btn:hover {
+  border-color: #5F58F4;
+  color: #5F58F4;
+  transform: translateY(-2px);
+}
+
+/* Description */
+.episode-description {
+  margin-bottom: 3rem;
+  text-align: left;
+  font-family: "Kumbh Sans", sans-serif;
+}
+
+.description-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #5F58F4;
+  margin: 0 0 1rem 0;
+}
+
+.description-text {
+  font-size: 0.95rem;
+  line-height: 1.8;
+  color: #666;
+  margin: 0;
+}
+
+/* Pagination */
+.episode-pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.pagination-arrow {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  background-color: #ff5722;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.pagination-arrow:hover {
+  background-color: #e64a19;
+  transform: scale(1.1);
+}
+
+.pagination-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: none;
+  background-color: #d1d5db;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.pagination-dot:hover {
+  background-color: #9ca3af;
+}
+
+.pagination-dot.active {
+  background-color: #ff5722;
+  width: 14px;
+  height: 14px;
+}
+
+/* Tablet Responsive */
+@media (max-width: 1024px) {
+  .episode-detail-container {
+    padding: 0 1.5rem;
+  }
+
+  .episode-detail-title {
+    font-size: 1.75rem;
+  }
+}
+
+/* Mobile Responsive */
+@media (max-width: 767px) {
+  .episode-detail-section {
+    padding: 2rem 0 3rem 0;
+    margin-top: 3.5rem;
+  }
+
+  .episode-detail-container {
+    padding: 0 1rem;
+  }
+
+  .episode-detail-title {
+    font-size: 1.5rem;
+  }
+
+  .episode-detail-meta {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .platforms-buttons {
+    justify-content: center;
+  }
+
+  .platform-btn {
+    flex: 1;
+    min-width: 100px;
+  }
+
+  .description-text {
+    font-size: 0.9rem;
+  }
+}

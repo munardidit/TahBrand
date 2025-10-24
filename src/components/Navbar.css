@@ -1,0 +1,263 @@
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 1000;
+   background-color: #FFF2EE;
+  padding: 0;
+}
+
+.navbar-container {
+  width: 100%;
+  max-width: 100%;
+  padding: 1rem 2rem;
+  margin: 0 auto;
+   background-color: #FFF2EE;
+}
+
+.navbar-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+/* Logo */
+.navbar-logo {
+  flex-shrink: 0;
+}
+
+.navbar-logo a {
+  display: block;
+}
+
+.navbar-logo img {
+  height: 2.5rem;
+  width: auto;
+}
+
+
+
+/* Mobile Menu Button */
+.mobile-menu-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  color: #270E07;
+  cursor: pointer;
+  padding: 0.5rem;
+  margin-right: 4rem;
+  transition: all 0.2s;
+  opacity: 100%;
+}
+
+.mobile-menu-button:hover {
+  opacity: 0.7;
+}
+
+.mobile-menu-button svg {
+  width: 3rem;
+  height: 2rem;
+}
+
+/* Menu Overlay */
+.menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 95vh;
+  background-color: #FFF2EE;
+  z-index: 2000;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease-in-out;
+  overflow-y: auto;
+}
+
+.menu-overlay.open {
+  transform: translateX(0);
+}
+
+/* Menu Header */
+.menu-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.menu-logo img {
+  height: 2.5rem;
+  width: auto;
+}
+
+.menu-close {
+  background: none;
+  border: none;
+  color: #270E07;
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  font-weight: 500;
+  transition: opacity 0.2s;
+}
+
+.menu-close:hover {
+  opacity: 0.7;
+}
+
+/* Menu Content */
+.menu-content {
+  padding: 3rem 5.5rem;
+  text-align: left;
+  color: #270E07;
+  font-family: "Kumbh Sans", sans-serif;
+}
+
+.menu-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  color: #270E07;
+  font-family: "Kumbh Sans", sans-serif;
+}
+
+.menu-nav > a,
+.menu-section {
+  padding: 1.25rem 0;
+  color: #270E07;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 400;
+  border-bottom: 1px solid #e0e0e0;
+  transition: color 0.2s;
+}
+
+.menu-nav > a:hover {
+  color: #ff5722;
+}
+
+/* Dropdown Section */
+.menu-section {
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.menu-dropdown {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: none;
+  border: none;
+  color: #270E07;
+  font-size: 1rem;
+  font-weight: 400;
+  cursor: pointer;
+  padding: 0;
+  text-align: left;
+  transition: color 0.2s;
+  color: #270E07;
+  font-family: "Kumbh Sans", sans-serif;
+}
+
+.menu-dropdown:hover {
+  color: #ff5722;
+}
+
+.dropdown-icon {
+  width: 1.25rem;
+  height: 1.25rem;
+  transition: transform 0.3s;
+}
+
+.menu-section:hover .dropdown-icon {
+  transform: rotate(180deg);
+}
+
+.dropdown-content {
+  display: flex;
+  flex-direction: column;
+  
+  gap: 0.5rem;
+  padding: 0.65rem 0 0.4rem;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+
+.menu-section:hover .dropdown-content {
+  max-height: 200px;
+}
+
+.dropdown-content a {
+  color: #666;
+  text-decoration: none;
+  font-size: 0.95rem;
+  padding: 0.5rem 0;
+  transition: color 0.2s;
+}
+
+.dropdown-content a:hover {
+  color: #ff5722;
+}
+
+/* Mobile Responsive */
+@media (max-width: 767px) {
+  .navbar-container {
+    padding: 1rem 1.5rem;
+  }
+
+  .navbar-logo img {
+    height: 2rem;
+  }
+
+  .mobile-menu-button {
+    margin-right: 1rem;
+  }
+
+  .mobile-menu-button svg {
+    width: 2.5rem;
+    height: 1.75rem;
+  }
+
+  .menu-header {
+    padding: 1rem 1.5rem;
+  }
+
+  .menu-logo img {
+    height: 2rem;
+  }
+
+  .menu-content {
+    padding: 1.5rem 1.5rem;
+  }
+}
+
+/* Smooth scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+
+body.menu-open {
+  overflow: hidden;
+}
+@media (max-width: 480px) {
+  .navbar {
+    padding: 0.6rem;
+    height: 60px;
+    width: 82%;
+  }
+  
+  .mobile-menu-button svg {
+    width: 26px;
+    height: 26px;
+    position: relative;
+    left: -5%;
+  }
+}

@@ -1,0 +1,475 @@
+/* Navbar */
+.payment-navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 1000;
+  background-color: #FFF2EE;
+  padding: 0;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.payment-navbar-container {
+  width: 100%;
+  max-width: 100%;
+  padding: 1rem 2rem;
+  margin: 0 auto;
+  background-color: #FFF2EE;
+}
+
+.payment-navbar-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.payment-navbar-logo {
+  flex-shrink: 0;
+}
+
+.payment-navbar-logo a {
+  display: block;
+}
+
+.payment-navbar-logo img {
+  height: 2.5rem;
+  width: auto;
+}
+
+.payment-navbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.payment-cart-button {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  color: #270E07;
+  cursor: pointer;
+  padding: 0.5rem;
+  transition: all 0.2s;
+}
+
+.payment-cart-button:hover {
+  opacity: 0.7;
+}
+
+.payment-cart-button svg {
+  width: 28px;
+  height: 28px;
+}
+
+.payment-cart-badge {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  background-color: #5856d6;
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 600;
+  min-width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 4px;
+}
+
+.payment-menu-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  color: #270E07;
+  cursor: pointer;
+  padding: 0.5rem;
+  transition: all 0.2s;
+}
+
+.payment-menu-button:hover {
+  opacity: 0.7;
+}
+
+.payment-menu-button svg {
+  width: 3rem;
+  height: 2rem;
+}
+
+/* Payment Section */
+.payment-section {
+  width: 100%;
+  background-color: #FFF2EE;
+  padding: 3rem 0 4rem 0;
+  margin-top: 5rem;
+  min-height: 100vh;
+}
+
+.payment-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 1.5rem;
+}
+
+/* Left Column */
+.payment-left {
+  font-family: "Kumbh Sans", sans-serif;
+  display: flex;
+  text-align: left;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+.payment-form-section {
+  background-color: #FBEBE6;
+  border-radius: 12px;
+  padding: 2rem;
+   border: 1px solid #270E07;
+  box-shadow: #270E07;
+}
+
+.payment-section-title {
+  text-align: left;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin: 0 0 1.5rem 0;
+}
+
+/* Form Styles */
+.payment-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.form-row {
+  display: flex;
+  gap: 1rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-group.half {
+  flex: 1;
+}
+
+.form-group.third {
+  flex: 1;
+}
+
+.form-label {
+  font-size: 0.875rem;
+  color: #666;
+  font-weight: 400;
+}
+
+.form-input {
+  padding: 0.75rem 1rem;
+  border: 1px solid #270E07;
+  border-radius: 6px;
+  font-size: 0.95rem;
+   background-color: #FBEBE6;
+  transition: border-color 0.3s;
+  
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #5856d6;
+}
+
+.form-input.small {
+  max-width: 120px;
+}
+
+/* Payment Method */
+.payment-method-option {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+}
+
+.payment-method-option input[type="radio"] {
+  width: 18px;
+  height: 18px;
+  accent-color: #5856d6;
+}
+
+.payment-method-label {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.95rem;
+  color: #1a1a1a;
+  cursor: pointer;
+}
+
+.payment-logos {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.payment-logo.stripe {
+  color: #635BFF;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+/* Card Input */
+.card-input-group {
+  margin-bottom: 1rem;
+}
+
+.card-number-input {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  border: 1px solid #270E07;
+  border-radius: 6px;
+   background-color: #FBEBE6;
+  
+}
+
+.card-dots {
+  color: #666;
+  font-size: 1.25rem;
+  letter-spacing: 2px;
+}
+
+.card-number {
+  color: #1a1a1a;
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.card-type {
+  margin-left: auto;
+  background-color: #1434CB;
+  color: #fff;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.card-details {
+  gap:5.8rem;
+  margin-bottom: 1rem;
+}
+
+/* Checkbox */
+.form-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 1rem 0;
+}
+
+.form-checkbox input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: #5856d6;
+}
+
+.form-checkbox label {
+  font-size: 0.875rem;
+  color: #666;
+}
+
+/* Notes */
+.billing-note,
+.payment-note,
+.security-note {
+  font-size: 0.875rem;
+  color: #666;
+  line-height: 1.6;
+  margin: 1rem 0;
+}
+
+.billing-address-group {
+  margin-top: 1.5rem;
+}
+
+.stripe-text {
+  color: #635BFF;
+  font-weight: 600;
+}
+
+/* Pay Button */
+.pay-now-button {
+  width: 100%;
+  padding: 1rem 2rem;
+  background-color: #5856d6;
+  color: #fff;
+  border: none;
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin: 1.5rem 0 1rem 0;
+  transition: all 0.3s ease;
+}
+
+.pay-now-button:hover {
+  background-color: #4a47b8;
+  transform: translateY(-2px);
+}
+
+/* Right Column - Order Summary */
+.payment-right {
+  position: sticky;
+  top: 6rem;
+  height: fit-content;
+}
+
+.order-summary-card {
+  background-color: #FBEBE6;
+  border-radius: 12px;
+  padding: 2rem;
+  border: 1px solid #270E07;
+  box-shadow: #270E07;
+}
+
+.order-product {
+  margin-bottom: 2rem;
+}
+
+.order-product-image {
+  width: 60%;
+  height: 160px;
+  object-fit: contain;
+  margin-bottom: 1rem;
+  border: 1px solid #270E07;
+}
+
+.order-product-note {
+  font-family: "Kumbh Sans", sans-serif;
+  font-size: 0.65rem;
+  color: #666;
+  line-height: 1.5;
+  margin: 0;
+  text-align: left;
+}
+
+.order-summary-details {
+  padding-top: 1.5rem;
+  border-top: 1px solid #e5e5e5;
+  font-family: "Kumbh Sans", sans-serif;
+}
+
+.order-summary-title {
+  text-align: left;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #000000;
+  margin: 0 0 1.5rem 0;
+}
+
+.order-summary-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+}
+
+.summary-label {
+  font-size: 0.875rem;
+  color: #666;
+}
+
+.summary-value {
+  font-size: 0.875rem;
+  color: #1a1a1a;
+  font-weight: 500;
+}
+
+.order-total {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 1rem;
+  margin-top: 1rem;
+  border-top: 1px solid #e5e5e5;
+}
+
+.total-label {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.total-value {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+/* Tablet Responsive */
+@media (max-width: 1024px) {
+  .payment-container {
+    grid-template-columns: 1fr;
+  }
+
+  .payment-right {
+    position: static;
+  }
+}
+
+/* Mobile Responsive */
+@media (max-width: 767px) {
+  .payment-section {
+    padding: 2rem 0 3rem 0;
+    margin-top: 3.5rem;
+  }
+
+  .payment-container {
+    padding: 0 1rem;
+    gap: 2rem;
+  }
+
+  .payment-form-section {
+    padding: 1.5rem;
+  }
+
+  .form-row {
+    flex-direction: column;
+  }
+
+  .form-group.half,
+  .form-group.third {
+    width: 100%;
+  }
+
+  .form-input.small {
+    max-width: 100%;
+  }
+
+  .card-details {
+    flex-direction: column;
+  }
+
+  .order-summary-card {
+    padding: 1.5rem;
+  }
+}

@@ -1,0 +1,535 @@
+/* Shop Navbar */
+.shop-navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 1000;
+  background-color: #FFF2EE;
+  padding: 0;
+  border-bottom: 1px solid transparent;
+}
+
+.shop-navbar-container {
+  width: 100%;
+  max-width: 100%;
+  padding: 1rem 2rem;
+  margin: 0 auto;
+  background-color: #FFF2EE;
+  font-family: "Kumbh Sans", sans-serif;
+}
+
+.shop-navbar-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  font-family: "Kumbh Sans", sans-serif;
+}
+
+.shop-navbar-logo {
+  flex-shrink: 0;
+}
+
+.shop-navbar-logo a {
+  display: block;
+}
+
+.shop-navbar-logo img {
+  height: 2.5rem;
+  width: auto;
+  position: relative;
+  left: 5.8%;
+}
+
+.shop-navbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-right: 4rem;
+  font-family: "Kumbh Sans", sans-serif;
+}
+
+.cart-button {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  color: #270E07;
+  cursor: pointer;
+  padding: 0.5rem;
+  transition: all 0.2s;
+}
+
+.cart-button:hover {
+  opacity: 0.7;
+}
+
+.cart-button svg {
+  width: 28px;
+  height: 28px;
+}
+
+.cart-badge {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  background-color: #5856d6;
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 600;
+  min-width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 4px;
+}
+
+.shop-menu-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  color: #270E07;
+  cursor: pointer;
+  padding: 0.5rem;
+  transition: all 0.2s;
+}
+
+.shop-menu-button:hover {
+  opacity: 0.7;
+}
+
+.shop-menu-button svg {
+  width: 3rem;
+  height: 2rem;
+}
+
+/* Shop Menu Overlay */
+.shop-menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: #FFF2EE;
+  z-index: 2000;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease-in-out;
+  overflow-y: auto;
+}
+
+.shop-menu-overlay.open {
+  transform: translateX(0);
+}
+
+.shop-menu-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  border-bottom: 1px solid #e0e0e0;
+  font-family: "Kumbh Sans", sans-serif;
+}
+
+.shop-menu-logo img {
+  height: 2.5rem;
+  width: auto;
+}
+
+.shop-menu-close {
+  background: none;
+  border: none;
+  color: #270E07;
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  font-weight: 500;
+  transition: opacity 0.2s;
+}
+
+.shop-menu-close:hover {
+  opacity: 0.7;
+}
+
+.shop-menu-content {
+  padding: 3rem 5.5rem;
+  text-align: left;
+  color: #270E07;
+  font-family: "Kumbh Sans", sans-serif;
+}
+
+.shop-menu-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  color: #270E07;
+  font-family: "Kumbh Sans", sans-serif;
+}
+
+.shop-menu-nav > a,
+.shop-menu-section {
+  padding: 1.25rem 0;
+  color: #270E07;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 400;
+  border-bottom: 1px solid transparent;
+  transition: color 0.2s;
+  font-family: "Kumbh Sans", sans-serif;
+}
+
+.shop-menu-nav > a:hover {
+  color: #ff5722;
+}
+
+.shop-menu-section {
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.shop-menu-dropdown {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: none;
+  border: none;
+  color: #270E07;
+  font-size: 1rem;
+  font-weight: 400;
+  cursor: pointer;
+  padding: 0;
+  text-align: left;
+  transition: color 0.2s;
+  font-family: "Kumbh Sans", sans-serif;
+}
+
+.shop-menu-dropdown:hover {
+  color: #ff5722;
+}
+
+.shop-dropdown-icon {
+  width: 1.25rem;
+  height: 1.25rem;
+  transition: transform 0.3s;
+}
+
+.shop-menu-section:hover .shop-dropdown-icon {
+  transform: rotate(180deg);
+}
+
+.shop-dropdown-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0.65rem 0 0.4rem;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+  font-family: "Kumbh Sans", sans-serif;
+}
+
+.shop-menu-section:hover .shop-dropdown-content {
+  max-height: 200px;
+}
+
+.shop-dropdown-content a {
+  color: #666;
+  text-decoration: none;
+  font-size: 0.95rem;
+  padding: 0.5rem 0;
+  transition: color 0.2s;
+}
+
+.shop-dropdown-content a:hover {
+  color: #ff5722;
+}
+
+/* Category Tabs */
+.category-tabs {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 3rem;
+  border-bottom: 2px solid transparent;
+  font-family: "Kumbh Sans", sans-serif;
+}
+
+.category-tab {
+  background: none;
+  border: none;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #666;
+  padding: 0.75rem 0;
+  cursor: pointer;
+  position: relative;
+  transition: color 0.3s ease;
+  font-family: "Kumbh Sans", sans-serif;
+}
+
+.category-tab:hover {
+  color: #1a1a1a;
+}
+
+/*.category-tab.active {
+  color: #000000;
+}
+
+.category-tab.active::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background-color: #1a1a1a;
+}*/
+
+.shop-merch-section {
+  width: 100%;
+  background-color: #FFF2EE;
+  padding: 3rem 0 4rem 0;
+  margin-top: 4.5rem;
+}
+
+.shop-merch-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  font-family: "Kumbh Sans", sans-serif;
+}
+
+.shop-merch-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 3rem;
+}
+
+.shop-merch-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-family: "Kumbh Sans", sans-serif;
+}
+
+.filter-newest-button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: #fff;
+  border: 1px solid #e5e5e5;
+  border-radius: 8px;
+  padding: 0.75rem 1.25rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #1a1a1a;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: "Kumbh Sans", sans-serif;
+}
+
+.filter-newest-button:hover {
+  border-color: #ff5722;
+  color: #ff5722;
+}
+
+.filter-newest-button svg {
+  transition: transform 0.3s ease;
+}
+
+.filter-newest-button:hover svg {
+  transform: rotate(180deg);
+}
+
+.shop-merch-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.product-card {
+  background-color: #FFF2EE;
+  border: 1px solid #000000;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.product-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.product-image {
+  width: 100%;
+  height: 280px;
+  background-color: #FFF2EE;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.product-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.product-info {
+  padding: 1.25rem;
+}
+
+.product-name {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #270E07;
+  margin: 0 0 1rem 0;
+  line-height: 1.4;
+  text-align: left;
+  font-family: "Kumbh Sans", sans-serif;
+}
+
+.product-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: "Kumbh Sans", sans-serif;
+}
+
+.product-price {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #270E07;
+  font-family: "Kumbh Sans", sans-serif;
+}
+
+.add-to-cart-button {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid #270E07;
+  background-color: transparent;
+  color: #270E07;
+  font-size: 1.25rem;
+  font-weight: 400;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.add-to-cart-button:hover {
+  background-color: #1a1a1a;
+  color: #fff;
+  transform: rotate(90deg);
+}
+
+/* Pagination */
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.pagination-button {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  background-color: #fff;
+  color: #1a1a1a;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.pagination-button:hover {
+  background-color: #6366f1;
+  color: #fff;
+}
+
+.pagination-button.active {
+  background-color: #ff5722;
+  color: #fff;
+}
+
+/* Tablet Responsive */
+@media (max-width: 1024px) {
+  .shop-merch-container {
+    padding: 0 1.5rem;
+  }
+
+  .shop-merch-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  .product-image {
+    height: 240px;
+  }
+}
+
+/* Mobile Responsive */
+@media (max-width: 767px) {
+  .shop-merch-section {
+    padding: 2rem 0 3rem 0;
+    margin-top: 3.5rem;
+  }
+
+  .shop-merch-container {
+    padding: 0 1rem;
+  }
+
+  .shop-merch-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .shop-merch-title {
+    font-size: 1.5rem;
+  }
+
+  .filter-newest-button {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .shop-merch-grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+    margin-bottom: 2rem;
+  }
+
+  .product-image {
+    height: 200px;
+  }
+
+  .product-info {
+    padding: 1rem;
+  }
+
+  .product-name {
+    font-size: 0.95rem;
+  }
+
+  .product-price {
+    font-size: 0.9rem;
+  }
+}

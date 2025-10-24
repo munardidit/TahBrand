@@ -1,0 +1,187 @@
+.popular-episodes-section {
+  width: 100%;
+  padding: 3rem 0 4rem 0;
+}
+
+.popular-episodes-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.popular-episodes-heading {
+  font-size: 1.75rem;
+  font-weight: 600;
+  margin: 0 0 2rem 0;
+  color: #270E07;
+  text-align: left;
+  font-family: "Kumbh Sans", sans-serif;
+}
+
+.popular-episodes-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.popular-episode-card {
+  background-color:#FFF2EE;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.popular-episode-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.popular-episode-thumbnail {
+  width: 100%;
+  height: 200px;
+  background:#5F58F4;;
+  overflow: hidden;
+}
+
+.popular-episode-thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.popular-episode-info {
+  padding: 1.25rem;
+}
+
+.popular-episode-meta {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 0.75rem;
+}
+
+.popular-episode-category {
+  font-size: 0.75rem;
+  color: #270E07;
+  font-weight: 400;
+  text-align: left;
+  position: relative;
+  left: -3%;
+  font-family: "Kumbh Sans", sans-serif;
+}
+
+.popular-episode-date {
+  font-size: 0.75rem;
+  color: #270E07;
+  font-weight: 400;
+  text-align: left;
+  position: relative;
+  left: -3%;
+  font-family: "Kumbh Sans", sans-serif;
+}
+
+.popular-episode-title {
+  font-size: 1.125rem;
+  font-weight: 500;
+  color:#5F58F4;
+  margin: 0;
+  line-height: 1.4;
+  text-align: left;
+  position: relative;
+  left: -3%;
+  font-family: "Kumbh Sans", sans-serif;
+}
+
+/* View All Button */
+.view-all-button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.view-all-button {
+  background-color:#FE4E1C;
+  color: #FFF2EE;
+  border: none;
+  border-radius: 100px;
+  padding: 0.795rem 2.4rem;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: "Kumbh Sans", sans-serif;
+}
+
+.view-all-button:hover {
+  background-color:transparent;
+  color: #270E07;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 87, 34, 0.4);
+}
+
+/* Tablet Responsive */
+@media (max-width: 1024px) {
+  .popular-episodes-container {
+    padding: 0 1.5rem;
+  }
+
+  .popular-episodes-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .popular-episode-thumbnail {
+    height: 160px;
+  }
+}
+
+/* Mobile Responsive */
+@media (max-width: 767px) {
+  .popular-episodes-section {
+    padding: 2rem 0 3rem 0;
+  }
+
+  .popular-episodes-container {
+    padding: 0 1rem;
+  }
+
+  .popular-episodes-heading {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .popular-episodes-grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+    margin-bottom: 2rem;
+  }
+
+  .popular-episode-thumbnail {
+    height: 160px;
+  }
+
+  .popular-episode-info {
+    padding: 1rem;
+  }
+
+  .popular-episode-title {
+    font-size: 1rem;
+  }
+
+  .popular-episode-meta {
+    gap: 0.75rem;
+  }
+
+  .popular-episode-category,
+  .popular-episode-date {
+    font-size: 0.7rem;
+  }
+
+  .view-all-button {
+    width: 100%;
+    max-width: 320px;
+    padding: 0.75rem 2rem;
+    font-size: 0.95rem;
+  }
+}
