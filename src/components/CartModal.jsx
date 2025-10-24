@@ -9,7 +9,6 @@ function CartModal({ isOpen, onClose, product, selectedSize, selectedColor }) {
   const [isFadingOut, setIsFadingOut] = useState(false);
   const navigate = useNavigate();
 
-  // 🧮 Parse price correctly: remove "USD" and convert to number
   const pricePerItem = product?.price
     ? parseFloat(product.price.replace(/[^\d.]/g, ""))
     : 200;
@@ -59,7 +58,7 @@ function CartModal({ isOpen, onClose, product, selectedSize, selectedColor }) {
 
   return (
     <>
-      {/* 🛒 Cart Modal */}
+      {/* Cart Modal */}
       {isOpen && product && (
         <div
           className={`cart-modal-overlay ${isFadingOut ? "fade-out" : "fade-in"}`}
@@ -91,7 +90,7 @@ function CartModal({ isOpen, onClose, product, selectedSize, selectedColor }) {
                       src={product?.image}
                       alt={product?.name || "Product"}
                       onError={(e) => {
-                        e.target.src = "/fallback-image.png"; // optional fallback
+                        e.target.src = "/fallback-image.png"; 
                       }}
                     />
                   </div>
@@ -163,7 +162,7 @@ function CartModal({ isOpen, onClose, product, selectedSize, selectedColor }) {
                   disabled={!isReadyToAdd}
                   onClick={handleCheckout}
                 >
-                  Continue to Checkout
+                  Checkout
                 </button>
               </div>
             </div>
@@ -171,7 +170,7 @@ function CartModal({ isOpen, onClose, product, selectedSize, selectedColor }) {
         </div>
       )}
 
-      {/* ✅ Success Modal */}
+      {/* Success Modal */}
       <SuccessModal
   isOpen={showSuccess}
   onClose={() => setShowSuccess(false)}
