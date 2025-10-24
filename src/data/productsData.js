@@ -1,5 +1,5 @@
 
-import orangeHoodie1 from '../assets/bhoodie.png';
+import orangeHoodie1 from '../assets/Bhoodie.png';
 import blackHoodie1 from '../assets/redhood.png';
 import orangeHoodie2 from '../assets/redhood.png';
 import orangeHoodie3 from '../assets/redhood.png';
