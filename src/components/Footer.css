@@ -76,6 +76,7 @@
   font-weight: 500;
   position: relative;
   left: -26%;
+  top:-17px;
 }
 
 .newsletter-form {
@@ -83,6 +84,8 @@
   gap: 0rem;
   width: 90%;
   max-width: 400px;
+  position: relative;
+  top: -11px;
 }
 
 .newsletter-input {

@@ -40,9 +40,9 @@ function Navbar() {
               onClick={toggleMenu}
               aria-label="Toggle menu"
             >
-              <svg fill="#270E07" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-              </svg>
+              <svg fill="#270E07" stroke="currentColor" viewBox="1 1 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={4} d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
             </button>
           </div>
         </div>

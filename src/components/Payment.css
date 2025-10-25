@@ -172,6 +172,7 @@
 
 .form-group.third {
   flex: 1;
+  margin-top: 1.5rem;
 }
 
 .form-label {
@@ -312,7 +313,9 @@
 .billing-address-group {
   margin-top: 1.5rem;
 }
-
+.billing-address-group .form-input{
+margin-left: 1rem;
+}
 .stripe-text {
   color: #635BFF;
   font-weight: 600;
