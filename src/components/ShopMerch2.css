@@ -318,8 +318,8 @@
 }
 
 .product-price-main {
-    font-family: "Kumbh Sans", sans-serif;
-    color: #D9D9D9;
+  font-family: "Kumbh Sans", sans-serif;
+  color:#270E07;
   font-size: 1.125rem;
   font-weight: 500;
   margin: 0;
@@ -370,16 +370,16 @@
 .size-label-main {
     font-family: "Kumbh Sans", sans-serif;
   display: block;
-  font-size: 0.9rem;
-  font-weight: 400;
-  color: #D9D9D9;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color:#270E07;
   margin-bottom: 1rem;
 }
 
 .size-buttons-grid {
   display: flex;
   gap: 2rem;
-  color: #D9D9D9;
+  color: #666;
 }
 
 .size-btn {
@@ -395,11 +395,11 @@
 }
 
 .size-btn:hover {
-  color: #D9D9D9;
+  color: #270E07;
 }
 
 .size-btn.selected {
-  color: #1a1a1a;
+  color: #270E07;
   border-bottom: 2px solid #1a1a1a;
   font-weight: 500;
 }

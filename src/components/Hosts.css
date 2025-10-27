@@ -27,7 +27,7 @@
 }
 
 .hosts-content {
-  background:#5F58F4;
+  background:#000000;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -91,7 +91,7 @@
   justify-content: flex-end;
   align-items: center;
   z-index: 1;
-  background-color: #270E07;
+  /*background-color: #270E07;*/
   min-height: 400px;
   width: 300px;
   max-width: 300px;
@@ -100,13 +100,13 @@
   left:-5%;
 }
 
-/*.hosts-image img {
+.hosts-image img {
   width: 100%;
   max-width: 450px;
   height: auto;
   object-fit: cover;
-  border-radius: 8px;
-}*/
+  
+}
 
 /* Tablet Responsive */
 @media (max-width: 1024px) {

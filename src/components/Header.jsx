@@ -1,7 +1,5 @@
 import { useState, useEffect } from 'react';
-import './Header.css';
-import maleHost from '../assets/man.png';
-import femaleHost from '../assets/woman.png';
+import './Header.css'
 import hoodie from '../assets/hoodie.png'; 
 import merchBg from '../assets/background.png';
 

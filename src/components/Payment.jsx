@@ -193,8 +193,7 @@ function Payment() {
               </div>
 
               <p className="payment-note">
-                By confirming your payment, you allow us to charge your card for
-                this and future transactions under our terms.
+                🔒︎ Your payment is secure and encrypted
               </p>
 
               <button
@@ -220,8 +219,7 @@ function Payment() {
                   className="order-product-image"
                 />
                 <p className="order-product-note">
-                  We only ship your order if we cannot find a more
-                  privacy-first courier alternative.
+                  By placing your order, you agree to our company Privacy policy and Conditions of use.
                 </p>
               </div>
 
@@ -229,7 +227,7 @@ function Payment() {
                 <h3 className="order-summary-title">Order Summary</h3>
 
                 <div className="order-summary-row">
-                  <span className="summary-label">Product</span>
+                  <span className="summary-label">Items (1)</span>
                   <span className="summary-value">
                     {product?.name || "—"}
                   </span>
@@ -253,13 +251,13 @@ function Payment() {
                 </div>
 
                 <div className="order-summary-row">
-                  <span className="summary-label">Item(s)</span>
+                  <span className="summary-label">Order Price</span>
                   <span className="summary-value">
                     {subtotal ? subtotal.toFixed(2) : "200.00"}
                   </span>
                 </div>
                 <div className="order-summary-row">
-                  <span className="summary-label">Shipping</span>
+                  <span className="summary-label">Shipping and Handling</span>
                   <span className="summary-value">
                     {shippingCost ? shippingCost.toFixed(2) : "70.00"}
                   </span>

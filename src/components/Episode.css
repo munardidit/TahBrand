@@ -25,7 +25,7 @@
 }
 
 .episode-card {
-  background-color:#FFF2EE;
+  background-color:#ffffff;
   overflow: hidden;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   cursor: pointer;

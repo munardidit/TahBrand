@@ -117,7 +117,7 @@ const ShopMerch = () => {
                     <h3 className="product-name">{product.name}</h3>
                     <div className="product-footer">
                       <span className="product-price">{product.price}</span>
-                      <button className="add-to-cart-button">+</button>
+                      <button className="add-to-cart-button">⟶︎</button>
                     </div>
                   </div>
                 </div>

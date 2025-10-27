@@ -1,11 +1,12 @@
 import './Hosts.css';
+import hostsImage from '../assets/hostimage.png';
 
 function Hosts() {
   return (
     <section className="hosts-section">
       <div className="host-container">
         <h2 className="hosts-heading">Meet The Hosts</h2>
-        
+
         <div className="hosts-content">
           <div className="hosts-text">
             <h3 className="hosts-title">Yinka & Dicta</h3>
@@ -16,13 +17,13 @@ function Hosts() {
               aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in 
               voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint 
               occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit 
-              anim id est laborum, dolor sit
+              anim id est laborum.
             </p>
             <button className="hosts-button">Ask us anything</button>
           </div>
-          
+
           <div className="hosts-image">
-            {/* Image placeholder*/}
+            <img src={hostsImage} alt="Hosts Yinka and Dicta" />
           </div>
         </div>
       </div>
