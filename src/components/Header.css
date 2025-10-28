@@ -9,6 +9,15 @@
   left: 3.3%;
 }
 
+.hosts-background {
+  background-size:cover;
+  background-position: center;
+  height: 100vh;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 /* Slider Styles */
 .header-slider {
   position: absolute;

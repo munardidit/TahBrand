@@ -1,6 +1,6 @@
 .all-episodes-section {
   width: 100%;
-  background-color: #FBEBE6;
+  background-color: #fff;
   padding: 3rem 0 4rem 0;
   margin-top: 4.5rem;
 }
@@ -71,7 +71,7 @@
 }
 
 .all-episode-card {
-  background-color:#FBEBE6;
+  background-color:#fff;
   overflow: hidden;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   cursor: pointer;

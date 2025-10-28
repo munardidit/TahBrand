@@ -1,16 +1,16 @@
 import { useState, useEffect } from 'react';
-import './Header.css'
-import hoodie from '../assets/hoodie.png'; 
+import './Header.css';
+import hoodie from '../assets/hoodie.png';
 import merchBg from '../assets/background.png';
+import hostsBg from '../assets/navbar.png'; 
 
 function Header() {
   const [currentSlide, setCurrentSlide] = useState(0);
-  
+
   const slides = [
     {
-      type: 'combined',
-      maleImage: maleHost,
-      femaleImage: femaleHost
+      type: 'hosts',
+      backgroundImage: hostsBg
     },
     {
       type: 'merch',
@@ -35,27 +35,39 @@ function Header() {
             key={index}
             className={`slide ${index === currentSlide ? 'active' : ''} ${slide.type}`}
           >
-            {slide.type === 'combined' && (
-              <>
-                <div className="slide-background"></div>
-                <div className="hosts-container">
-                  <div className="host-image left">
-                    <img src={slide.maleImage} alt="Male Host" />
-                  </div>
-                  <div className="host-image right">
-                    <img src={slide.femaleImage} alt="Female Host" />
+            {/* HOSTS SLIDE */}
+            {slide.type === 'hosts' && (
+              <div
+                className="hosts-background"
+                style={{ backgroundImage: `url(${slide.backgroundImage})` }}
+              >
+                <div className="hosts-overlay">
+                  <p className="header-subtitle">Now Available on Apple Podcast and Spotify</p>
+                  <h1 className="header-title">
+                    TRULY & <br /> HONESTLY
+                  </h1>
+                  <p className="header-hosts">With Yinka & Dicta</p>
+                  <div className="header-buttons">
+                    <button className="btn btn-subscribe">Subscribe</button>
+                    <button className="btn btn-shop">Shop Merch</button>
                   </div>
                 </div>
-              </>
+              </div>
             )}
-            
+
+            {/* MERCH SLIDE */}
             {slide.type === 'merch' && (
               <>
-                <div className="merch-background" style={{ backgroundImage: `url(${slide.backgroundImage})` }}></div>
+                <div
+                  className="merch-background"
+                  style={{ backgroundImage: `url(${slide.backgroundImage})` }}
+                ></div>
                 <div className="merch-container">
                   <div className="merch-content">
                     <div className="merch-text">
-                      <h2 className="merch-title">TRULY & HONESTLY<br />MERCHS AVAILABLE!</h2>
+                      <h2 className="merch-title">
+                        TRULY & HONESTLY <br /> MERCHS AVAILABLE!
+                      </h2>
                       <p className="merch-description">
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut
                       </p>
@@ -70,22 +82,6 @@ function Header() {
             )}
           </div>
         ))}
-      </div>
-
-      <div className={`header-content ${currentSlide !== 0 ? 'hidden' : ''}`}>
-        <div className="header-text">
-          <p className="header-subtitle">Now Available on Apple Podcast and Spotify</p>
-          <h1 className="header-title">
-            TRULY &<br />
-            HONESTLY
-          </h1>
-          <p className="header-hosts">With Yinka & Dicta</p>
-          
-          <div className="header-buttons">
-            <button className="btn btn-subscribe">Subscribe</button>
-            <button className="btn btn-shop">Shop Merch</button>
-          </div>
-        </div>
       </div>
 
       <div className="slider-dots">

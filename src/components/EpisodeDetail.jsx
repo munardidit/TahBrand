@@ -1,6 +1,20 @@
 import { useParams, useNavigate } from 'react-router-dom';
 import './EpisodeDetail.css';
 
+import episode1 from '../assets/hostimage.png';
+import episode2 from '../assets/hostimage.png';
+import episode3 from '../assets/hostimage.png';
+import episode4 from '../assets/hostimage.png';
+import episode5 from '../assets/hostimage.png';
+import episode6 from '../assets/hostimage.png';
+import episode7 from '../assets/hostimage.png';
+import episode8 from '../assets/hostimage.png';
+import episode9 from '../assets/hostimage.png';
+import episode10 from '../assets/hostimage.png';
+import episode11 from '../assets/hostimage.png';
+import episode12 from '../assets/hostimage.png';
+
+
 function EpisodeDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -8,103 +22,115 @@ function EpisodeDetail() {
   const allEpisodes = [
     {
       id: 1,
-      category: 'Relationship & finance',
+      category: 'Relationship & Finance',
       date: 'October 3rd, 2025',
       title: 'Growing your household finance together.',
-      thumbnail: '/assets/episode1.jpg',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+      thumbnail: episode1,
+      description:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam...'
     },
     {
       id: 2,
-      category: 'Relationship & finance',
+      category: 'Relationship & Finance',
       date: 'October 3rd, 2025',
       title: 'Finding the right person (PT1)',
-      thumbnail: '/assets/episode2.jpg',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.'
+      thumbnail: episode2,
+      description:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...'
     },
     {
       id: 3,
-      category: 'Relationship & finance',
+      category: 'Relationship & Finance',
       date: 'October 3rd, 2025',
       title: 'Growing your household finance together.',
-      thumbnail: '/assets/episode3.jpg',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
+      thumbnail: episode3,
+      description:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...'
     },
     {
       id: 4,
-      category: 'Relationship & finance',
+      category: 'Relationship & Finance',
       date: 'October 3rd, 2025',
       title: 'Growing your household finance together.',
-      thumbnail: '/assets/episode4.jpg',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+      thumbnail: episode4,
+      description:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...'
     },
     {
       id: 5,
-      category: 'Relationship & finance',
+      category: 'Relationship & Finance',
       date: 'October 3rd, 2025',
       title: 'Finding the right person (PT1)',
-      thumbnail: '/assets/episode5.jpg',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.'
+      thumbnail: episode5,
+      description:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...'
     },
     {
       id: 6,
-      category: 'Relationship & finance',
+      category: 'Relationship & Finance',
       date: 'October 3rd, 2025',
       title: 'Growing your household finance together.',
-      thumbnail: '/assets/episode6.jpg',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.'
+      thumbnail: episode6,
+      description:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...'
     },
     {
       id: 7,
-      category: 'Relationship & finance',
+      category: 'Relationship & Finance',
       date: 'October 3rd, 2025',
       title: 'Growing your household finance together.',
-      thumbnail: '/assets/episode7.jpg',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.'
+      thumbnail: episode7,
+      description:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...'
     },
     {
       id: 8,
-      category: 'Relationship & finance',
+      category: 'Relationship & Finance',
       date: 'October 3rd, 2025',
       title: 'Finding the right person (PT1)',
-      thumbnail: '/assets/episode8.jpg',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.'
+      thumbnail: episode8,
+      description:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...'
     },
     {
       id: 9,
-      category: 'Relationship & finance',
+      category: 'Relationship & Finance',
       date: 'October 3rd, 2025',
       title: 'Growing your household finance together.',
-      thumbnail: '/assets/episode9.jpg',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.'
+      thumbnail: episode9,
+      description:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...'
     },
     {
       id: 10,
-      category: 'Relationship & finance',
+      category: 'Relationship & Finance',
       date: 'October 3rd, 2025',
       title: 'Growing your household finance together.',
-      thumbnail: '/assets/episode10.jpg',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi.'
+      thumbnail: episode10,
+      description:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...'
     },
     {
       id: 11,
-      category: 'Relationship & finance',
+      category: 'Relationship & Finance',
       date: 'October 3rd, 2025',
       title: 'Finding the right person (PT1)',
-      thumbnail: '/assets/episode11.jpg',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.'
+      thumbnail: episode11,
+      description:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...'
     },
     {
       id: 12,
-      category: 'Relationship & finance',
+      category: 'Relationship & Finance',
       date: 'October 3rd, 2025',
       title: 'Growing your household finance together.',
-      thumbnail: '/assets/episode12.jpg',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo.'
+      thumbnail: episode12,
+      description:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...'
     }
   ];
 
-  const episodeIndex = allEpisodes.findIndex(ep => ep.id === parseInt(id));
+  const episodeIndex = allEpisodes.findIndex((ep) => ep.id === parseInt(id));
   const episode = allEpisodes[episodeIndex];
 
   if (!episode) {
@@ -144,7 +170,12 @@ function EpisodeDetail() {
             <img
               src={episode.thumbnail}
               alt={episode.title}
-              style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '12px' }}
+              style={{
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
+                borderRadius: '12px'
+              }}
             />
           </div>
         </div>
