@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import './Header.css';
 import hoodie from '../assets/hoodie.png';
-import merchBg from '../assets/background.png';
+
 import hostsBg from '../assets/navbar.png'; 
 
 function Header() {
@@ -15,7 +15,7 @@ function Header() {
     {
       type: 'merch',
       hoodieImage: hoodie,
-      backgroundImage: merchBg
+      
     }
   ];
 
