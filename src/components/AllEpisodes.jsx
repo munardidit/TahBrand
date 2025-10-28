@@ -1,7 +1,6 @@
 import './AllEpisodes.css';
 import { Link } from 'react-router-dom';
 
-// ✅ Import all episode images properly
 import episode1 from '../assets/hostimage.png';
 import episode2 from '../assets/hostimage.png';
 import episode3 from '../assets/hostimage.png';
