@@ -173,8 +173,7 @@ function EpisodeDetail() {
               style={{
                 width: '100%',
                 height: '100%',
-                objectFit: 'cover',
-                borderRadius: '12px'
+                objectFit:'cover'
               }}
             />
           </div>

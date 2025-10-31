@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import './NewMerch.css';
 import hoodieImage from '../assets/Sweater.png';
 
@@ -12,7 +13,11 @@ function NewMerch() {
               Collections<br />
               Now Available!
             </h2>
-            <button className="new-merch-button">Shop Now</button>
+
+            {/* Use Link instead of button for routing */}
+            <Link to="/merch" className="new-merch-button">
+              Shop Now
+            </Link>
           </div>
           
           <div className="new-merch-image">

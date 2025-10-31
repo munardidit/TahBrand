@@ -11,14 +11,14 @@ import AllEpisodes from './components/AllEpisodes';
 import ShopMerch from './components/ShopMerch';
 import ShopMerch2 from './components/ShopMerch2';
 import Payment from './components/Payment';
-import EpisodeDetail from './components/EpisodeDetailPage';
+import EpisodeDetailPage from './components/EpisodeDetailPage';
 import './App.css';
 
-// Home Page Component
+// Home Page
 function HomePage() {
   return (
     <>
-    <Navbar />
+      <Navbar />
       <Header />
       <Episode />
       <PopularEpisodes />
@@ -30,7 +30,7 @@ function HomePage() {
   );
 }
 
-// All Episodes Page Component
+// All Episodes Page
 function AllEpisodesPage() {
   return (
     <>
@@ -42,7 +42,7 @@ function AllEpisodesPage() {
   );
 }
 
-// Shop Merch Page Component
+// Shop Merch Page
 function ShopMerchPage() {
   return (
     <>
@@ -53,7 +53,7 @@ function ShopMerchPage() {
   );
 }
 
-// Shop Merch Product Detail Page Component
+// Shop Merch Product Detail Page
 function ShopMerch2Page() {
   return (
     <>
@@ -65,13 +65,11 @@ function ShopMerch2Page() {
 }
 
 // Episode Detail Page
-function EpisodeDetailPage() {
+function EpisodeDetailFullPage() {
   return (
     <>
       <Navbar />
-      <EpisodeDetail />
-      <NewMerch />
-      <Footer />
+      <EpisodeDetailPage />
     </>
   );
 }
@@ -82,15 +80,10 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/episodes" element={<AllEpisodesPage />} />
-        <Route path="/" element={<Header />} />
-        <Route path="/shopmerch" element={<ShopMerch />} />
         <Route path="/merch" element={<ShopMerchPage />} />
         <Route path="/merch/product/:id" element={<ShopMerch2Page />} />
         <Route path="/payment" element={<Payment />} />
-        <Route path="/episode/:id" element={<EpisodeDetailPage />} />
-        <Route path="/episodes/:id" element={<EpisodeDetail />} />
-        <Route path="/allepisodes" element={<AllEpisodesPage />} />
-        <Route path="/episode/:id" element={<EpisodeDetail />} />
+        <Route path="/episode/:id" element={<EpisodeDetailFullPage />} />
       </Routes>
     </Router>
   );

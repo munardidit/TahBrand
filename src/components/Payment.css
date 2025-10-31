@@ -6,7 +6,7 @@
   right: 0;
   width: 100%;
   z-index: 1000;
-  background-color: #FFF2EE;
+  background-color: #FFF;
   padding: 0;
   border-bottom: 1px solid #e0e0e0;
 }
@@ -16,14 +16,14 @@
   max-width: 100%;
   padding: 1rem 2rem;
   margin: 0 auto;
-  background-color: #FFF2EE;
+  background-color: #FFF;
 }
 
 .payment-navbar-content {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 100%;
+  width: 95%;
 }
 
 .payment-navbar-logo {
@@ -108,7 +108,7 @@
 /* Payment Section */
 .payment-section {
   width: 100%;
-  background-color: #FFF2EE;
+  background-color: #FFF;
   padding: 3rem 0 4rem 0;
   margin-top: 5rem;
   min-height: 100vh;
@@ -133,7 +133,7 @@
 }
 
 .payment-form-section {
-  background-color: #FBEBE6;
+  background-color: #Fff;
   border-radius: 12px;
   padding: 2rem;
    border: 1px solid #270E07;
@@ -186,7 +186,7 @@
   border: 1px solid #270E07;
   border-radius: 6px;
   font-size: 0.95rem;
-   background-color: #FBEBE6;
+   background-color: #Fff;
   transition: border-color 0.3s;
   
 }
@@ -250,7 +250,7 @@
   padding: 0.75rem 1rem;
   border: 1px solid #270E07;
   border-radius: 6px;
-   background-color: #FBEBE6;
+   background-color: #Fff;
   
 }
 

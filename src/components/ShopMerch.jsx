@@ -5,6 +5,7 @@ import { productsData } from '../data/productsData';
 import './ShopMerch.css';
 
 const ShopMerch = () => {
+  
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
