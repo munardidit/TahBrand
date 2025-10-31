@@ -52,6 +52,7 @@
 .episode-info  {
   padding: 1.25rem;
   text-decoration: none !important;
+  
 }
 
 .episode-meta {
@@ -68,7 +69,7 @@
   text-align: left;
   position: relative;
   text-decoration: none;
-  left: -3%;
+  left: -7%;
   font-family: "Kumbh Sans", sans-serif;
 }
 
@@ -79,7 +80,7 @@
   font-weight: 400;
   text-align: left;
   position: relative;
-  left: -3%;
+  left: -7%;
   font-family: "Kumbh Sans", sans-serif;
 }
 

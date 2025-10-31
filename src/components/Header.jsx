@@ -22,7 +22,7 @@ function Header() {
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % slides.length);
-    }, 5000);
+    }, 9000);
 
     return () => clearInterval(timer);
   }, [slides.length]);
