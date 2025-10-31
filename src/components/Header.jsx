@@ -1,22 +1,22 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Header.css';
 import hoodie from '../assets/hoodie.png';
-
-import hostsBg from '../assets/navbar.png'; 
+import hostsBg from '../assets/navbar.png';
 
 function Header() {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const navigate = useNavigate();
 
   const slides = [
     {
       type: 'hosts',
-      backgroundImage: hostsBg
+      backgroundImage: hostsBg,
     },
     {
       type: 'merch',
       hoodieImage: hoodie,
-      
-    }
+    },
   ];
 
   useEffect(() => {
@@ -42,14 +42,21 @@ function Header() {
                 style={{ backgroundImage: `url(${slide.backgroundImage})` }}
               >
                 <div className="hosts-overlay">
-                  <p className="header-subtitle">Now Available on Apple Podcast and Spotify</p>
+                  <p className="header-subtitle">
+                    Now Available on Apple Podcast and Spotify
+                  </p>
                   <h1 className="header-title">
                     TRULY & <br /> HONESTLY
                   </h1>
                   <p className="header-hosts">With Yinka & Dicta</p>
                   <div className="header-buttons">
                     <button className="btn btn-subscribe">Subscribe</button>
-                    <button className="btn btn-shop">Shop Merch</button>
+                    <button
+                      className="btn btn-shop"
+                      onClick={() => navigate('/shopmerch')}
+                    >
+                      Shop Merch
+                    </button>
                   </div>
                 </div>
               </div>
@@ -58,10 +65,7 @@ function Header() {
             {/* MERCH SLIDE */}
             {slide.type === 'merch' && (
               <>
-                <div
-                  className="merch-background"
-                  style={{ backgroundImage: `url(${slide.backgroundImage})` }}
-                ></div>
+                <div className="merch-background"></div>
                 <div className="merch-container">
                   <div className="merch-content">
                     <div className="merch-text">
@@ -69,9 +73,15 @@ function Header() {
                         TRULY & HONESTLY <br /> MERCHS AVAILABLE!
                       </h2>
                       <p className="merch-description">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
+                        do eiusmod tempor incididunt ut
                       </p>
-                      <button className="btn-merch">Shop Merch</button>
+                      <button
+                        className="btn-merch"
+                        onClick={() => navigate('/shopmerch')}
+                      >
+                        Shop Merch
+                      </button>
                     </div>
                     <div className="merch-image">
                       <img src={slide.hoodieImage} alt="Orange Hoodie Merch" />

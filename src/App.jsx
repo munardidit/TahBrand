@@ -82,11 +82,15 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/episodes" element={<AllEpisodesPage />} />
+        <Route path="/" element={<Header />} />
+        <Route path="/shopmerch" element={<ShopMerch />} />
         <Route path="/merch" element={<ShopMerchPage />} />
         <Route path="/merch/product/:id" element={<ShopMerch2Page />} />
         <Route path="/payment" element={<Payment />} />
         <Route path="/episode/:id" element={<EpisodeDetailPage />} />
         <Route path="/episodes/:id" element={<EpisodeDetail />} />
+        <Route path="/allepisodes" element={<AllEpisodesPage />} />
+        <Route path="/episode/:id" element={<EpisodeDetail />} />
       </Routes>
     </Router>
   );

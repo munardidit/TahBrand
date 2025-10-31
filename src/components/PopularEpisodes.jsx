@@ -1,3 +1,6 @@
+
+import React from 'react';
+import { Link } from 'react-router-dom';
 import './PopularEpisodes.css';
 
 function PopularEpisodes() {
@@ -50,8 +53,10 @@ function PopularEpisodes() {
         </div>
 
         <div className="view-all-button-container">
-          <button className="view-all-button">View All Episodes</button>
-        </div>
+        <Link to="/allepisodes" className="view-all-button">
+          View All Episodes
+        </Link>
+      </div>
       </div>
     </section>
   );
