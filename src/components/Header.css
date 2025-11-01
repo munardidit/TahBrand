@@ -269,7 +269,7 @@
    
 }
 
-.btn-subscribe {
+.btn-subscribes {
   background-color: #ff5722;
   color: #fff;
   cursor: pointer;
@@ -281,13 +281,13 @@
   box-shadow: 0 4px 12px rgba(255, 87, 34, 0.4);
 }
 
-.btn-shop {
+.btn-shops {
   background-color: transparent;
   color: #fff;
   border: 1px solid #FFF2EE;
 }
 
-.btn-shop:hover {
+.btn-shops:hover {
   background-color: rgba(255, 255, 255, 0.1);
   border-color: #fff;
   transform: translateY(-2px);

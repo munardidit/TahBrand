@@ -50,9 +50,9 @@ function Header() {
                   </h1>
                   <p className="header-hosts">With Yinka & Dicta</p>
                   <div className="header-buttons">
-                    <button className="btn btn-subscribe">Subscribe</button>
+                    <button className="btn btn-subscribes">Subscribe</button>
                     <button
-                      className="btn btn-shop"
+                      className="btn btn-shops"
                       onClick={() => navigate('/shopmerch')}
                     >
                       Shop Merch
