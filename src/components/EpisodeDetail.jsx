@@ -159,8 +159,8 @@ function EpisodeDetail() {
         <div className="episode-detail-header">
           <h1 className="episode-detail-title">{episode.title}</h1>
           <p className="episode-detail-meta">
-            <span className="episode-category">{episode.category}</span>
-            <span className="episode-date">{episode.date}</span>
+            <span className="episodes-category">{episode.category}</span>
+            <span className="episodes-date">{episode.date}</span>
           </p>
         </div>
 

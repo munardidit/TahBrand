@@ -33,22 +33,24 @@
   font-family: "Kumbh Sans", sans-serif;
 }
 
-.episode-category {
+.episodes-category {
   font-weight: 600;
   color: #666;
   margin-left: 4%;
   position: relative;
    left: -3%;
+   text-decoration: none !important;
   font-family: "Kumbh Sans", sans-serif;
 }
 
-.episode-date {
+.episodes-date {
   font-weight: 600;
   color: #666;
   justify-content: flex-end;
   position: relative;
    left: -3%;
    font-family: "Kumbh Sans", sans-serif;
+   text-decoration: none !important;
   
 }
 

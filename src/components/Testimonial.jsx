@@ -1,12 +1,7 @@
-import { useState, useCallback, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import "./Testimonial.css";
 
 function Testimonial() {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [touchStart, setTouchStart] = useState(0);
-  const [touchEnd, setTouchEnd] = useState(0);
-
   const testimonials = [
     {
       id: 1,
@@ -26,57 +21,15 @@ function Testimonial() {
       text: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
       author: "Mike789",
     },
+    {
+      id: 4,
+      rating: 5,
+      text: "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      author: "Jane001",
+    },
   ];
 
-  const nextSlide = useCallback(() => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex === testimonials.length - 1 ? 0 : prevIndex + 1
-    );
-  }, [testimonials.length]);
-
-  const prevSlide = useCallback(() => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex === 0 ? testimonials.length - 1 : prevIndex - 1
-    );
-  }, [testimonials.length]);
-
-  // Auto-slide every 6 seconds
-  useEffect(() => {
-    const interval = setInterval(nextSlide, 6000);
-    return () => clearInterval(interval);
-  }, [nextSlide]);
-
-  // Swipe gestures
-  const handleTouchStart = (e) => setTouchStart(e.targetTouches[0].clientX);
-  const handleTouchMove = (e) => setTouchEnd(e.targetTouches[0].clientX);
-  const handleTouchEnd = () => {
-    if (!touchStart || !touchEnd) return;
-    const distance = touchStart - touchEnd;
-    const minSwipeDistance = 50;
-    if (distance > minSwipeDistance) nextSlide();
-    else if (distance < -minSwipeDistance) prevSlide();
-    setTouchStart(0);
-    setTouchEnd(0);
-  };
-
-  // Animation variants
-  const cardVariants = {
-    initial: { opacity: 0, y: -50, scale: 0.9, rotateX: -10 },
-    animate: {
-      opacity: 1,
-      y: 0,
-      scale: 1,
-      rotateX: 0,
-      transition: { type: "spring", duration: 0.8 },
-    },
-    exit: {
-      opacity: 0,
-      y: 50,
-      scale: 0.9,
-      rotateX: 10,
-      transition: { duration: 0.5 },
-    },
-  };
+  const loopedTestimonials = [...testimonials, ...testimonials];
 
   return (
     <section className="testimonial-section">
@@ -85,64 +38,34 @@ function Testimonial() {
           <h2 className="testimonial-heading">
             Thank you for always
             <br />
-            listening to us.
+            listening to us...
           </h2>
         </div>
 
-        <div
-          className="testimonial-slider"
-          onTouchStart={handleTouchStart}
-          onTouchMove={handleTouchMove}
-          onTouchEnd={handleTouchEnd}
-        >
-          <div className="testimonial-stack">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={testimonials[currentIndex].id}
-                className="testimonial-card stacked"
-                variants={cardVariants}
-                initial="initial"
-                animate="animate"
-                exit="exit"
-              >
+        <div className="testimonial-credits-wrapper">
+          <motion.div
+            className="testimonial-credits"
+            animate={{ y: ["0%", "-100%"] }}
+            transition={{
+              duration: 25, 
+              ease: "linear",
+              repeat: Infinity,
+            }}
+          >
+            {loopedTestimonials.map((t, index) => (
+              <div key={index} className="testimonial-card credit-roll">
                 <div className="testimonial-stars">
-                  {[...Array(testimonials[currentIndex].rating)].map(
-                    (_, index) => (
-                      <span key={index} className="star">
-                        ★
-                      </span>
-                    )
-                  )}
+                  {[...Array(t.rating)].map((_, i) => (
+                    <span key={i} className="star">★</span>
+                  ))}
                 </div>
-                <p className="testimonial-text">
-                  {testimonials[currentIndex].text}
-                </p>
+                <p className="testimonial-text">{t.text}</p>
                 <div className="testimonial-footer">
-                  <span className="testimonial-author">
-                    {testimonials[currentIndex].author}
-                  </span>
-                  <button
-                    className="testimonial-arrow"
-                    onClick={nextSlide}
-                    aria-label="Next testimonial"
-                  >
-                    →
-                  </button>
+                  <span className="testimonial-author">{t.author}</span>
                 </div>
-              </motion.div>
-            </AnimatePresence>
-          </div>
-        </div>
-
-        <div className="testimonial-dots">
-          {testimonials.map((_, index) => (
-            <button
-              key={index}
-              className={`dot ${index === currentIndex ? "active" : ""}`}
-              onClick={() => setCurrentIndex(index)}
-              aria-label={`Go to testimonial ${index + 1}`}
-            />
-          ))}
+              </div>
+            ))}
+          </motion.div>
         </div>
       </div>
     </section>

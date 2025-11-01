@@ -68,19 +68,19 @@
   font-weight: 400;
   text-align: left;
   position: relative;
-  text-decoration: none;
-  left: -7%;
+  text-decoration: none !important;
+  left:-3%;
   font-family: "Kumbh Sans", sans-serif;
 }
 
 .episode-date {
   font-size: 0.75rem;
-  text-decoration: none;
+  text-decoration: none !important;
   color: #270E07;
   font-weight: 400;
   text-align: left;
   position: relative;
-  left: -7%;
+  left: -3%;
   font-family: "Kumbh Sans", sans-serif;
 }
 
