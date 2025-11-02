@@ -26,6 +26,41 @@ function CartModal({ isOpen, onClose, product, selectedSize, selectedColor }) {
   };
 
   const handleAddToCart = () => {
+    // Get existing cart from localStorage
+    const existingCart = JSON.parse(localStorage.getItem('tahCart') || '[]');
+    
+    // Create the new cart item
+    const cartItem = {
+      id: product.id,
+      name: product.name,
+      price: product.price,
+      image: product.image,
+      selectedSize: selectedSize,
+      color: selectedColor,
+      type: product.type,
+      quantity: quantity
+    };
+    
+    // Check if item with same id and size already exists
+    const existingItemIndex = existingCart.findIndex(
+      item => item.id === product.id && item.selectedSize === selectedSize
+    );
+    
+    if (existingItemIndex > -1) {
+      // Update quantity if item exists
+      existingCart[existingItemIndex].quantity += quantity;
+    } else {
+      // Add new item
+      existingCart.push(cartItem);
+    }
+    
+    // Save to localStorage
+    localStorage.setItem('tahCart', JSON.stringify(existingCart));
+    
+    // Dispatch custom event to notify other components
+    window.dispatchEvent(new Event('cartUpdated'));
+
+    // Show success modal
     setIsFadingOut(true);
     setTimeout(() => {
       setIsFadingOut(false);
@@ -172,16 +207,16 @@ function CartModal({ isOpen, onClose, product, selectedSize, selectedColor }) {
 
       {/* Success Modal */}
       <SuccessModal
-  isOpen={showSuccess}
-  onClose={() => setShowSuccess(false)}
-  product={product}
-  selectedSize={selectedSize}
-  selectedColor={selectedColor}
-  quantity={quantity}
-  total={total}
-  shippingCost={shippingCost}
-  subtotal={subtotal}
-/>
+        isOpen={showSuccess}
+        onClose={() => setShowSuccess(false)}
+        product={product}
+        selectedSize={selectedSize}
+        selectedColor={selectedColor}
+        quantity={quantity}
+        total={total}
+        shippingCost={shippingCost}
+        subtotal={subtotal}
+      />
     </>
   );
 }

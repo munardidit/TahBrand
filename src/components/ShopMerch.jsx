@@ -1,13 +1,18 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import logo from '../assets/navlogopic.png';
 import { productsData } from '../data/productsData';
+import CartModal from './CartModal'; // ✅ modal for cart
 import './ShopMerch.css';
 
 const ShopMerch = () => {
-  
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isCartOpen, setIsCartOpen] = useState(false);
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+  const navigate = useNavigate();
+
+  const openCart = () => setIsCartOpen(true);
+  const closeCart = () => setIsCartOpen(false);
 
   return (
     <>
@@ -22,8 +27,15 @@ const ShopMerch = () => {
             </div>
 
             <div className="shop-navbar-actions">
-              <button className="cart-button">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <button className="cart-button" onClick={openCart}>
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                >
                   <circle cx="9" cy="21" r="1" />
                   <circle cx="20" cy="21" r="1" />
                   <path
@@ -37,7 +49,12 @@ const ShopMerch = () => {
 
               <button className="shop-menu-button" onClick={toggleMenu}>
                 <svg fill="#270E07" stroke="currentColor" viewBox="1 1 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={4} d="M4 6h16M4 12h16M4 18h16" />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={4}
+                    d="M4 6h16M4 12h16M4 18h16"
+                  />
                 </svg>
               </button>
             </div>
@@ -58,25 +75,61 @@ const ShopMerch = () => {
 
         <div className="shop-menu-content">
           <nav className="shop-menu-nav">
-            <a href="/episodes" onClick={toggleMenu}>View All Episodes</a>
-            <a href="/merch" onClick={toggleMenu}>Shop TAH Merchs</a>
+            <a href="/episodes" onClick={toggleMenu}>
+              View All Episodes
+            </a>
+            <a href="/merch" onClick={toggleMenu}>
+              Shop TAH Merchs
+            </a>
 
             <div className="shop-menu-section">
               <button className="shop-menu-dropdown">
                 Subscribe to our channels
-                <svg className="shop-dropdown-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                <svg
+                  className="shop-dropdown-icon"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M19 9l-7 7-7-7"
+                  />
                 </svg>
               </button>
               <div className="shop-dropdown-content">
-                <a href="https://youtube.com" target="_blank" rel="noopener noreferrer">Youtube</a>
-                <a href="https://spotify.com" target="_blank" rel="noopener noreferrer">Spotify</a>
-                <a href="https://podcasts.apple.com" target="_blank" rel="noopener noreferrer">Apple Podcast</a>
+                <a
+                  href="https://youtube.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Youtube
+                </a>
+                <a
+                  href="https://spotify.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Spotify
+                </a>
+                <a
+                  href="https://podcasts.apple.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Apple Podcast
+                </a>
               </div>
             </div>
 
-            <a href="/newsletter" onClick={toggleMenu}>Subscribe to our weekly newsletter</a>
-            <a href="/hosts" onClick={toggleMenu}>About the Hosts</a>
+            <a href="/newsletter" onClick={toggleMenu}>
+              Subscribe to our weekly newsletter
+            </a>
+            <a href="/hosts" onClick={toggleMenu}>
+              About the Hosts
+            </a>
           </nav>
         </div>
       </div>
@@ -96,7 +149,13 @@ const ShopMerch = () => {
             <button className="filter-newest-button">
               <span>Date-Newest First</span>
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                <path d="M4 6L8 10L12 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                <path
+                  d="M4 6L8 10L12 6"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
               </svg>
             </button>
           </div>
@@ -104,10 +163,10 @@ const ShopMerch = () => {
           {/* Product Grid */}
           <div className="shop-merch-grid">
             {productsData.map((product) => (
-              <Link
-                to={`/merch/product/${product.id}`}
+              <div
                 key={product.id}
                 className="product-card-link"
+                onClick={() => navigate(`/shopmerch2/${product.id}`)}
               >
                 <div className="product-card">
                   <div className="product-image">
@@ -118,11 +177,19 @@ const ShopMerch = () => {
                     <h3 className="product-name">{product.name}</h3>
                     <div className="product-footer">
                       <span className="product-price">{product.price}</span>
-                      <button className="add-to-cart-button">⟶︎</button>
+                      <button
+                        className="add-to-cart-button"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          navigate(`/shopmerch2/${product.id}`);
+                        }}
+                      >
+                        ⟶︎
+                      </button>
                     </div>
                   </div>
                 </div>
-              </Link>
+              </div>
             ))}
           </div>
 
@@ -135,6 +202,9 @@ const ShopMerch = () => {
           </div>
         </div>
       </section>
+
+      {/* Cart Modal */}
+      {isCartOpen && <CartModal onClose={closeCart} />}
     </>
   );
 };

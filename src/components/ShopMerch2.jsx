@@ -210,7 +210,7 @@ const ShopMerch2 = () => {
                   Back
                 </Link>
 
-                {/* ✅ Continue button disabled until size selected */}
+                {/* Continue button disabled until size selected */}
                 <button
                   className={`action-btn continue-btn ${
                     !selectedSize ? 'disabled' : ''

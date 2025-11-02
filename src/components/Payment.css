@@ -428,6 +428,21 @@ margin-left: 1rem;
   color: #1a1a1a;
 }
 
+.order-item-detail {
+  padding: 8px 0;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.order-item-detail:last-child {
+  border-bottom: none;
+}
+
+.order-summary-row.small {
+  font-size: 14px;
+  color: #6b7280;
+  margin-top: 4px;
+}
+
 /* Tablet Responsive */
 @media (max-width: 1024px) {
   .payment-container {

@@ -8,6 +8,7 @@ function Payment() {
   const navigate = useNavigate();
   const location = useLocation();
 
+  // Retrieve passed product data
   const {
     product,
     selectedSize,
@@ -22,16 +23,16 @@ function Payment() {
 
   return (
     <>
-<nav className="payment-navbar">
-        <div className="payment-navbar-container">
-          <div className="payment-navbar-content">
-            <div className="payment-navbar-logo">
+<nav className="shop-navbar">
+        <div className="shop-navbar-container">
+          <div className="shop-navbar-content">
+            <div className="shop-navbar-logo">
               <a href="/">
                 <img src={logo} alt="Tah Logo" />
               </a>
             </div>
 
-            <div className="payment-navbar-actions">
+            <div className="shop-navbar-actions">
               <button className="cart-button">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <circle cx="9" cy="21" r="1" />
@@ -45,7 +46,7 @@ function Payment() {
                 <span className="cart-badge">1</span>
               </button>
 
-              <button className="payment-menu-button" onClick={toggleMenu}>
+              <button className="shop-menu-button" onClick={toggleMenu}>
                 <svg fill="#270E07" stroke="currentColor" viewBox="1 1 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={4} d="M4 6h16M4 12h16M4 18h16" />
                 </svg>
