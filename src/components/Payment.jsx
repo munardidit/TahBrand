@@ -301,11 +301,23 @@ function Payment() {
           </div>
         </div>
 
-        {/* Modal */}
+        {/* Modal with checkmark */}
         {showModal && (
-          <div className="modal-overlay">
-            <div className="modal-content">
-              <h3>🎉 Payment Successful!</h3>
+          <div className="modal-overlay" onClick={closeModal}>
+            <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+              <div className="success-icon" style={{ marginBottom: "1rem" }}>
+                <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
+                  <circle cx="30" cy="30" r="30" fill="#22C55E" />
+                  <path
+                    d="M17 30L26 39L43 22"
+                    stroke="white"
+                    strokeWidth="4"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </div>
+              <h3>Payment Successful!</h3>
               <p>Thank you for your purchase. Your order has been confirmed.</p>
               <button onClick={closeModal} className="close-modal-btn">
                 Close
