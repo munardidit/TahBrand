@@ -2,17 +2,32 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import logo from '../assets/navlogopic.png';
 import { productsData } from '../data/productsData';
-import CartModal from './CartModal'; 
+import CartModal from './CartModal';
 import './ShopMerch.css';
 
 const ShopMerch = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
-  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+  const [selectedCategory, setSelectedCategory] = useState('All');
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const navigate = useNavigate();
 
+  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
   const openCart = () => setIsCartOpen(true);
   const closeCart = () => setIsCartOpen(false);
+
+  const goBack = () => navigate(-1);
+
+  const handleCategorySelect = (category) => {
+    setSelectedCategory(category);
+    setIsDropdownOpen(false);
+  };
+
+  // Filter products based on category
+  const filteredProducts =
+    selectedCategory === 'All'
+      ? productsData
+      : productsData.filter((p) => p.category === selectedCategory);
 
   return (
     <>
@@ -44,7 +59,7 @@ const ShopMerch = () => {
                     strokeLinejoin="round"
                   />
                 </svg>
-                <span className="cart-badge">1</span>
+                <span className="cart-badge"></span>
               </button>
 
               <button className="shop-menu-button" onClick={toggleMenu}>
@@ -137,32 +152,44 @@ const ShopMerch = () => {
       {/* Shop Merch Section */}
       <section className="shop-merch-section">
         <div className="shop-merch-container">
-          {/* Category Tabs */}
-          <div className="category-tabs">
-            <button className="category-tab active">Apparels</button>
-            <button className="category-tab">Caps</button>
-            <button className="category-tab">Accessories</button>
-          </div>
-
           <div className="shop-merch-header">
-            <h1 className="shop-merch-title">SHOP TAH MERCH</h1>
-            <button className="filter-newest-button">
-              <span>Date-Newest First</span>
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                <path
-                  d="M4 6L8 10L12 6"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
+            <button className="back-button" onClick={goBack}>
+              🡰
             </button>
+
+            <h1 className="shop-merch-title">SHOP TAH MERCH</h1>
+
+            <div className="dropdown-container">
+              <button
+                className="filter-newest-button"
+                onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+              >
+                <span>{selectedCategory === 'All' ? 'Filter by Category' : selectedCategory}</span>
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                  <path
+                    d="M4 6L8 10L12 6"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </button>
+
+              {isDropdownOpen && (
+                <ul className="category-dropdown">
+                  <li onClick={() => handleCategorySelect('All')}>All</li>
+                  <li onClick={() => handleCategorySelect('Apparels')}>Apparels</li>
+                  <li onClick={() => handleCategorySelect('Hoodies')}>Hoodies</li>
+                  <li onClick={() => handleCategorySelect('Caps')}>Caps</li>
+                </ul>
+              )}
+            </div>
           </div>
 
           {/* Product Grid */}
           <div className="shop-merch-grid">
-            {productsData.map((product) => (
+            {filteredProducts.map((product) => (
               <div
                 key={product.id}
                 className="product-card-link"
@@ -182,7 +209,6 @@ const ShopMerch = () => {
                         onClick={(e) => {
                           e.stopPropagation();
                           navigate(`/merch/product/${product.id}`);
-
                         }}
                       >
                         ⟶︎

@@ -1,33 +1,27 @@
-import React, { useState } from 'react';
-import { useNavigate, useParams, Link } from 'react-router-dom';
-import { productsData } from '../data/productsData';
-import CartModal from '../components/CartModal';
-import logo from '../assets/navlogopic.png';
-import './ShopMerch2.css';
+import React, { useState } from "react";
+import { useNavigate, useParams, Link } from "react-router-dom";
+import { productsData } from "../data/productsData";
+import CartModal from "../components/CartModal";
+import logo from "../assets/navlogopic.png";
+import "./ShopMerch2.css";
 
 const ShopMerch2 = () => {
   const { id } = useParams();
-  const product = productsData.find(p => p.id === parseInt(id));
+  const product = productsData.find((p) => p.id === parseInt(id));
   const navigate = useNavigate();
 
   const [selectedSize, setSelectedSize] = useState(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
 
-  const sizes = ['XS', 'S', 'M', 'L', 'XL'];
+  const sizes = ["XS", "S", "M", "L", "XL"];
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
-  const handleCartClick = () => {
-    navigate('/cart');
-  };
+  const handleCartClick = () => navigate("/cart");
 
-  // add to localStorage cart
   const addToCart = () => {
-    if (!selectedSize) {
-      // if no size chosen, keep hint visible and block add
-      return;
-    }
+    if (!selectedSize) return;
 
     const newItem = {
       id: product.id,
@@ -39,18 +33,16 @@ const ShopMerch2 = () => {
       quantity: 1,
     };
 
-    const existingCart = JSON.parse(localStorage.getItem('tahCart') || '[]');
+    const existingCart = JSON.parse(localStorage.getItem("tahCart") || "[]");
     existingCart.push(newItem);
-    localStorage.setItem('tahCart', JSON.stringify(existingCart));
+    localStorage.setItem("tahCart", JSON.stringify(existingCart));
 
-    // notify other parts of the app
-    window.dispatchEvent(new Event('cartUpdated'));
+    window.dispatchEvent(new Event("cartUpdated"));
   };
 
   const handleContinue = () => {
     if (!selectedSize) {
-      // quickly show browser alert as well as the inline hint (hint renders automatically)
-      alert('Please select a size before continuing.');
+      alert("Please select a size before continuing.");
       return;
     }
 
@@ -64,14 +56,14 @@ const ShopMerch2 = () => {
 
   return (
     <>
-      {/* Navbar */}
+      {/* NAVBAR */}
       <nav className="shop-navbar">
         <div className="shop-navbar-container">
           <div className="shop-navbar-content">
             <div className="shop-navbar-logo">
-              <a href="/">
+              <Link to="/">
                 <img src={logo} alt="Tah Logo" />
-              </a>
+              </Link>
             </div>
 
             <div className="shop-navbar-actions">
@@ -92,7 +84,7 @@ const ShopMerch2 = () => {
                     strokeLinejoin="round"
                   />
                 </svg>
-                <span className="cart-badge">1</span>
+                <span className="cart-badge"></span>
               </button>
 
               <button className="shop-menu-button" onClick={toggleMenu}>
@@ -110,8 +102,8 @@ const ShopMerch2 = () => {
         </div>
       </nav>
 
-      {/* Mobile Menu */}
-      <div className={`shop-menu-overlay ${isMenuOpen ? 'open' : ''}`}>
+      {/* MOBILE MENU */}
+      <div className={`shop-menu-overlay ${isMenuOpen ? "open" : ""}`}>
         <div className="shop-menu-header">
           <div className="shop-menu-logo">
             <img src={logo} alt="Tah Logo" />
@@ -123,36 +115,64 @@ const ShopMerch2 = () => {
 
         <div className="shop-menu-content">
           <nav className="shop-menu-nav">
-            <a href="/episodes" onClick={toggleMenu}>View All Episodes</a>
-            <a href="/merch" onClick={toggleMenu}>Shop TAH Merchs</a>
+            <Link to="/episodes" onClick={toggleMenu}>
+              View All Episodes
+            </Link>
+            <Link to="/merch" onClick={toggleMenu}>
+              Shop TAH Merchs
+            </Link>
 
             <div className="shop-menu-section">
               <button className="shop-menu-dropdown">
                 Subscribe to our channels
-                <svg className="shop-dropdown-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                <svg
+                  className="shop-dropdown-icon"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="3.5"
+                    d="M19 9l-7 7-7-7"
+                  />
                 </svg>
               </button>
               <div className="shop-dropdown-content">
-                <a href="https://youtube.com" target="_blank" rel="noopener noreferrer">Youtube</a>
-                <a href="https://spotify.com" target="_blank" rel="noopener noreferrer">Spotify</a>
-                <a href="https://podcasts.apple.com" target="_blank" rel="noopener noreferrer">Apple Podcast</a>
+                <a href="https://youtube.com" target="_blank" rel="noopener noreferrer">
+                  YouTube
+                </a>
+                <a href="https://spotify.com" target="_blank" rel="noopener noreferrer">
+                  Spotify
+                </a>
+                <a
+                  href="https://podcasts.apple.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Apple Podcast
+                </a>
               </div>
             </div>
 
-            <a href="/newsletter" onClick={toggleMenu}>Subscribe to our weekly newsletter</a>
-            <a href="/hosts" onClick={toggleMenu}>About the Hosts</a>
+            <Link to="/newsletter" onClick={toggleMenu}>
+              Subscribe to our weekly newsletter
+            </Link>
+            <Link to="/hosts" onClick={toggleMenu}>
+              About the Hosts
+            </Link>
           </nav>
         </div>
       </div>
 
-      {/* Product Section */}
+      {/* PRODUCT DETAIL */}
       <section className="product-detail-section">
         <div className="product-detail-container">
-          <div className="category-tabs-detail">
-            <a href="/merch" className="category-tab-detail">Apparels</a>
-            <a href="/merch" className="category-tab-detail">Caps</a>
-            <a href="/merch" className="category-tab-detail">Accessories</a>
+          <div className="product-header-top">
+            <button className="back-arrow-btn" onClick={() => navigate(-1)}>
+              🡰
+            </button>
           </div>
 
           <div className="product-header">
@@ -176,30 +196,36 @@ const ShopMerch2 = () => {
             <div className="size-and-actions">
               <div className="size-section">
                 <label className="size-label-main">Size</label>
-
                 <div className="size-buttons-grid">
-                  {sizes.map((size) => (
-                    <button
-                      key={size}
-                      className={`size-btn ${size === 'XS' ? 'highlight-xs' : ''} ${selectedSize === size ? 'selected' : ''}`}
-                      onClick={() => setSelectedSize(size)}
-                    >
-                      {size}
-                    </button>
-                  ))}
+                  {sizes.map((size) => {
+                    const isDefault = size === "XS" && !selectedSize;
+                    const isSelected = selectedSize === size;
+                    return (
+                      <button
+                        key={size}
+                        className={`size-btn ${isDefault ? "default-xs" : ""} ${
+                          isSelected ? "selected" : ""
+                        }`}
+                        onClick={() => setSelectedSize(size)}
+                      >
+                        {size}
+                      </button>
+                    );
+                  })}
                 </div>
-
-                {/* subtle inline hint until a size is chosen */}
                 {!selectedSize && (
                   <p className="size-hint">Please select a size before continuing.</p>
                 )}
               </div>
 
               <div className="product-actions">
-                <Link to="/merch" className="action-btn backs-btn">Back</Link>
-
+                <Link to="/merch" className="action-btn backs-btn">
+                  Back
+                </Link>
                 <button
-                  className={`action-btn continue-btn ${!selectedSize ? 'disabled' : ''}`}
+                  className={`action-btn continue-btn ${
+                    !selectedSize ? "disabled" : ""
+                  }`}
                   onClick={handleContinue}
                   disabled={!selectedSize}
                 >
@@ -211,15 +237,16 @@ const ShopMerch2 = () => {
             <div className="details-section">
               <h3 className="details-title">Details</h3>
               <p className="details-description">
-                This {product.color.toLowerCase()} {product.type} from TAH is crafted for both comfort and bold street style.
-                Made from premium fabric and finished with the TAH logo, it's perfect for all-day wear during cool seasons.
+                This {product.color.toLowerCase()} {product.type} from TAH is crafted
+                for both comfort and bold street style. Made from premium fabric and
+                finished with the TAH logo, it’s perfect for all-day wear during cool
+                seasons.
               </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Cart Modal */}
       <CartModal
         isOpen={isCartOpen}
         onClose={() => setIsCartOpen(false)}

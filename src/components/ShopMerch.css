@@ -132,7 +132,7 @@
 .shop-menu-header {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: left;
   padding: 1rem 2rem;
   border-bottom: 1px solid #e0e0e0;
   font-family: "Kumbh Sans", sans-serif;
@@ -251,45 +251,6 @@
   color: #ff5722;
 }
 
-/* Category Tabs */
-.category-tabs {
-  display: flex;
-  gap: 2rem;
-  margin-bottom: 3rem;
-  border-bottom: 2px solid transparent;
-  font-family: "Kumbh Sans", sans-serif;
-}
-
-.category-tab {
-  background: none;
-  border: none;
-  font-size: 0.85rem;
-  font-weight: 500;
-  color: #666;
-  padding: 0.75rem 0;
-  cursor: pointer;
-  position: relative;
-  transition: color 0.3s ease;
-  font-family: "Kumbh Sans", sans-serif;
-}
-
-.category-tab:hover {
-  color: #1a1a1a;
-}
-
-/*.category-tab.active {
-  color: #000000;
-}
-
-.category-tab.active::after {
-  content: '';
-  position: absolute;
-  bottom: -2px;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background-color: #1a1a1a;
-}*/
 
 .shop-merch-section {
   width: 100%;
@@ -317,6 +278,7 @@
   font-weight: 700;
   color: #1a1a1a;
   margin: 0;
+  text-align: left;
   text-transform: uppercase;
   letter-spacing: 0.5px;
   font-family: "Kumbh Sans", sans-serif;
@@ -476,6 +438,52 @@
   color: #fff;
    text-decoration: none !important;
 }
+
+.back-button {
+  background:#FBEBE6;
+  border:1px solid black;
+  border-radius: 50%;
+  font-size: 1rem;
+  font-weight: 500;
+  color: black;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+.back-button:hover {
+  color: black;
+  background-color: transparent;
+}
+
+.dropdown-container {
+  position: relative;
+}
+
+.category-dropdown {
+  position: absolute;
+  right: 0;
+  margin-top: 0.5rem;
+  background: white;
+  border: 1px solid #e5e5e5;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  list-style: none;
+  padding: 0.5rem 0;
+  z-index: 10;
+  font-family: "Kumbh Sans", sans-serif;
+}
+.category-dropdown li {
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+  color: #270E07;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+.category-dropdown li:hover {
+  background-color: #fceee9;
+  color: #ff5722;
+}
+
+
 
 /* Tablet Responsive */
 @media (max-width: 1024px) {
