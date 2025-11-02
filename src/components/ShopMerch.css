@@ -51,7 +51,7 @@
   font-family: "Kumbh Sans", sans-serif;
 }
 
-.cart-button {
+.cart-icon {
   position: relative;
   display: flex;
   align-items: center;
@@ -64,11 +64,11 @@
   transition: all 0.2s;
 }
 
-.cart-button:hover {
+.cart-icon:hover {
   opacity: 0.7;
 }
 
-.cart-button svg {
+.cart-icon svg {
   width: 28px;
   height: 28px;
 }

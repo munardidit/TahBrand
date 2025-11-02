@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Header from './components/Header';
+import { CartProvider } from './context/CartContext';
 import Episode from './components/Episode';
 import PopularEpisodes from './components/PopularEpisodes';
 import NewMerch from './components/NewMerch';
@@ -11,14 +12,15 @@ import AllEpisodes from './components/AllEpisodes';
 import ShopMerch from './components/ShopMerch';
 import ShopMerch2 from './components/ShopMerch2';
 import Payment from './components/Payment';
+import CartPage from './components/CartPage'; 
 import EpisodeDetail from './components/EpisodeDetailPage';
 import './App.css';
 
-// Home Page
+// Home Page Component
 function HomePage() {
   return (
     <>
-      <Navbar />
+    <Navbar />
       <Header />
       <Episode />
       <PopularEpisodes />
@@ -30,7 +32,7 @@ function HomePage() {
   );
 }
 
-// All Episodes Page
+// All Episodes Page Component
 function AllEpisodesPage() {
   return (
     <>
@@ -42,7 +44,7 @@ function AllEpisodesPage() {
   );
 }
 
-// Shop Merch Page
+// Shop Merch Page Component
 function ShopMerchPage() {
   return (
     <>
@@ -53,7 +55,7 @@ function ShopMerchPage() {
   );
 }
 
-// Product Detail Page
+// Shop Merch Product Detail Page Component
 function ShopMerch2Page() {
   return (
     <>
@@ -70,24 +72,30 @@ function EpisodeDetailPage() {
     <>
       <Navbar />
       <EpisodeDetail />
-      <NewMerch />
-      <Footer />
     </>
   );
 }
 
 function App() {
   return (
+    <CartProvider>
     <Router>
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/episodes" element={<AllEpisodesPage />} />
+        <Route path="/" element={<Header />} />
+        <Route path="/shopmerch" element={<ShopMerch />} />
         <Route path="/merch" element={<ShopMerchPage />} />
-        <Route path="/shopmerch2/:id" element={<ShopMerch2Page />} /> 
+        <Route path="/merch/product/:id" element={<ShopMerch2Page />} />
         <Route path="/payment" element={<Payment />} />
         <Route path="/episode/:id" element={<EpisodeDetailPage />} />
+        <Route path="/episodes/:id" element={<EpisodeDetail />} />
+        <Route path="/allepisodes" element={<AllEpisodesPage />} />
+         <Route path="/merch" element={<ShopMerch />} />
+         <Route path="/cart" element={<CartPage />} />
       </Routes>
     </Router>
+    </CartProvider>
   );
 }
 

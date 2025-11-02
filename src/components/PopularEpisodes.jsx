@@ -1,51 +1,60 @@
-
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import './PopularEpisodes.css';
+import popular1 from '../assets/hostimage.png';
+import popular2 from '../assets/hostimage.png';
+import popular3 from '../assets/hostimage.png';
 
 function PopularEpisodes() {
+  const navigate = useNavigate();
+
+  const handleViewAllClick = () => {
+    navigate('/allepisodes');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   const popularEpisodes = [
     {
       id: 1,
       category: 'Relationship & finance',
       date: 'October 3rd, 2025',
       title: 'Growing your household finance together.',
-      thumbnail: '/assets/popular1.jpg'
+      thumbnail: popular1,
     },
     {
       id: 2,
       category: 'Relationship & finance',
       date: 'October 3rd, 2025',
       title: 'Growing your household finance together.',
-      thumbnail: '/assets/popular2.jpg'
+      thumbnail: popular2,
     },
     {
       id: 3,
       category: 'Relationship & finance',
       date: 'October 3rd, 2025',
       title: 'Growing your household finance together.',
-      thumbnail: '/assets/popular3.jpg'
-    }
+      thumbnail: popular3,
+    },
   ];
 
   return (
     <section className="popular-episodes-section">
       <div className="popular-episodes-container">
         <h2 className="popular-episodes-heading">Most Popular Episodes</h2>
-        
+
         <div className="popular-episodes-grid">
           {popularEpisodes.map((episode) => (
             <div key={episode.id} className="popular-episode-card">
               <div className="popular-episode-thumbnail">
                 <img src={episode.thumbnail} alt={episode.title} />
               </div>
-              
+
               <div className="popular-episode-info">
                 <div className="popular-episode-meta">
                   <span className="popular-episode-category">{episode.category}</span>
                   <span className="popular-episode-date">{episode.date}</span>
                 </div>
-                
+
                 <h3 className="popular-episode-title">{episode.title}</h3>
               </div>
             </div>
@@ -53,10 +62,10 @@ function PopularEpisodes() {
         </div>
 
         <div className="view-all-button-container">
-        <Link to="/allepisodes" className="view-all-button">
-          View All Episodes
-        </Link>
-      </div>
+          <button onClick={handleViewAllClick} className="view-all-button">
+            View All Episodes
+          </button>
+        </div>
       </div>
     </section>
   );

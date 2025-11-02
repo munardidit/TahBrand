@@ -1,8 +1,15 @@
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import './NewMerch.css';
 import hoodieImage from '../assets/Sweater.png';
 
 function NewMerch() {
+  const navigate = useNavigate();
+
+  const handleShopNowClick = () => {
+    navigate('/merch');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
     <section className="new-merch-section">
       <div className="new-merch-container">
@@ -14,10 +21,9 @@ function NewMerch() {
               Now Available!
             </h2>
 
-            {/* Use Link instead of button for routing */}
-            <Link to="/merch" className="new-merch-button">
+            <button onClick={handleShopNowClick} className="new-merch-button">
               Shop Now
-            </Link>
+            </button>
           </div>
           
           <div className="new-merch-image">

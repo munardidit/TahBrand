@@ -482,6 +482,28 @@
   color: #666;
   margin: 0;
 }
+ /* Highlight XS by default */
+.size-btn.highlight-xs {
+  color: #000;
+  font-weight: 700;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+}
+
+/* Subtle hint when no size is chosen */
+.size-hint {
+  color: crimson;
+  font-size: 0.9rem;
+  margin-top: 0.4rem;
+  font-style: italic;
+}
+
+/* Smooth hover effect for clarity */
+.size-btn:hover {
+  background-color: #f4f4f4;
+  transform: scale(1.05);
+  transition: all 0.2s ease;
+}
 
 
 /* Tablet Responsive */

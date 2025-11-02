@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import logo from '../assets/navlogopic.png';
 import { productsData } from '../data/productsData';
-import CartModal from './CartModal'; // ✅ modal for cart
+import CartModal from './CartModal'; 
 import './ShopMerch.css';
 
 const ShopMerch = () => {
@@ -27,7 +27,7 @@ const ShopMerch = () => {
             </div>
 
             <div className="shop-navbar-actions">
-              <button className="cart-button" onClick={openCart}>
+              <button onClick={() => navigate("/cart")} className="cart-icon">
                 <svg
                   width="24"
                   height="24"
@@ -166,7 +166,7 @@ const ShopMerch = () => {
               <div
                 key={product.id}
                 className="product-card-link"
-                onClick={() => navigate(`/shopmerch2/${product.id}`)}
+                onClick={() => navigate(`/merch/product/${product.id}`)}
               >
                 <div className="product-card">
                   <div className="product-image">
@@ -181,7 +181,8 @@ const ShopMerch = () => {
                         className="add-to-cart-button"
                         onClick={(e) => {
                           e.stopPropagation();
-                          navigate(`/shopmerch2/${product.id}`);
+                          navigate(`/merch/product/${product.id}`);
+
                         }}
                       >
                         ⟶︎

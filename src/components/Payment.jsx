@@ -1,29 +1,52 @@
-import { useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./Payment.css";
 import logo from "../assets/navlogopic.png";
 
 function Payment() {
+  const [cartItems, setCartItems] = useState([]);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [showModal, setShowModal] = useState(false);
   const navigate = useNavigate();
-  const location = useLocation();
 
-  // Retrieve passed product data
-  const {
-    product,
-    selectedSize,
-    selectedColor,
-    quantity,
-    total,
-    shippingCost,
-    subtotal,
-  } = location.state || {};
+  useEffect(() => {
+    const savedCart = JSON.parse(localStorage.getItem("tahCart") || "[]");
+    setCartItems(savedCart);
+  }, []);
+
+  const subtotal = cartItems.reduce((acc, item) => {
+    const price = parseFloat(item.price.replace(/[^\d.]/g, "")) || 0;
+    return acc + price * item.quantity;
+  }, 0);
+
+  const shippingCost = cartItems.length > 0 ? 70 : 0;
+  const total = subtotal + shippingCost;
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
+  const handlePayment = () => {
+    if (cartItems.length === 0) {
+      alert("Your cart is empty.");
+      return;
+    }
+
+    // Simulate payment success
+    setTimeout(() => {
+      localStorage.removeItem("tahCart");
+      setCartItems([]);
+      setShowModal(true);
+    }, 1000);
+  };
+
+  const closeModal = () => {
+    setShowModal(false);
+    navigate("/"); // Redirect to homepage after closing modal
+  };
+
   return (
     <>
-<nav className="shop-navbar">
+      {/* Navbar */}
+      <nav className="shop-navbar">
         <div className="shop-navbar-container">
           <div className="shop-navbar-content">
             <div className="shop-navbar-logo">
@@ -33,8 +56,15 @@ function Payment() {
             </div>
 
             <div className="shop-navbar-actions">
-              <button className="cart-button">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <button className="cart-button" onClick={() => navigate("/cart")}>
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                >
                   <circle cx="9" cy="21" r="1" />
                   <circle cx="20" cy="21" r="1" />
                   <path
@@ -43,12 +73,17 @@ function Payment() {
                     strokeLinejoin="round"
                   />
                 </svg>
-                <span className="cart-badge">1</span>
+                <span className="cart-badge">{cartItems.length}</span>
               </button>
 
               <button className="shop-menu-button" onClick={toggleMenu}>
                 <svg fill="#270E07" stroke="currentColor" viewBox="1 1 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={4} d="M4 6h16M4 12h16M4 18h16" />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={4}
+                    d="M4 6h16M4 12h16M4 18h16"
+                  />
                 </svg>
               </button>
             </div>
@@ -59,7 +94,7 @@ function Payment() {
       {/* Payment Section */}
       <section className="payment-section">
         <div className="payment-container">
-          {/*  Left Column - Shipping & Payment */}
+          {/* Left Column */}
           <div className="payment-left">
             {/* Shipping Address */}
             <div className="payment-form-section">
@@ -196,10 +231,7 @@ function Payment() {
                 🔒︎ Your payment is secure and encrypted
               </p>
 
-              <button
-                className="pay-now-button"
-                onClick={() => navigate("/success")}
-              >
+              <button className="pay-now-button" onClick={handlePayment}>
                 Pay Now
               </button>
               <p className="security-note">
@@ -212,67 +244,75 @@ function Payment() {
           {/* Right Column - Order Summary */}
           <div className="payment-right">
             <div className="order-summary-card">
-              <div className="order-product">
-                <img
-                  src={product?.image || "/assets/orange-hoodie.jpg"}
-                  alt={product?.name || "Product"}
-                  className="order-product-image"
-                />
-                <p className="order-product-note">
-                  By placing your order, you agree to our company Privacy policy and Conditions of use.
-                </p>
+              <h3 className="order-summary-title">Order Summary</h3>
+
+              {cartItems.length === 0 ? (
+                <p className="empty-summary">No items in your cart.</p>
+              ) : (
+                cartItems.map((item, index) => (
+                  <div className="order-product" key={`${item.id}-${index}`}>
+                    <img
+                      src={item.image}
+                      alt={item.name}
+                      className="order-product-image"
+                    />
+                    <div className="order-summary-details">
+                      <div className="order-summary-row">
+                        <span className="summary-label">Item</span>
+                        <span className="summary-value">{item.name}</span>
+                      </div>
+                      <div className="order-summary-row">
+                        <span className="summary-label">Size</span>
+                        <span className="summary-value">{item.selectedSize}</span>
+                      </div>
+                      <div className="order-summary-row">
+                        <span className="summary-label">Color</span>
+                        <span className="summary-value">{item.color}</span>
+                      </div>
+                      <div className="order-summary-row">
+                        <span className="summary-label">Qty</span>
+                        <span className="summary-value">{item.quantity}</span>
+                      </div>
+                      <div className="order-summary-row">
+                        <span className="summary-label">Price</span>
+                        <span className="summary-value">{item.price}</span>
+                      </div>
+                    </div>
+                  </div>
+                ))
+              )}
+
+              <hr className="summary-divider" />
+
+              <div className="order-summary-row">
+                <span className="summary-label">Subtotal</span>
+                <span className="summary-value">USD {subtotal.toFixed(2)}</span>
+              </div>
+              <div className="order-summary-row">
+                <span className="summary-label">Shipping</span>
+                <span className="summary-value">USD {shippingCost.toFixed(2)}</span>
               </div>
 
-              <div className="order-summary-details">
-                <h3 className="order-summary-title">Order Summary</h3>
-
-                <div className="order-summary-row">
-                  <span className="summary-label">Items (1)</span>
-                  <span className="summary-value">
-                    {product?.name || "—"}
-                  </span>
-                </div>
-
-                <div className="order-summary-row">
-                  <span className="summary-label">Color</span>
-                  <span className="summary-value">
-                    {selectedColor || "—"}
-                  </span>
-                </div>
-
-                <div className="order-summary-row">
-                  <span className="summary-label">Size</span>
-                  <span className="summary-value">{selectedSize || "—"}</span>
-                </div>
-
-                <div className="order-summary-row">
-                  <span className="summary-label">Quantity</span>
-                  <span className="summary-value">{quantity || 1}</span>
-                </div>
-
-                <div className="order-summary-row">
-                  <span className="summary-label">Order Price</span>
-                  <span className="summary-value">
-                    {subtotal ? subtotal.toFixed(2) : "200.00"}
-                  </span>
-                </div>
-                <div className="order-summary-row">
-                  <span className="summary-label">Shipping and Handling</span>
-                  <span className="summary-value">
-                    {shippingCost ? shippingCost.toFixed(2) : "70.00"}
-                  </span>
-                </div>
-
-                <div className="order-total">
-                  <span className="total-label">Order Total</span>
-                  <span className="total-value">
-                    {total ? total.toFixed(2) : "270.00"}
-                  </span>
-                </div>
+              <div className="order-total">
+                <span className="total-label">Total</span>
+                <span className="total-value">USD {total.toFixed(2)}</span>
               </div>
             </div>
           </div>
         </div>
+
+        {/* Modal */}
+        {showModal && (
+          <div className="modal-overlay">
+            <div className="modal-content">
+              <h3>🎉 Payment Successful!</h3>
+              <p>Thank you for your purchase. Your order has been confirmed.</p>
+              <button onClick={closeModal} className="close-modal-btn">
+                Close
+              </button>
+            </div>
+          </div>
+        )}
       </section>
     </>
   );
