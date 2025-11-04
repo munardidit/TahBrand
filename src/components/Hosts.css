@@ -136,7 +136,7 @@
 }
 
 /* Mobile Responsive */
-@media (max-width: 767px) {
+@media (min-width: 768px) and (max-width: 1024px) {
   .hosts-section {
     padding: 2rem 0;
   }
@@ -151,18 +151,18 @@
   }
 
   .hosts-content {
-    flex-direction: column;
-    padding: 2rem 1.5rem;
+    flex-direction: column-reverse;
+    padding: 3rem 1.5rem;
     text-align: center;
   width: 80%;
   position: relative;
-  left: -3.5%;
+  display: flex;
   }
 
   .hosts-text {
     max-width: 100%;
     padding-right: 0;
-    margin-bottom: 2rem;
+    margin-bottom: 2.5rem;
   }
 
   .hosts-title {
@@ -177,6 +177,7 @@
     text-align:justify;
     position: relative;
     left: 2px;
+    
 
   }
 

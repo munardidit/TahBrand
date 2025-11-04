@@ -73,7 +73,7 @@ function Header() {
                         TRULY & HONESTLY <br /> MERCHS AVAILABLE!
                       </h2>
                       <p className="merch-description">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
+                        Lorem ipsum dolor sit 
                         do eiusmod tempor incididunt ut
                       </p>
                       <button
