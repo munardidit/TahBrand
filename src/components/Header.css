@@ -427,10 +427,11 @@
   .merch-image {
     left: 0;
     margin-top: 1rem;
+    max-width: 780px;
   }
 
   .merch-image img {
-    max-width: 300px;
+    max-width: 780px;
     left: 0;
     top: 0;
   }
@@ -454,39 +455,68 @@
 
 /* Small Mobile (0px - 480px) */
 @media (max-width: 480px) {
+  .hosts-background {
+  background-size:cover;
+  background-repeat: no-repeat;
+  height: 100vh;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
   .header {
-    height: 90vh;
+    height: 100vh;
     min-height: 400px;
   }
 
   .header-title {
-    font-size: 2rem;
+    font-size: 4rem;
+  }
+  
+  .merch-container{
+    background-color: #270E07;
   }
 
   .header-hosts {
-    font-size: 1.75rem;
+    font-size: 3.2rem;
   }
 
   .merch-title {
-    font-size: 1.9rem;
+    font-size: 3rem;
+    text-align: left;
+    position: relative;
+    top: 3rem;
   }
 
   .merch-description {
-    font-size: 0.85rem;
+    font-size: 0.8125rem;
+     position: relative;
+    top: 3rem;
+    text-align: left;
   }
 
   .merch-image img {
-    max-width: 480px;
+    max-width: 780px;
     top:-3rem;
   }
 
   .host-image img {
-    max-width: 380px;
+    max-width: 780px;
+    
+  }
+  .header-buttons{
+    width:189.54px;
+    position: relative;
+    left: 5rem;
+    border-radius: 23%;
   }
   .btn-merch {
   position: relative;
   top: 16rem;
-  width: 60%;
+  width:11.94rem;
+}
+.header-subtitle{
+  font-size: 0.7375rem;
 }
 }
 
@@ -545,6 +575,7 @@
   .merch-container {
     width: 100%;
     box-sizing: border-box;
+    background-color: #270E07;
   }
 
   .merch-content {
@@ -573,6 +604,7 @@
 
   .merch-image {
     left: 3%;
+    
   }
 
   .merch-image img {

@@ -96,6 +96,34 @@
   font-family: "Kumbh Sans", sans-serif;
 }
 
+.view-more-btn-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.view-more-btn {
+  background-color:#FE4E1C;
+  color: #FFF2EE;
+  border: none;
+  border-radius: 100px;
+  padding: 0.895rem 2.4rem;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: "Kumbh Sans", sans-serif;
+}
+
+.view-more-btn:hover {
+  background-color:transparent;
+  color: #270E07;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 87, 34, 0.4);
+}
+
+
 /* Tablet Responsive */
 @media (max-width: 1024px) {
   .episodes-container {
@@ -147,4 +175,11 @@
   .episode-date {
     font-size: 0.7rem;
   }
+  .view-more-btn {
+    width: 100%;
+    max-width: 320px;
+    padding: 0.75rem 2rem;
+    font-size: 0.95rem;
+  }
 }
+

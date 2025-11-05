@@ -74,7 +74,7 @@ function Header() {
                       </h2>
                       <p className="merch-description">
                         Lorem ipsum dolor sit 
-                        do eiusmod tempor incididunt ut
+                        do eiusmod tempor incididunt ut dolor sit dolor sit dolor sit z
                       </p>
                       <button
                         className="btn-merch"

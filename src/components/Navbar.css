@@ -394,6 +394,10 @@
   .dropdown-content a {
     font-size: 0.9rem;
   }
+  .dropdown-icon{
+    position: relative;
+    left: -15px;
+  }
 }
 
 /* Smooth scroll */

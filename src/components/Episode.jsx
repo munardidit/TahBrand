@@ -1,11 +1,15 @@
-import './Episode.css';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import './Episode.css';
 import hostImage1 from '../assets/hostimage.png';
 import hostImage2 from '../assets/hostimage.png';  
 import hostImage3 from '../assets/hostimage.png';  
 import hostImage4 from '../assets/hostimage.png'; 
 
 function Episode() {
+  const [showAll, setShowAll] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
   const episodes = [
     {
       id: 1,
@@ -37,13 +41,34 @@ function Episode() {
     },
   ];
 
+  // Check if screen is mobile
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 767);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  // Determine which episodes to display
+  const displayedEpisodes = isMobile && !showAll 
+    ? episodes.slice(0, 2) 
+    : episodes;
+
+  const handleViewMore = () => {
+    setShowAll(true);
+  };
+
   return (
     <section className="episodes-section">
       <div className="episodes-container">
         <h2 className="episodes-heading">Latest Episodes</h2>
 
         <div className="episodes-grid">
-          {episodes.map(({ id, category, date, title, thumbnail }) => (
+          {displayedEpisodes.map(({ id, category, date, title, thumbnail }) => (
             <Link
               to={`/episode/${id}`}
               key={id}
@@ -67,6 +92,15 @@ function Episode() {
             </Link>
           ))}
         </div>
+
+        {/* View More Button - Only show on mobile when not all episodes are displayed */}
+        {isMobile && !showAll && episodes.length > 2 && (
+          <div className="view-more-container">
+            <button className="view-more-btn" onClick={handleViewMore}>
+              View More Episodes
+            </button>
+          </div>
+        )}
       </div>
     </section>
   );
