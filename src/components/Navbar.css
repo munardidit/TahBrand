@@ -5,7 +5,7 @@
   right: 0;
   width: 100%;
   z-index: 1000;
-   background-color: #ffffff;
+  background-color: #ffffff;
   padding: 0;
 }
 
@@ -14,7 +14,7 @@
   max-width: 100%;
   padding: 1rem 2rem;
   margin: 0 auto;
-   background-color: #ffffff;
+  background-color: #ffffff;
 }
 
 .navbar-content {
@@ -27,7 +27,7 @@
 /* Logo */
 .navbar-logo {
   flex-shrink: 0;
-  margin-left:0.7rem;
+  margin-left: 0.7rem;
 }
 
 .navbar-logo a {
@@ -81,7 +81,6 @@
 .menu-overlay.open {
   transform: translateY(0);
 }
-
 
 /* Menu Header */
 .menu-header {
@@ -206,11 +205,193 @@
   color: #ff5722;
 }
 
+/* Tablet Portrait (768px - 834px) - iPad Mini, iPad Standard */
+@media (min-width: 768px) and (max-width: 834px) {
+  .navbar-container {
+    padding: 1rem 2rem;
+    max-width: 100%;
+  }
 
-@media (min-width: 768px) and (max-width: 1024px) {
-  .navbar-container{
- width:89%;
- background-color:#ffffff;
+  .navbar-logo {
+    margin-left: 1rem;
+  }
+
+  .navbar-logo img {
+    height: 2.25rem;
+  }
+
+  .mobile-menu-button {
+    margin-right: 2rem;
+    left: 0;
+  }
+
+  .mobile-menu-button svg {
+    width: 2.5rem;
+    height: 1.75rem;
+  }
+
+  .menu-header {
+    padding: 1.25rem 2rem;
+  }
+
+  .menu-logo img {
+    height: 2.25rem;
+  }
+
+  .menu-content {
+    padding: 2.5rem 3rem;
+  }
+
+  .menu-nav > a,
+  .menu-section {
+    font-size: 1.05rem;
+    padding: 1.35rem 0;
+  }
+
+  .dropdown-content a {
+    font-size: 1rem;
   }
 }
 
+/* Tablet Landscape (835px - 1024px) - iPad Standard Landscape, iPad Pro 11" */
+@media (min-width: 835px) and (max-width: 1024px) {
+  .navbar-container {
+    padding: 1rem 3rem;
+    max-width: 100%;
+  }
+
+  .navbar-logo {
+    margin-left: 1.5rem;
+  }
+
+  .navbar-logo img {
+    height: 2.5rem;
+  }
+
+  .mobile-menu-button {
+    margin-right: 3rem;
+    left: 0;
+  }
+
+  .mobile-menu-button svg {
+    width: 2.75rem;
+    height: 1.85rem;
+  }
+
+  .menu-header {
+    padding: 1.5rem 3rem;
+  }
+
+  .menu-logo img {
+    height: 2.5rem;
+  }
+
+  .menu-content {
+    padding: 3rem 4rem;
+  }
+
+  .menu-nav > a,
+  .menu-section {
+    font-size: 1.1rem;
+    padding: 1.5rem 0;
+  }
+
+  .dropdown-content a {
+    font-size: 1.05rem;
+  }
+}
+
+/* iPad Pro 12.9" Landscape (1025px - 1366px) */
+@media (min-width: 1025px) and (max-width: 1366px) {
+  .navbar-container {
+    padding: 1.25rem 4rem;
+    max-width: 100%;
+  }
+
+  .navbar-logo {
+    margin-left: 2rem;
+  }
+
+  .navbar-logo img {
+    height: 2.75rem;
+  }
+
+  .mobile-menu-button {
+    margin-right: 4rem;
+    left: 0;
+  }
+
+  .mobile-menu-button svg {
+    width: 3rem;
+    height: 2rem;
+  }
+
+  .menu-header {
+    padding: 1.75rem 4rem;
+  }
+
+  .menu-logo img {
+    height: 2.75rem;
+  }
+
+  .menu-content {
+    padding: 3.5rem 5rem;
+  }
+
+  .menu-nav > a,
+  .menu-section {
+    font-size: 1.15rem;
+    padding: 1.65rem 0;
+  }
+
+  .dropdown-content a {
+    font-size: 1.1rem;
+  }
+}
+
+/* Mobile Responsive (480px and below) */
+@media (max-width: 480px) {
+  .navbar-container {
+    width: 90%;
+    max-width: 100%;
+    padding: 1rem 2rem;
+    margin: 0 auto;
+    background-color: #ffffff;
+  }
+
+  .navbar {
+    padding: 0.6rem;
+    height: 60px;
+    width: 93vw;
+  }
+  
+  .mobile-menu-button svg {
+    width: 26px;
+    height: 26px;
+    position: relative;
+    left: -5%;
+  }
+
+  .menu-content {
+    padding: 2rem 1.5rem;
+  }
+
+  .menu-nav > a,
+  .menu-section {
+    font-size: 0.95rem;
+    padding: 1rem 0;
+  }
+
+  .dropdown-content a {
+    font-size: 0.9rem;
+  }
+}
+
+/* Smooth scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+body.menu-open {
+  overflow: hidden;
+}

@@ -3,13 +3,17 @@
   background-color: #fff;
   padding: 2.5rem 0;
   border-top: 1px solid #f0e0dd;
-   font-family: "Kumbh Sans", sans-serif;
+  font-family: "Kumbh Sans", sans-serif;
+  box-sizing: border-box;
+  overflow-x: hidden;
 }
 
 .footer-container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 2rem;
+  box-sizing: border-box;
+  width: 100%;
 }
 
 .footer-content {
@@ -17,7 +21,9 @@
   align-items: center;
   justify-content: space-between;
   gap: 3rem;
-   font-family: "Kumbh Sans", sans-serif;
+  font-family: "Kumbh Sans", sans-serif;
+  box-sizing: border-box;
+  width: 100%;
 }
 
 .footer-logo {
@@ -36,11 +42,10 @@
   gap: 2.7rem;
   flex-shrink: 0;
   position: relative;
-  left:18%;
+  left: 18%;
 }
 
 .footer-social a {
-
   transition: color 0.3s ease, transform 0.3s ease;
   display: flex;
   align-items: center;
@@ -55,7 +60,7 @@
 .footer-social svg {
   width: 24px;
   height: 24px;
-  color:#615e5e;
+  color: #615e5e;
 }
 
 .footer-newsletter {
@@ -76,29 +81,32 @@
   font-weight: 500;
   position: relative;
   left: -26%;
-  top:-17px;
+  top: -17px;
 }
 
 .newsletter-form {
   display: flex;
   gap: 0rem;
-  width: 90%;
+  width: 100%;
   max-width: 400px;
   position: relative;
   top: -11px;
+  box-sizing: border-box;
 }
 
 .newsletter-input {
   flex: 1;
+  min-width: 0;
   padding: 0.75rem 1.25rem;
   border: 1px solid #d1d5db;
-   font-family: "Kumbh Sans", sans-serif;
+  font-family: "Kumbh Sans", sans-serif;
   font-size: 0.95rem;
   outline: none;
   transition: border-color 0.3s ease;
   background-color: #FFF2EE;
   border-top-left-radius: 30px;
   border-bottom-left-radius: 30px;
+  box-sizing: border-box;
 }
 
 .newsletter-input::placeholder {
@@ -113,7 +121,7 @@
   background-color: #5F58F4;
   color: #fff;
   border: none;
-  padding: 0.75rem 2rem;
+  padding: 0.75rem 1.5rem;
   font-size: 0.95rem;
   font-weight: 500;
   cursor: pointer;
@@ -121,7 +129,9 @@
   border-start-end-radius: 30px;
   transition: all 0.3s ease;
   white-space: nowrap;
- font-family: "Kumbh Sans", sans-serif;
+  font-family: "Kumbh Sans", sans-serif;
+  box-sizing: border-box;
+  flex-shrink: 0;
 }
 
 .newsletter-button:hover {
@@ -130,10 +140,185 @@
   box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4);
 }
 
-/* Tablet Responsive */
-@media (max-width: 1024px) {
+
+@media (max-width: 767px) {
+  .footer {
+    padding: 2rem 0;
+  }
+
+  .footer-container {
+    padding: 0 1rem;
+    width: 100%;
+  }
+
+  .footer-content {
+    flex-direction: column;
+    gap: 2rem;
+    align-items: flex-start;
+  }
+
+  .footer-logo {
+    order: 1;
+    align-self: flex-start;
+  }
+
+  .footer-logo img {
+    height: 2.5rem;
+  }
+
+  .footer-social {
+    order: 3;
+    gap: 1.5rem;
+    left: 0;
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .footer-social svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .footer-newsletter {
+    order: 2;
+    width: 100%;
+    align-items: flex-start;
+  }
+
+  .newsletter-label {
+    font-size: 0.875rem;
+    left: 0;
+    top: 0;
+    margin-bottom: 0.5rem;
+  }
+
+  .newsletter-form {
+    width: 100%;
+    max-width: 100%;
+    top: 0;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .newsletter-input {
+    width: 100%;
+    border-radius: 30px;
+  }
+
+  .newsletter-button {
+    width: 100%;
+    border-radius: 30px;
+    padding: 0.75rem 1.5rem;
+  }
+}
+
+/* Small Mobile (0px - 480px) */
+@media (max-width: 480px) {
+  .footer {
+    padding: 1.5rem 0;
+  }
+
+  .footer-container {
+    padding: 0 0.75rem;
+  }
+
+  .footer-content {
+    gap: 1.5rem;
+  }
+
+  .footer-logo img {
+    height: 2rem;
+  }
+
+  .footer-social {
+    gap: 4.25rem;
+  }
+
+  .footer-social svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .newsletter-label {
+    font-size: 0.8rem;
+  }
+
+  .newsletter-input {
+    font-size: 0.875rem;
+    padding: 0.65rem 1rem;
+  }
+
+  .newsletter-button {
+    font-size: 0.875rem;
+    padding: 0.65rem 1.25rem;
+  }
+}
+
+/* Tablet (768px - 1024px) */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .footer {
+    padding: 2rem 0;
+  }
+
   .footer-container {
     padding: 0 1.5rem;
+    width: 100%;
+  }
+
+  .footer-content {
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .footer-logo {
+    order: 1;
+  }
+
+  .footer-logo img {
+    height: 2.5rem;
+  }
+
+  .footer-social {
+    order: 2;
+    gap: 1.5rem;
+    left: 0;
+    flex: 0 0 auto;
+  }
+
+  .footer-newsletter {
+    order: 3;
+    width: 100%;
+    align-items: flex-start;
+  }
+
+  .newsletter-label {
+    font-size: 0.875rem;
+    left: 0;
+    top: 0;
+    margin-bottom: 0.5rem;
+  }
+
+  .newsletter-form {
+    max-width: 100%;
+    width: 100%;
+    top: 0;
+  }
+
+  .newsletter-input {
+    width: 100%;
+  }
+
+  .newsletter-button {
+    padding: 0.75rem 1.5rem;
+    font-size: 0.9rem;
+  }
+}
+
+/* Desktop (1025px and above) */
+@media (min-width: 1025px) {
+  .footer-container {
+    padding: 0 2rem;
+    width: 100%;
   }
 
   .footer-content {
@@ -141,73 +326,23 @@
   }
 
   .footer-social {
-    gap: 1.25rem;
+    gap: 2rem;
+    left: 10%;
   }
 
   .newsletter-form {
-    max-width: 350px;
+    max-width: 400px;
   }
 }
 
-
-@media (min-width: 768px) and (max-width: 1024px) {
-  .footer {
-    padding: 2rem 0;
-  }
-
-  .footer-container {
-    padding: 0 1rem;
-    display: flex;
-    width: 90%;
-
+/* Large Desktop (1200px and above) */
+@media (min-width: 1200px) {
+  .footer-social {
+    left: 18%;
+    gap: 2.7rem;
   }
 
   .footer-content {
-    gap: 0.5rem;
-  }
-
-  .footer-logo img {
-    height: 3.8rem;
-  }
-
-  .footer-social {
-    gap: 1.5rem;
-    order: 2;
-    position: relative;
-    top:3rem;
-    left: 2rem;
-    
-  }
-
-  .footer-newsletter {
-    width: 100%;
-    align-items: flex-start;
-    order: 3;
-    display: flex;
-  }
-
-  .newsletter-label {
-    font-size: 0.8rem;
-    position: relative;
-    left: 2rem;
-  }
-
-  .newsletter-form {
-    max-width: 100%;
-    gap: 0.75rem;
-  }
-
-  .newsletter-input {
-    width: 100%;
-    
-  }
-
-  .newsletter-button {
-    width: 50%;
-    padding: 0.75rem 1.2rem;
-    position: relative;
-    left: -1rem;
-    font-size: 0.9rem;
-    text-align: center;
+    gap: 3rem;
   }
 }

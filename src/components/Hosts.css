@@ -1,19 +1,20 @@
 .hosts-section {
   width: 100%;
-
   padding: 3rem 0;
+  box-sizing: border-box;
+  overflow-x: hidden;
 }
 
 .host-container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 2rem;
-      position: relative;
-    width: 100%;
-    height: 100%;
-    /*isplay: flex; */
-    justify-content: space-between;
-    align-items: center;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
 }
 
 .hosts-heading {
@@ -23,17 +24,18 @@
   font-family: "Kumbh Sans", sans-serif;
   color: #270E07;
   text-align: left;
-  font-family: "Kumbh Sans", sans-serif;
 }
 
 .hosts-content {
-  background:#000000;
+  background: #000000;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 3.5rem;
   overflow: hidden;
   position: relative;
+  box-sizing: border-box;
+  width: 100%;
 }
 
 .hosts-text {
@@ -41,7 +43,7 @@
   max-width: 500px;
   z-index: 2;
   padding-right: 2rem;
-  
+  box-sizing: border-box;
 }
 
 .hosts-title {
@@ -54,8 +56,6 @@
 }
 
 .hosts-description {
-  position: relative;
-  left: 12%;
   font-size: 0.95rem;
   line-height: 1.8;
   color: #fff;
@@ -75,9 +75,8 @@
   font-weight: 500;
   cursor: pointer;
   transition: all 0.3s ease;
-  position: relative;
-  left: -20%;
   font-family: "Kumbh Sans", sans-serif;
+  box-sizing: border-box;
 }
 
 .hosts-button:hover {
@@ -91,13 +90,12 @@
   justify-content: flex-end;
   align-items: center;
   z-index: 1;
-  /*background-color: #270E07;*/
   min-height: 400px;
   width: 300px;
   max-width: 300px;
   flex-shrink: 0;
   position: relative;
-  left:-5%;
+  left: -5%;
 }
 
 .hosts-image img {
@@ -105,44 +103,126 @@
   max-width: 450px;
   height: auto;
   object-fit: cover;
-  
 }
 
-/* Tablet Responsive */
-@media (max-width: 1024px) {
-  .hosts-container {
-    padding: 0 1.5rem;
+/* Mobile First (0px - 767px) */
+@media (max-width: 767px) {
+  .hosts-section {
+    padding: 2rem 0;
+  }
+
+  .host-container {
+    padding: 0 1rem;
+    width: 100%;
+  }
+
+  .hosts-heading {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    padding: 0 0.5rem;
   }
 
   .hosts-content {
-    padding: 3rem;
+    flex-direction: column-reverse;
+    padding: 2rem 1.5rem;
+    text-align: center;
+    width: 100%;
   }
 
   .hosts-text {
-    padding-right: 1.5rem;
+    max-width: 100%;
+    padding-right: 0;
+    width: 100%;
   }
 
   .hosts-title {
-    font-size: 2.25rem;
+    font-size: 3rem;
+    margin-bottom: 1rem;
   }
 
   .hosts-description {
     font-size: 0.9rem;
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+    text-align: left;
+    padding: 0;
+  }
+
+  .hosts-button {
+    width: 100%;
+    max-width: 280px;
+    padding: 0.75rem 1.5rem;
+    margin: 0 auto;
+    display: block;
+  }
+
+  .hosts-image {
+    justify-content: center;
+    min-height: auto;
+    width: 100%;
+    max-width: 100%;
+    left: 0;
+    margin-bottom: 1.5rem;
   }
 
   .hosts-image img {
-    max-width: 350px;
+    max-width: 100%;
+    width: 100%;
+    height: auto;
   }
 }
 
-/* Mobile Responsive */
+/* Small Mobile (0px - 480px) */
+@media (max-width: 480px) {
+  .hosts-section {
+    padding: 1.5rem 0;
+  }
+
+  .host-container {
+    padding: 0 0.75rem;
+  }
+
+  .hosts-heading {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+    padding: 0 0.25rem;
+  }
+
+  .hosts-content {
+    padding: 1.5rem 1rem;
+  }
+
+  .hosts-title {
+    font-size: 2.5rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .hosts-description {
+    font-size: 0.85rem;
+    line-height: 1.6;
+    margin-bottom: 1.25rem;
+  }
+
+  .hosts-button {
+    max-width: 240px;
+    font-size: 0.9rem;
+    padding: 0.65rem 1.25rem;
+  }
+
+  .hosts-image {
+    margin-bottom: 1rem;
+  }
+}
+
+/* Tablet (768px - 1024px) */
 @media (min-width: 768px) and (max-width: 1024px) {
   .hosts-section {
     padding: 2rem 0;
   }
 
-  .hosts-container {
-    padding: 0 1rem;
+  .host-container {
+    padding: 0 1.5rem;
+    width: 100%;
   }
 
   .hosts-heading {
@@ -152,52 +232,84 @@
 
   .hosts-content {
     flex-direction: column-reverse;
-    padding: 3rem 1.5rem;
+    padding: 3rem 2rem;
     text-align: center;
-  width: 80%;
-  position: relative;
-  display: flex;
+    width: 100%;
   }
 
   .hosts-text {
     max-width: 100%;
     padding-right: 0;
-    margin-bottom: 2.5rem;
+    margin-bottom: 2rem;
   }
 
   .hosts-title {
-    font-size: 2rem;
+    font-size: 4rem;
     margin-bottom: 1rem;
   }
 
   .hosts-description {
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     line-height: 1.7;
     margin-bottom: 1.5rem;
-    text-align:justify;
-    position: relative;
-    left: 2px;
-    
-
+    text-align: left;
+    padding: 0 1rem;
   }
 
   .hosts-button {
-    width: 100%;
-    max-width: 220px;
-    padding: 0.75rem 1.5rem;
-    position: relative;
-    left:1%;
+    width: auto;
+    max-width: 250px;
+    padding: 0.75rem 2rem;
+    margin: 0 auto;
+    display: block;
   }
 
   .hosts-image {
     justify-content: center;
-    min-height: 250px;
-    position: relative;
-    left: -1%;
+    min-height: auto;
+    width: 100%;
+    max-width: 100%;
+    left: 0;
+    margin-bottom: 2rem;
   }
 
   .hosts-image img {
     max-width: 100%;
-    width: 470px
+    width: auto;
+    max-height: 400px;
+  }
+}
+
+/* Desktop (1025px and above) */
+@media (min-width: 1025px) {
+  .host-container {
+    padding: 0 2rem;
+  }
+
+  .hosts-content {
+    padding: 3.5rem;
+  }
+
+  .hosts-text {
+    padding-right: 2rem;
+  }
+
+  .hosts-description {
+    padding-left: 12%;
+  }
+
+  .hosts-button {
+    margin-left: -20%;
+  }
+
+  .hosts-image {
+    left: -5%;
+  }
+}
+
+/* Large Desktop (1200px and above) */
+@media (min-width: 1200px) {
+  .hosts-content {
+    padding: 3.5rem 4rem;
   }
 }
