@@ -5,7 +5,7 @@ import "./CartPage.css";
 function CartPage() {
   const [cartItems, setCartItems] = useState([]);
   const [editingItem, setEditingItem] = useState(null);
-  const [editingIndex, setEditingIndex] = useState(null); // Track which item is being edited
+  const [editingIndex, setEditingIndex] = useState(null);
   const navigate = useNavigate();
 
   const availableSizes = ["XS", "S", "M", "L", "XL"];
@@ -34,23 +34,34 @@ function CartPage() {
 
   const handleEdit = (item, index) => {
     if (editingIndex === index) {
-      // Save changes
+   
       const updatedCart = [...cartItems];
       
-      // Remove the original item
-      updatedCart.splice(index, 1);
+      // Get the original item that was being edited
+      const originalItem = updatedCart[index];
       
-      // Check if item with new size already exists
-      const existingItemIndex = updatedCart.findIndex(
-        cartItem => cartItem.id === editingItem.id && cartItem.selectedSize === editingItem.selectedSize
-      );
+      // Check if size changed
+      const sizeChanged = editingItem.selectedSize !== originalItem.selectedSize;
       
-      if (existingItemIndex > -1) {
-        // Merge quantities
-        updatedCart[existingItemIndex].quantity += editingItem.quantity;
+      if (sizeChanged) {
+        // Remove the original item
+        updatedCart.splice(index, 1);
+        
+        // Check if item with new size already exists
+        const existingItemIndex = updatedCart.findIndex(
+          cartItem => cartItem.id === editingItem.id && cartItem.selectedSize === editingItem.selectedSize
+        );
+        
+        if (existingItemIndex > -1) {
+          
+          updatedCart[existingItemIndex].quantity += editingItem.quantity;
+        } else {
+         
+          updatedCart.push(editingItem);
+        }
       } else {
-        // Add the edited item
-        updatedCart.push(editingItem);
+        
+        updatedCart[index] = editingItem;
       }
       
       setCartItems(updatedCart);
@@ -59,8 +70,16 @@ function CartPage() {
       setEditingItem(null);
       setEditingIndex(null);
     } else {
-      // Start editing
-      setEditingItem({ ...item });
+      
+      setEditingItem({ 
+        id: item.id,
+        name: item.name,
+        price: item.price,
+        image: item.image,
+        selectedSize: item.selectedSize,
+        color: item.color,
+        quantity: item.quantity
+      });
       setEditingIndex(index);
     }
   };
