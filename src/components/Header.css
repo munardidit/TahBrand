@@ -325,7 +325,7 @@
 
 
 
-/* Mobile First (0px - 767px) */
+/* Mobile (0px - 767px) */
 @media (max-width: 767px) {
   .header {
     height: 90vh;
@@ -455,7 +455,7 @@
 /* Small Mobile (0px - 480px) */
 @media (max-width: 480px) {
   .header {
-    height: 100vh;
+    height: 90vh;
     min-height: 400px;
   }
 
@@ -468,7 +468,7 @@
   }
 
   .merch-title {
-    font-size: 1.75rem;
+    font-size: 1.9rem;
   }
 
   .merch-description {
@@ -476,12 +476,18 @@
   }
 
   .merch-image img {
-    max-width: 250px;
+    max-width: 480px;
+    top:-3rem;
   }
 
   .host-image img {
-    max-width: 200px;
+    max-width: 380px;
   }
+  .btn-merch {
+  position: relative;
+  top: 16rem;
+  width: 60%;
+}
 }
 
 /* Tablet (768px - 1024px) */
