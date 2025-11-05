@@ -470,7 +470,7 @@
   }
 
   .header-title {
-    font-size: 4rem;
+    font-size: 3.8rem;
   }
   
   .merch-container{
@@ -534,16 +534,16 @@
   }
 
   .header-title {
-    font-size: 3.5rem;
+    font-size: 4.5rem;
   }
 
   .header-hosts {
-    font-size: 3rem;
+    font-size: 4rem;
     top: -10px;
   }
 
   .header-subtitle {
-    font-size: 0.8rem;
+    font-size: 0.9rem;
     margin-bottom: 1.25rem;
   }
 
@@ -557,21 +557,14 @@
   }
 
   .host-image {
-    width: 40%;
+    width:50%;
   }
 
   .host-image img {
     max-width: 300px;
   }
 
-  .host-image.left {
-    left: -2%;
-  }
-
-  .host-image.right {
-    left: 2%;
-  }
-
+  
   .merch-container {
     width: 100%;
     box-sizing: border-box;
@@ -584,16 +577,16 @@
   }
 
   .merch-text {
-    max-width: 350px;
+    max-width: 400px;
   }
 
   .merch-title {
-    font-size: 2.25rem;
+    font-size: 3.2rem;
     left: 5%;
   }
 
   .merch-description {
-    font-size: 0.95rem;
+    font-size: 1rem;
     left: 5%;
   }
 
@@ -604,11 +597,11 @@
 
   .merch-image {
     left: 3%;
-    
+    max-width: 480px;
   }
 
   .merch-image img {
-    max-width: 400px;
+    max-width: 480px;
     left: -10%;
   }
 

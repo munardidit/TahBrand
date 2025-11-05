@@ -185,3 +185,26 @@
     font-size: 0.95rem;
   }
 }
+
+/* Tablet Responsive */
+@media (max-width: 1024px) {
+  .popular-episodes-container {
+    padding: 0 1.5rem;
+  }
+
+  .popular-episodes-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .popular-episode-thumbnail {
+    height: 160px;
+  }
+  .popular-episodes-grid:has(> :nth-child(odd):last-child) {
+    justify-items: center;
+  }
+  
+  .popular-episodes-grid:has(> :nth-child(odd):last-child) > :last-child {
+    grid-column: 1 / -1;
+    max-width: 50%;
+  }
+}

@@ -27,6 +27,30 @@ function Testimonial() {
       text: "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
       author: "Jane001",
     },
+    {
+      id: 5,
+      rating: 5,
+      text: "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      author: "Jane001",
+    },
+    {
+      id: 6,
+      rating: 5,
+      text: "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      author: "Jane001",
+    },
+    {
+      id: 7,
+      rating: 5,
+      text: "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      author: "Jane001",
+    },
+    {
+      id: 8,
+      rating: 5,
+      text: "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      author: "Jane001",
+    },
   ];
 
   const loopedTestimonials = [...testimonials, ...testimonials];
