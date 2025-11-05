@@ -104,6 +104,7 @@ function Header() {
                         animate="visible"
                         exit="exit"
                         key="hosts-text"
+                        style={{ pointerEvents: 'none' }} // Add this line
                       >
                         {hostsText.split('').map((char, i) => (
                           <motion.span
@@ -113,7 +114,8 @@ function Header() {
                               display: 'inline-block',
                               fontFamily: '"Licorice", cursive',
                               fontStyle: 'italic',
-                              fontWeight: 600
+                              fontWeight: 600,
+                              pointerEvents: 'none' // Add this line
                             }}
                           >
                             {char === ' ' ? '\u00A0' : char}
@@ -123,7 +125,7 @@ function Header() {
                     )}
                   </AnimatePresence>
 
-                  <div className="header-buttons">
+                  <div className="header-buttons" style={{ position: 'relative', zIndex: 10 }}>
                     <button className="btn btn-subscribes">Subscribe</button>
                     <button
                       className="btn btn-shops"

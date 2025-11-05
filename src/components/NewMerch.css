@@ -225,7 +225,63 @@
   }
 }
 
+
 /* Desktop (1025px and above) */
+@media (min-width: 1025px) {
+  .new-merch-container {
+    padding: 0 2rem;
+  }
+
+  .new-merch-content {
+    padding: 3rem;
+    height: 500px;
+    align-items: flex-end; 
+  }
+
+  .new-merch-title {
+    left: 15%;
+  }
+
+  .new-merch-button {
+    left: -18%;
+  }
+
+  .new-merch-image img {
+    max-width: none;
+    width: 650px; 
+    height: 650px;
+    position: absolute; 
+    right: -50px; 
+    bottom: -50px;
+  }
+}
+
+/* Large Desktop (1200px and above) */
+@media (min-width: 1200px) {
+  .new-merch-content {
+    padding: 3.5rem;
+    height: 550px; 
+  }
+
+  .new-merch-image img {
+    width: 750px; 
+    height: 750px;
+    right: -80px; 
+    bottom: -6.53rem;
+  }
+}
+
+/* Extra Large Desktop (1400px and above) */
+@media (min-width: 1400px) {
+  .new-merch-image img {
+    width: 850px;
+    height: 850px;
+    right: -100px;
+    bottom: -100px;
+  }
+}
+
+/* Desktop (1025px and above) 
 @media (min-width: 1025px) {
   .new-merch-container {
     padding: 0 2rem;
