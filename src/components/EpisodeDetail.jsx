@@ -14,7 +14,6 @@ import episode10 from '../assets/hostimage.png';
 import episode11 from '../assets/hostimage.png';
 import episode12 from '../assets/hostimage.png';
 
-
 function EpisodeDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -196,35 +195,74 @@ function EpisodeDetail() {
         </div>
 
         {/* Pagination */}
-        <div className="episode-pagination">
-          <button
-            className="pagination-arrow prev"
-            onClick={() => handleNavigate('prev')}
-            disabled={episodeIndex === 0}
-          >
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 18l-6-6 6-6" />
-            </svg>
-          </button>
+<div className="episode-pagination">
+  <button
+    className="pagination-arrow prev"
+    onClick={() => handleNavigate('prev')}
+    disabled={episodeIndex === 0}
+  >
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 18l-6-6 6-6" />
+    </svg>
+  </button>
 
-          {allEpisodes.map((_, index) => (
-            <button
-              key={index}
-              className={`pagination-dot ${index === episodeIndex ? 'active' : ''}`}
-              onClick={() => navigate(`/episodes/${allEpisodes[index].id}`)}
-            />
-          ))}
+  <div className="pagination-numbers">
+    {/* Always show first page */}
+    <button
+      className={`pagination-number ${episodeIndex === 0 ? 'active' : ''}`}
+      onClick={() => navigate(`/episodes/${allEpisodes[0].id}`)}
+    >
+      1
+    </button>
 
+    {/* Show dots if needed before current page */}
+    {episodeIndex > 2 && (
+      <span className="pagination-ellipsis">...</span>
+    )}
+
+    {/* Show pages around current page */}
+    {Array.from({ length: 5 }, (_, i) => {
+      const pageIndex = episodeIndex - 2 + i;
+      if (pageIndex > 0 && pageIndex < allEpisodes.length - 1 && pageIndex !== 0 && pageIndex !== allEpisodes.length - 1) {
+        return (
           <button
-            className="pagination-arrow next"
-            onClick={() => handleNavigate('next')}
-            disabled={episodeIndex === allEpisodes.length - 1}
+            key={pageIndex}
+            className={`pagination-number ${pageIndex === episodeIndex ? 'active' : ''}`}
+            onClick={() => navigate(`/episodes/${allEpisodes[pageIndex].id}`)}
           >
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 18l6-6-6-6" />
-            </svg>
+            {pageIndex + 1}
           </button>
-        </div>
+        );
+      }
+      return null;
+    }).filter(Boolean)}
+
+    {/* Show dots if needed after current page */}
+    {episodeIndex < allEpisodes.length - 3 && (
+      <span className="pagination-ellipsis">...</span>
+    )}
+
+    {/* Always show last page */}
+    {allEpisodes.length > 1 && (
+      <button
+        className={`pagination-number ${episodeIndex === allEpisodes.length - 1 ? 'active' : ''}`}
+        onClick={() => navigate(`/episodes/${allEpisodes[allEpisodes.length - 1].id}`)}
+      >
+        {allEpisodes.length}
+      </button>
+    )}
+  </div>
+
+  <button
+    className="pagination-arrow next"
+    onClick={() => handleNavigate('next')}
+    disabled={episodeIndex === allEpisodes.length - 1}
+  >
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 18l6-6-6-6" />
+    </svg>
+  </button>
+</div>
       </div>
     </section>
   );

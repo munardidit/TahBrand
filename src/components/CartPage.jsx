@@ -4,8 +4,11 @@ import "./CartPage.css";
 
 function CartPage() {
   const [cartItems, setCartItems] = useState([]);
-  const [editingItem, setEditingItem] = useState(null); // store the whole item being edited
+  const [editingItem, setEditingItem] = useState(null);
+  const [editingIndex, setEditingIndex] = useState(null); // Track which item is being edited
   const navigate = useNavigate();
+
+  const availableSizes = ["XS", "S", "M", "L", "XL"];
 
   useEffect(() => {
     const savedCart = JSON.parse(localStorage.getItem("tahCart") || "[]");
@@ -29,57 +32,36 @@ function CartPage() {
     window.dispatchEvent(new Event("cartUpdated"));
   };
 
-  const handleEdit = (item) => {
-    if (
-      editingItem &&
-      editingItem.id === item.id &&
-      editingItem.selectedSize === item.selectedSize
-    ) {
+  const handleEdit = (item, index) => {
+    if (editingIndex === index) {
       // Save changes
-      let updatedCart;
-
-      const oldSize = item.selectedSize;
-      const newSize = editingItem.selectedSize;
-      const sizeChanged = newSize !== oldSize;
-
-      if (sizeChanged) {
-        // Remove old item (with old size)
-        updatedCart = cartItems.filter(
-          (cartItem) => !(cartItem.id === item.id && cartItem.selectedSize === oldSize)
-        );
-
-        // Check if an item with the new size already exists
-        const existingIndex = updatedCart.findIndex(
-          (cartItem) => cartItem.id === editingItem.id && cartItem.selectedSize === newSize
-        );
-
-        if (existingIndex > -1) {
-          // Merge quantities if duplicate
-          updatedCart[existingIndex] = {
-            ...updatedCart[existingIndex],
-            quantity: updatedCart[existingIndex].quantity + editingItem.quantity,
-          };
-        } else {
-          // Add edited item with new size
-          updatedCart.push(editingItem);
-        }
+      const updatedCart = [...cartItems];
+      
+      // Remove the original item
+      updatedCart.splice(index, 1);
+      
+      // Check if item with new size already exists
+      const existingItemIndex = updatedCart.findIndex(
+        cartItem => cartItem.id === editingItem.id && cartItem.selectedSize === editingItem.selectedSize
+      );
+      
+      if (existingItemIndex > -1) {
+        // Merge quantities
+        updatedCart[existingItemIndex].quantity += editingItem.quantity;
       } else {
-        // Size unchanged, update item in place
-        updatedCart = cartItems.map((cartItem) => {
-          if (cartItem.id === editingItem.id && cartItem.selectedSize === oldSize) {
-            return editingItem;
-          }
-          return cartItem;
-        });
+        // Add the edited item
+        updatedCart.push(editingItem);
       }
-
+      
       setCartItems(updatedCart);
       localStorage.setItem("tahCart", JSON.stringify(updatedCart));
       window.dispatchEvent(new Event("cartUpdated"));
       setEditingItem(null);
+      setEditingIndex(null);
     } else {
       // Start editing
       setEditingItem({ ...item });
+      setEditingIndex(index);
     }
   };
 
@@ -90,6 +72,11 @@ function CartPage() {
 
   const handleSizeChange = (newSize) => {
     setEditingItem((prev) => ({ ...prev, selectedSize: newSize }));
+  };
+
+  const cancelEdit = () => {
+    setEditingItem(null);
+    setEditingIndex(null);
   };
 
   const subtotal = cartItems.reduce((acc, item) => {
@@ -121,13 +108,10 @@ function CartPage() {
         <>
           <div className="cart-items">
             {cartItems.map((item, index) => {
-              const isEditing =
-                editingItem &&
-                editingItem.id === item.id &&
-                editingItem.selectedSize === item.selectedSize;
+              const isEditing = editingIndex === index;
 
               return (
-                <div className="cart-item" key={`${item.id}-${index}`}>
+                <div className="cart-item" key={`${item.id}-${item.selectedSize}-${index}`}>
                   <img
                     src={item.image}
                     alt={item.name}
@@ -137,58 +121,78 @@ function CartPage() {
                     <h3>{item.name}</h3>
 
                     {isEditing ? (
-                      <>
-                        <label>
-                          Size:{" "}
+                      <div className="edit-controls">
+                        <div className="size-edit">
+                          <label>Size:</label>
                           <select
                             value={editingItem.selectedSize}
                             onChange={(e) => handleSizeChange(e.target.value)}
+                            className="size-select"
                           >
-                            {/* Replace these sizes with actual available sizes if dynamic */}
-                            {["S", "M", "L", "XL"].map((size) => (
+                            {availableSizes.map((size) => (
                               <option key={size} value={size}>
                                 {size}
                               </option>
                             ))}
                           </select>
-                        </label>
-                        <label>
-                          Qty:{" "}
-                          <button
-                            className="qty-btn"
-                            onClick={() => handleQuantityChange(editingItem.quantity - 1)}
-                          >
-                            −
-                          </button>
-                          <span className="qty-display">{editingItem.quantity}</span>
-                          <button
-                            className="qty-btn"
-                            onClick={() => handleQuantityChange(editingItem.quantity + 1)}
-                          >
-                            +
-                          </button>
-                        </label>
-                      </>
+                        </div>
+                        
+                        <div className="quantity-edit">
+                          <label>Quantity:</label>
+                          <div className="quantity-controls">
+                            <button
+                              className="qty-btn"
+                              onClick={() => handleQuantityChange(editingItem.quantity - 1)}
+                            >
+                              −
+                            </button>
+                            <span className="qty-display">{editingItem.quantity}</span>
+                            <button
+                              className="qty-btn"
+                              onClick={() => handleQuantityChange(editingItem.quantity + 1)}
+                            >
+                              +
+                            </button>
+                          </div>
+                        </div>
+                        
+                        <div className="current-details">
+                          <p>Color: {item.color}</p>
+                          <p>Price: {item.price}</p>
+                        </div>
+                      </div>
                     ) : (
-                      <>
+                      <div className="item-details">
                         <p>Size: {item.selectedSize}</p>
-                        <p>Qty: {item.quantity}</p>
-                      </>
+                        <p>Quantity: {item.quantity}</p>
+                        <p>Color: {item.color}</p>
+                        <p>Price: {item.price}</p>
+                      </div>
                     )}
 
-                    <p>Color: {item.color}</p>
-                    <p>Price: {item.price}</p>
-
                     <div className="cart-actions">
-                      <button className="edit-btn" onClick={() => handleEdit(item)}>
-                        {isEditing ? "Done" : "Edit"}
-                      </button>
-                      <button
-                        className="remove-btn"
-                        onClick={() => handleRemove(item.id, item.selectedSize)}
-                      >
-                        Remove
-                      </button>
+                      {isEditing ? (
+                        <>
+                          <button className="save-btn" onClick={() => handleEdit(item, index)}>
+                            Save
+                          </button>
+                          <button className="cancel-btn" onClick={cancelEdit}>
+                            Cancel
+                          </button>
+                        </>
+                      ) : (
+                        <>
+                          <button className="edit-btn" onClick={() => handleEdit(item, index)}>
+                            Edit
+                          </button>
+                          <button
+                            className="remove-btn"
+                            onClick={() => handleRemove(item.id, item.selectedSize)}
+                          >
+                            Remove
+                          </button>
+                        </>
+                      )}
                     </div>
                   </div>
                 </div>
