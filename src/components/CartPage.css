@@ -229,6 +229,7 @@
   font-weight: 500;
 }
 
+
 /* Mobile First (0px - 767px) */
 @media (max-width: 767px) {
   .cart-page {

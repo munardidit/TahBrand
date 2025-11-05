@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate, useParams, Link } from "react-router-dom";
 import { productsData } from "../data/productsData";
 import CartModal from "../components/CartModal";
@@ -13,10 +13,35 @@ const ShopMerch2 = () => {
   const [selectedSize, setSelectedSize] = useState(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [cartItemsCount, setCartItemsCount] = useState(0); // Add cart items count state
 
   const sizes = ["XS", "S", "M", "L", "XL"];
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+
+  // Function to get cart items count from localStorage
+  const getCartItemsCount = () => {
+    const existingCart = JSON.parse(localStorage.getItem('tahCart') || '[]');
+    return existingCart.reduce((total, item) => total + item.quantity, 0);
+  };
+
+  // Update cart count on component mount and when cart updates
+  useEffect(() => {
+    // Set initial cart count
+    setCartItemsCount(getCartItemsCount());
+
+    // Listen for cart updates from other components
+    const handleCartUpdate = () => {
+      setCartItemsCount(getCartItemsCount());
+    };
+
+    window.addEventListener('cartUpdated', handleCartUpdate);
+
+    // Cleanup
+    return () => {
+      window.removeEventListener('cartUpdated', handleCartUpdate);
+    };
+  }, []);
 
   const handleCartClick = () => navigate("/cart");
 
@@ -84,7 +109,12 @@ const ShopMerch2 = () => {
                     strokeLinejoin="round"
                   />
                 </svg>
-                <span className="cart-badge"></span>
+                {/* Conditionally render badge - ONLY when items exist */}
+                {cartItemsCount > 0 && (
+                  <span className="cart-badge">
+                    {cartItemsCount > 99 ? '99+' : cartItemsCount}
+                  </span>
+                )}
               </button>
 
               <button className="shop-menu-button" onClick={toggleMenu}>
@@ -239,7 +269,7 @@ const ShopMerch2 = () => {
               <p className="details-description">
                 This {product.color.toLowerCase()} {product.type} from TAH is crafted
                 for both comfort and bold street style. Made from premium fabric and
-                finished with the TAH logo, it’s perfect for all-day wear during cool
+                finished with the TAH logo, it's perfect for all-day wear during cool
                 seasons.
               </p>
             </div>

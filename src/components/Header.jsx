@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
 import './Header.css';
 import hoodie from '../assets/hoodie.png';
 import hostsBg from '../assets/navbar.png';
@@ -18,6 +19,50 @@ function Header() {
       hoodieImage: hoodie,
     },
   ];
+
+  // Premium typewriter animation without cursor
+  const typewriterVariants = {
+    hidden: { 
+      opacity: 0 
+    },
+    visible: {
+      opacity: 1,
+      transition: {
+        duration: 0.1,
+        when: "beforeChildren",
+        staggerChildren: 0.05 // Crisp, professional typing speed
+      }
+    },
+    exit: {
+      opacity: 0,
+      transition: {
+        duration: 0.2
+      }
+    }
+  };
+
+  const letterVariants = {
+    hidden: { 
+      opacity: 0,
+      scale: 0.8,
+      filter: "blur(4px)",
+      y: 10
+    },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      filter: "blur(0px)",
+      y: 0,
+      transition: {
+        type: "spring",
+        stiffness: 400,
+        damping: 25,
+        duration: 0.4
+      }
+    }
+  };
+
+  const hostsText = "With Yinka & Dicta";
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -48,7 +93,36 @@ function Header() {
                   <h1 className="header-title">
                     TRULY & <br /> HONESTLY
                   </h1>
-                  <p className="header-hosts">With Yinka & Dicta</p>
+                  
+                  {/* Premium Typewriter Animation - No Cursor */}
+                  <AnimatePresence mode="wait">
+                    {index === currentSlide && (
+                      <motion.p 
+                        className="header-hosts"
+                        variants={typewriterVariants}
+                        initial="hidden"
+                        animate="visible"
+                        exit="exit"
+                        key="hosts-text"
+                      >
+                        {hostsText.split('').map((char, i) => (
+                          <motion.span
+                            key={i}
+                            variants={letterVariants}
+                            style={{ 
+                              display: 'inline-block',
+                              fontFamily: '"Licorice", cursive',
+                              fontStyle: 'italic',
+                              fontWeight: 600
+                            }}
+                          >
+                            {char === ' ' ? '\u00A0' : char}
+                          </motion.span>
+                        ))}
+                      </motion.p>
+                    )}
+                  </AnimatePresence>
+
                   <div className="header-buttons">
                     <button className="btn btn-subscribes">Subscribe</button>
                     <button

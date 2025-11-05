@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import logo from '../assets/navlogopic.png';
 import { productsData } from '../data/productsData';
@@ -10,11 +10,36 @@ const ShopMerch = () => {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [cartItemsCount, setCartItemsCount] = useState(0); // Track cart items count
   const navigate = useNavigate();
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
   const openCart = () => setIsCartOpen(true);
   const closeCart = () => setIsCartOpen(false);
+
+  // Function to get cart items count from localStorage
+  const getCartItemsCount = () => {
+    const existingCart = JSON.parse(localStorage.getItem('tahCart') || '[]');
+    return existingCart.reduce((total, item) => total + item.quantity, 0);
+  };
+
+  // Update cart count on component mount and when cart updates
+  useEffect(() => {
+    // Set initial cart count
+    setCartItemsCount(getCartItemsCount());
+
+    // Listen for cart updates from other components
+    const handleCartUpdate = () => {
+      setCartItemsCount(getCartItemsCount());
+    };
+
+    window.addEventListener('cartUpdated', handleCartUpdate);
+
+    // Cleanup
+    return () => {
+      window.removeEventListener('cartUpdated', handleCartUpdate);
+    };
+  }, []);
 
   const goBack = () => navigate(-1);
 
@@ -59,7 +84,12 @@ const ShopMerch = () => {
                     strokeLinejoin="round"
                   />
                 </svg>
-                <span className="cart-badge"></span>
+                {/* Conditionally render badge - ONLY when items exist */}
+                {cartItemsCount > 0 && (
+                  <span className="cart-badge">
+                    {cartItemsCount > 99 ? '99+' : cartItemsCount}
+                  </span>
+                )}
               </button>
 
               <button className="shop-menu-button" onClick={toggleMenu}>

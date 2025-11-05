@@ -71,7 +71,7 @@ function Testimonial() {
             className="testimonial-credits"
             animate={{ y: ["0%", "-100%"] }}
             transition={{
-              duration: 25, 
+              duration: 100, 
               ease: "linear",
               repeat: Infinity,
             }}
