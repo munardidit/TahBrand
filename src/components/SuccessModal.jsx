@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import "./successModal.css";
+import "./SuccessModal.css";
 
 function SuccessModal({
   isOpen,
