@@ -10,6 +10,8 @@
   align-items: center;
   z-index: 3500;
   animation: fadeIn 0.3s ease;
+  padding: 1rem;
+  box-sizing: border-box;
 }
 
 @keyframes fadeIn {
@@ -24,11 +26,12 @@
 .success-modal {
   font-family: "Kumbh Sans", sans-serif;
   background-color: #FFF6F3;
-  width: 90%;
+  width: 100%;
   max-width: 400px;
   border-radius: 16px;
   animation: scaleIn 0.3s ease;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+  margin: auto;
 }
 
 @keyframes scaleIn {
@@ -147,8 +150,16 @@
 
 /* Mobile Responsive */
 @media (max-width: 767px) {
+  .success-modal-overlay {
+    padding: 1rem;
+    align-items: center;
+    justify-content: center;
+  }
+
   .success-modal {
-    width: 95%;
+    width: 100%;
+    max-width: 350px;
+    margin: 0 auto;
   }
 
   .success-modal-header {
@@ -161,5 +172,42 @@
 
   .success-actions {
     flex-direction: column;
+  }
+
+  .success-btn {
+    width: 100%;
+  }
+}
+
+/* Small Mobile (480px and below) */
+@media (max-width: 480px) {
+  .success-modal-overlay {
+    padding: 0.75rem;
+  }
+
+  .success-modal {
+    max-width: 320px;
+  }
+
+  .success-modal-header {
+    padding: 1rem 1.25rem;
+  }
+
+  .success-modal-content {
+    padding: 2rem 1.25rem 1.25rem 1.25rem;
+  }
+
+  .success-icon {
+    margin-bottom: 1rem;
+  }
+
+  .success-icon svg {
+    width: 50px;
+    height: 50px;
+  }
+
+  .success-message {
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
   }
 }
