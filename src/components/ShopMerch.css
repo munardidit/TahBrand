@@ -1,12 +1,62 @@
-/* Shop Navbar */
+/* ===== CSS VARIABLES ===== */
+:root {
+  /* Colors */
+  --color-primary: #FFF2EE;
+  --color-secondary: #270E07;
+  --color-accent: #ff5722;
+  --color-purple: #5F58F4;
+  --color-white: #FFFFFF;
+  --color-black: #1a1a1a;
+  --color-gray: #666;
+  --color-light-gray: #e5e5e5;
+  
+  /* Typography */
+  --font-primary: "Kumbh Sans", sans-serif;
+  
+  /* Spacing */
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 1.5rem;
+  --space-lg: 2rem;
+  --space-xl: 3rem;
+  
+  /* Border Radius */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 50%;
+  
+  /* Transitions */
+  --transition-fast: 0.2s ease;
+  --transition-base: 0.3s ease;
+  --transition-slow: 0.4s ease-in-out;
+  
+  /* Shadows */
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 8px 20px rgba(0, 0, 0, 0.1);
+  
+  /* Z-index */
+  --z-dropdown: 10;
+  --z-navbar: 1000;
+  --z-overlay: 2000;
+}
+
+/* ===== RESET AND BASE STYLES ===== */
+.shop-navbar,
+.shop-menu-overlay,
+.shop-merch-section {
+  box-sizing: border-box;
+}
+
+/* ===== SHOP NAVBAR ===== */
 .shop-navbar {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   width: 100%;
-  z-index: 1000;
-  background-color: #FFF2EE;
+  z-index: var(--z-navbar);
+  background-color: var(--color-primary);
   padding: 0;
   border-bottom: 1px solid transparent;
 }
@@ -14,10 +64,10 @@
 .shop-navbar-container {
   width: 100%;
   max-width: 100%;
-  padding: 1rem 2rem;
+  padding: var(--space-sm) var(--space-lg);
   margin: 0 auto;
-  background-color: #FFF2EE;
-  font-family: "Kumbh Sans", sans-serif;
+  background-color: var(--color-primary);
+  font-family: var(--font-primary);
 }
 
 .shop-navbar-content {
@@ -25,7 +75,7 @@
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  font-family: "Kumbh Sans", sans-serif;
+  font-family: var(--font-primary);
 }
 
 .shop-navbar-logo {
@@ -46,11 +96,12 @@
 .shop-navbar-actions {
   display: flex;
   align-items: center;
-  gap: 1.5rem;
+  gap: var(--space-md);
   margin-right: 4rem;
-  font-family: "Kumbh Sans", sans-serif;
+  font-family: var(--font-primary);
 }
 
+/* ===== CART ICON ===== */
 .cart-icon {
   position: relative;
   display: flex;
@@ -58,10 +109,10 @@
   justify-content: center;
   background: none;
   border: none;
-  color: #270E07;
+  color: var(--color-secondary);
   cursor: pointer;
-  padding: 0.5rem;
-  transition: all 0.2s;
+  padding: var(--space-xs);
+  transition: all var(--transition-fast);
 }
 
 .cart-icon:hover {
@@ -78,28 +129,29 @@
   top: -2px;
   right: -2px;
   background-color: #5856d6;
-  color: #fff;
+  color: var(--color-white);
   font-size: 0.7rem;
   font-weight: 600;
   min-width: 18px;
   height: 18px;
-  border-radius: 50%;
+  border-radius: var(--radius-lg);
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 0 4px;
 }
 
+/* ===== MENU BUTTON ===== */
 .shop-menu-button {
   display: flex;
   align-items: center;
   justify-content: center;
   background: none;
   border: none;
-  color: #270E07;
+  color: var(--color-secondary);
   cursor: pointer;
-  padding: 0.5rem;
-  transition: all 0.2s;
+  padding: var(--space-xs);
+  transition: all var(--transition-fast);
 }
 
 .shop-menu-button:hover {
@@ -111,17 +163,17 @@
   height: 2rem;
 }
 
-/* Shop Menu Overlay */
+/* ===== SHOP MENU OVERLAY ===== */
 .shop-menu-overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 95vh;
-  background-color: #FFF2EE;
-  z-index: 2000;
+  background-color: var(--color-primary);
+  z-index: var(--z-overlay);
   transform: translateY(-100%);
-  transition: transform 0.4s ease-in-out;
+  transition: transform var(--transition-slow);
   overflow-y: auto;
 }
 
@@ -133,9 +185,9 @@
   display: flex;
   justify-content: space-between;
   align-items: left;
-  padding: 1rem 2rem;
+  padding: var(--space-sm) var(--space-lg);
   border-bottom: 1px solid #e0e0e0;
-  font-family: "Kumbh Sans", sans-serif;
+  font-family: var(--font-primary);
 }
 
 .shop-menu-logo img {
@@ -146,12 +198,12 @@
 .shop-menu-close {
   background: none;
   border: none;
-  color: #270E07;
+  color: var(--color-secondary);
   font-size: 1rem;
   cursor: pointer;
-  padding: 0.5rem 1rem;
+  padding: var(--space-xs) var(--space-sm);
   font-weight: 500;
-  transition: opacity 0.2s;
+  transition: opacity var(--transition-fast);
 }
 
 .shop-menu-close:hover {
@@ -159,34 +211,34 @@
 }
 
 .shop-menu-content {
-  padding: 3rem 5.5rem;
+  padding: var(--space-xl) 5.5rem;
   text-align: left;
-  color: #270E07;
-  font-family: "Kumbh Sans", sans-serif;
+  color: var(--color-secondary);
+  font-family: var(--font-primary);
 }
 
 .shop-menu-nav {
   display: flex;
   flex-direction: column;
   gap: 0;
-  color: #270E07;
-  font-family: "Kumbh Sans", sans-serif;
+  color: var(--color-secondary);
+  font-family: var(--font-primary);
 }
 
 .shop-menu-nav > a,
 .shop-menu-section {
   padding: 1.25rem 0;
-  color: #270E07;
+  color: var(--color-secondary);
   text-decoration: none;
   font-size: 1rem;
   font-weight: 400;
   border-bottom: 1px solid transparent;
-  transition: color 0.2s;
-  font-family: "Kumbh Sans", sans-serif;
+  transition: color var(--transition-fast);
+  font-family: var(--font-primary);
 }
 
 .shop-menu-nav > a:hover {
-  color: #ff5722;
+  color: var(--color-accent);
 }
 
 .shop-menu-section {
@@ -200,24 +252,24 @@
   align-items: center;
   background: none;
   border: none;
-  color: #270E07;
+  color: var(--color-secondary);
   font-size: 1rem;
   font-weight: 400;
   cursor: pointer;
   padding: 0;
   text-align: left;
-  transition: color 0.2s;
-  font-family: "Kumbh Sans", sans-serif;
+  transition: color var(--transition-fast);
+  font-family: var(--font-primary);
 }
 
 .shop-menu-dropdown:hover {
-  color: #ff5722;
+  color: var(--color-accent);
 }
 
 .shop-dropdown-icon {
   width: 1.25rem;
   height: 1.25rem;
-  transition: transform 0.3s;
+  transition: transform var(--transition-base);
 }
 
 .shop-menu-section:hover .shop-dropdown-icon {
@@ -227,12 +279,12 @@
 .shop-dropdown-content {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: var(--space-xs);
   padding: 0.65rem 0 0.4rem;
   max-height: 0;
   overflow: hidden;
-  transition: max-height 0.3s ease;
-  font-family: "Kumbh Sans", sans-serif;
+  transition: max-height var(--transition-base);
+  font-family: var(--font-primary);
 }
 
 .shop-menu-section:hover .shop-dropdown-content {
@@ -240,107 +292,106 @@
 }
 
 .shop-dropdown-content a {
-  color: #666;
+  color: var(--color-gray);
   text-decoration: none;
   font-size: 0.95rem;
-  padding: 0.5rem 0;
-  transition: color 0.2s;
+  padding: var(--space-xs) 0;
+  transition: color var(--transition-fast);
 }
 
 .shop-dropdown-content a:hover {
-  color: #ff5722;
+  color: var(--color-accent);
 }
 
-
+/* ===== SHOP MERCH SECTION ===== */
 .shop-merch-section {
   width: 100%;
-  background-color: #FFF;
-  padding: 3rem 0 4rem 0;
+  background-color: var(--color-white);
+  padding: var(--space-xl) 0 4rem 0;
   margin-top: 4.5rem;
 }
 
 .shop-merch-container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 2rem;
-  font-family: "Kumbh Sans", sans-serif;
+  padding: 0 var(--space-lg);
+  font-family: var(--font-primary);
 }
 
 .shop-merch-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 3rem;
+  margin-bottom: var(--space-xl);
 }
 
 .shop-merch-title {
   font-size: 2rem;
   font-weight: 700;
-  color: #1a1a1a;
+  color: var(--color-black);
   margin: 0;
   text-align: left;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  font-family: "Kumbh Sans", sans-serif;
+  font-family: var(--font-primary);
 }
 
+/* ===== FILTER BUTTON ===== */
 .filter-newest-button {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  background-color: #fff;
-  border: 1px solid #e5e5e5;
-  border-radius: 8px;
+  gap: var(--space-xs);
+  background-color: var(--color-white);
+  border: 1px solid var(--color-light-gray);
+  border-radius: var(--radius-sm);
   padding: 0.75rem 1.25rem;
   font-size: 0.9rem;
   font-weight: 500;
-  color: #1a1a1a;
+  color: var(--color-black);
   cursor: pointer;
-  transition: all 0.3s ease;
-  font-family: "Kumbh Sans", sans-serif;
+  transition: all var(--transition-base);
+  font-family: var(--font-primary);
 }
 
 .filter-newest-button:hover {
-  border-color: #ff5722;
-  color: #ff5722;
+  border-color: var(--color-accent);
+  color: var(--color-accent);
 }
 
 .filter-newest-button svg {
-  transition: transform 0.3s ease;
-  text-decoration: none !important;
+  transition: transform var(--transition-base);
 }
 
 .filter-newest-button:hover svg {
   transform: rotate(360deg);
-   text-decoration: none !important;
 }
 
+/* ===== PRODUCT GRID ===== */
 .shop-merch-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
-  margin-bottom: 3rem;
+  gap: var(--space-lg);
+  margin-bottom: var(--space-xl);
 }
 
 .product-card {
-  background-color: #FFF;
+  background-color: var(--color-white);
   border: 1px solid #000000;
   overflow: hidden;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform var(--transition-base), box-shadow var(--transition-base);
   cursor: pointer;
-  text-decoration: none !important;
 }
 
 .product-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--shadow-lg);
   border: none;
 }
 
 .product-image {
   width: 100%;
   height: 280px;
-  background-color: #fff;
+  background-color: var(--color-white);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -360,26 +411,25 @@
 .product-name {
   font-size: 1rem;
   font-weight: 500;
-  color: #270E07;
-  margin: 0 0 1rem 0;
+  color: var(--color-secondary);
+  margin: 0 0 var(--space-sm) 0;
   line-height: 1.4;
   text-align: left;
-  font-family: "Kumbh Sans", sans-serif;
+  font-family: var(--font-primary);
 }
 
 .product-footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-family: "Kumbh Sans", sans-serif;
+  font-family: var(--font-primary);
 }
 
 .product-price {
   font-size: 0.95rem;
   font-weight: 600;
-  color: #270E07;
-  font-family: "Kumbh Sans", sans-serif;
-  text-decoration: none;
+  color: var(--color-secondary);
+  font-family: var(--font-primary);
 }
 
 .add-to-cart-button {
@@ -387,73 +437,75 @@
   height: 32px;
   border: none;
   background-color: transparent;
-  color: #270E07;
+  color: var(--color-secondary);
   font-size: 1.25rem;
   font-weight: 400;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  text-decoration: none;
-  transition: all 0.3s ease;
-   text-decoration: none !important;
+  transition: all var(--transition-base);
 }
 
 .add-to-cart-button:hover {
-  background-color:none;
-  color: #270E07;
-  text-decoration: none;
+  color: var(--color-secondary);
   transform: rotate(360deg);
 }
 
-/* Pagination */
+/* ===== PAGINATION ===== */
 .pagination {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 0.5rem;
+  gap: var(--space-xs);
 }
 
 .pagination-button {
   width: 40px;
   height: 40px;
-  border-radius: 50%;
+  border-radius: var(--radius-lg);
   border: none;
-  background-color: #fff;
-  color: #1a1a1a;
+  background-color: var(--color-white);
+  color: var(--color-black);
   font-size: 0.95rem;
   font-weight: 500;
   cursor: pointer;
-  transition: all 0.3s ease;
-   text-decoration: none !important;
+  transition: all var(--transition-base);
 }
 
 .pagination-button:hover {
-  background-color: #6366f1;
-  color: #fff;
+  background-color: var(--color-purple);
+  color: var(--color-white);
 }
 
 .pagination-button.active {
-  background-color: #ff5722;
-  color: #fff;
-   text-decoration: none !important;
+  background-color: var(--color-accent);
+  color: var(--color-white);
 }
 
+/* ===== BACK BUTTON ===== */
 .back-button {
-  background:#FBEBE6;
-  border:1px solid black;
+  background: transparent;
+  border: none;
+  padding: 8px;
   border-radius: 50%;
-  font-size: 1rem;
-  font-weight: 500;
-  color: black;
   cursor: pointer;
-  transition: color 0.3s ease;
-}
-.back-button:hover {
-  color: black;
-  background-color: transparent;
+  transition: all var(--transition-base);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
+.back-button:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+  transform: translateX(-2px);
+}
+
+.back-button:active {
+  transform: translateX(-2px) scale(0.95);
+}
+
+/* ===== DROPDOWN ===== */
 .dropdown-container {
   position: relative;
 }
@@ -461,39 +513,41 @@
 .category-dropdown {
   position: absolute;
   right: 0;
-  margin-top: 0.5rem;
-  background: white;
-  border: 1px solid #e5e5e5;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  margin-top: var(--space-xs);
+  background: var(--color-white);
+  border: 1px solid var(--color-light-gray);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-md);
   list-style: none;
-  padding: 0.5rem 0;
-  z-index: 10;
-  font-family: "Kumbh Sans", sans-serif;
+  padding: var(--space-xs) 0;
+  z-index: var(--z-dropdown);
+  font-family: var(--font-primary);
 }
+
 .category-dropdown li {
-  padding: 0.5rem 1rem;
+  padding: var(--space-xs) var(--space-sm);
   font-size: 0.9rem;
-  color: #270E07;
+  color: var(--color-secondary);
   cursor: pointer;
-  transition: background 0.3s ease;
+  transition: background var(--transition-base);
 }
+
 .category-dropdown li:hover {
   background-color: #fceee9;
-  color: #ff5722;
+  color: var(--color-accent);
 }
 
-
+/* ===== RESPONSIVE DESIGN ===== */
 
 /* Tablet Responsive */
 @media (max-width: 1024px) {
   .shop-merch-container {
-    padding: 0 1.5rem;
+    padding: 0 var(--space-md);
   }
 
   .shop-merch-grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 1.5rem;
+    gap: var(--space-md);
   }
 
   .product-image {
@@ -504,19 +558,19 @@
 /* Mobile Responsive */
 @media (max-width: 767px) {
   .shop-merch-section {
-    padding: 2rem 0 3rem 0;
+    padding: var(--space-lg) 0 var(--space-xl) 0;
     margin-top: 3.5rem;
   }
 
   .shop-merch-container {
-    padding: 0 1rem;
+    padding: 0 var(--space-sm);
   }
 
   .shop-merch-header {
     flex-direction: column;
     align-items: flex-start;
-    gap: 1.5rem;
-    margin-bottom: 2rem;
+    gap: var(--space-md);
+    margin-bottom: var(--space-lg);
   }
 
   .shop-merch-title {
@@ -531,7 +585,7 @@
   .shop-merch-grid {
     grid-template-columns: 1fr;
     gap: 1.25rem;
-    margin-bottom: 2rem;
+    margin-bottom: var(--space-lg);
   }
 
   .product-image {
@@ -539,7 +593,7 @@
   }
 
   .product-info {
-    padding: 1rem;
+    padding: var(--space-sm);
   }
 
   .product-name {

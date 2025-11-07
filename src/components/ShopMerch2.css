@@ -516,20 +516,24 @@
 
 /* Back arrow button */
 .back-arrow-btn {
-  background: #FBEBE6;
-  border: 1px solid black;
+  background: transparent;
+  border: none;
+  padding: 8px;
   border-radius: 50%;
-  font-size: 1rem;
-  font-weight: 500;
-  color: black;
   cursor: pointer;
-  transition: color 0.3s ease;
-  padding: 0.5rem 1rem;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .back-arrow-btn:hover {
-  color: black;
-  background-color: transparent;
+  background-color: rgba(0, 0, 0, 0.05);
+  transform: translateX(-2px);
+}
+
+.back-arrow-btn:active {
+  transform: translateX(-2px) scale(0.95);
 }
 
 /* Dropdown filter */
