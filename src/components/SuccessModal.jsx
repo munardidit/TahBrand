@@ -24,7 +24,9 @@ function SuccessModal({
           ...product,
           image: product?.image,
           name: product?.name,
-          price: product?.price ? parseFloat(product.price.replace(/[^\d.]/g, "")) : 200,
+          price: product?.price
+            ? parseFloat(product.price.replace(/[^\d.]/g, ""))
+            : 200,
         },
         selectedSize,
         selectedColor,
@@ -38,7 +40,10 @@ function SuccessModal({
 
   return (
     <div className="success-modal-overlay" onClick={onClose}>
-      <div className="success-modal" onClick={(e) => e.stopPropagation()}>
+      <div
+        className="success-modal"
+        onClick={(e) => e.stopPropagation()}
+      >
         <div className="success-modal-header">
           <h2 className="success-modal-title">Your Cart</h2>
           <button className="success-modal-close" onClick={onClose}>
@@ -61,8 +66,7 @@ function SuccessModal({
           </div>
 
           <p className="success-message">
-            Your item has been successfully <br />
-            added to cart.
+            Your item has been successfully <br /> added to cart.
           </p>
 
           <div className="success-actions">

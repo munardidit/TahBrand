@@ -1,9 +1,7 @@
+
 .success-modal-overlay {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  inset: 0;
   background-color: rgba(71, 37, 37, 0.5);
   display: flex;
   justify-content: center;
@@ -15,17 +13,13 @@
 }
 
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 .success-modal {
   font-family: "Kumbh Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  background-color: #FFF6F3;
+  background-color: #fff6f3;
   width: 100%;
   max-width: 400px;
   border-radius: 16px;
@@ -46,13 +40,13 @@
   }
 }
 
+
 .success-modal-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 1.5rem 2rem;
   border-bottom: 1px solid #e5e5e5;
-  font-family: "Kumbh Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   box-sizing: border-box;
 }
 
@@ -75,12 +69,12 @@
   text-transform: capitalize;
   padding: 0.25rem 0.5rem;
   white-space: nowrap;
-  flex-shrink: 0;
 }
 
 .success-modal-close:hover {
   opacity: 0.7;
 }
+
 
 .success-modal-content {
   padding: 3rem 2rem 2rem 2rem;
@@ -94,7 +88,6 @@
 .success-icon {
   margin-bottom: 1.5rem;
   animation: checkmarkPop 0.5s ease 0.3s both;
-  flex-shrink: 0;
 }
 
 @keyframes checkmarkPop {
@@ -102,9 +95,7 @@
     transform: scale(0);
     opacity: 0;
   }
-  50% {
-    transform: scale(1.1);
-  }
+  50% { transform: scale(1.1); }
   100% {
     transform: scale(1);
     opacity: 1;
@@ -116,7 +107,6 @@
   color: #666;
   margin: 0 0 2rem 0;
   line-height: 1.6;
-  max-width: 100%;
   word-wrap: break-word;
 }
 
@@ -136,8 +126,6 @@
   cursor: pointer;
   transition: all 0.3s ease;
   white-space: nowrap;
-  box-sizing: border-box;
-  min-width: 0;
 }
 
 .continue-shopping-btn {
@@ -162,18 +150,14 @@
   transform: translateY(-2px);
 }
 
-/* Mobile Responsive */
+
 @media (max-width: 767px) {
   .success-modal-overlay {
     padding: 1rem;
-    align-items: center;
-    justify-content: center;
   }
 
   .success-modal {
-    width: 100%;
     max-width: 350px;
-    margin: 0 auto;
   }
 
   .success-modal-header {
@@ -181,7 +165,7 @@
   }
 
   .success-modal-content {
-    padding: 2.5rem 1.5rem 1.5rem 1.5rem;
+    padding: 2.5rem 1.5rem 1.5rem;
   }
 
   .success-actions {
@@ -193,7 +177,6 @@
   }
 }
 
-/* Small Mobile (480px and below) */
 @media (max-width: 480px) {
   .success-modal-overlay {
     padding: 0.75rem;
@@ -212,7 +195,7 @@
   }
 
   .success-modal-content {
-    padding: 2rem 1.25rem 1.25rem 1.25rem;
+    padding: 2rem 1.25rem 1.25rem;
   }
 
   .success-icon {
