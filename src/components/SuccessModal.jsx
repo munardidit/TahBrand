@@ -39,20 +39,20 @@ function SuccessModal({
   };
 
   return (
-    <div className="success-modal-overlay" onClick={onClose}>
+    <div className="successes-modal-overlay" onClick={onClose}>
       <div
-        className="success-modal"
+        className="successes-modal"
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="success-modal-header">
-          <h2 className="success-modal-title">Your Cart</h2>
-          <button className="success-modal-close" onClick={onClose}>
+        <div className="successes-modal-header">
+          <h2 className="successes-modal-title">Your Cart</h2>
+          <button className="successes-modal-close" onClick={onClose}>
             ✕
           </button>
         </div>
 
-        <div className="success-modal-content">
-          <div className="success-icon">
+        <div className="successes-modal-content">
+          <div className="successes-icon">
             <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
               <circle cx="30" cy="30" r="30" fill="#22C55E" />
               <path
@@ -65,20 +65,20 @@ function SuccessModal({
             </svg>
           </div>
 
-          <p className="success-message">
+          <p className="successes-message">
             Your item has been successfully <br /> added to cart.
           </p>
 
-          <div className="success-actions">
+          <div className="successes-actions">
             <button
-              className="success-btn continue-shopping-btn"
+              className="successes-btn continue-shopping-btn"
               onClick={onClose}
             >
               Continue Shopping
             </button>
 
             <button
-              className="success-btn checkout-now-btn"
+              className="successes-btn checkout-now-btn"
               onClick={handleCheckout}
             >
               Check Out
