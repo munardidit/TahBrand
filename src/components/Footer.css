@@ -59,7 +59,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(115deg,#FE4E1C);
+  background:#5F58F4;
   opacity: 0;
   transition: opacity 0.3s ease;
   border-radius: 50%;
