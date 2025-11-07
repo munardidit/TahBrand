@@ -1,5 +1,5 @@
 import './AllEpisodes.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import episode1 from '../assets/hostimage.png';
 import episode2 from '../assets/hostimage.png';
@@ -15,6 +15,8 @@ import episode11 from '../assets/hostimage.png';
 import episode12 from '../assets/hostimage.png';
 
 function AllEpisodes() {
+  const navigate = useNavigate();
+  
   const episodes = [
     {
       id: 1,
@@ -106,11 +108,23 @@ function AllEpisodes() {
     <section className="all-episodes-section">
       <div className="all-episodes-container">
         <div className="all-episodes-header">
-          <h1 className="all-episodes-title">
-            ALL EPISODES OF<br />
-            TRULY AND HONESTLY<br />
-            WITH YINKA & DICTA.
-          </h1>
+          <div className="all-episodes-title-section">
+            <button className="back-arrow-btn" onClick={() => navigate(-1)}>
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path 
+                  d="M19 12H5M12 19l-7-7 7-7" 
+                  stroke="currentColor" 
+                  strokeWidth="2" 
+                  strokeLinecap="round" 
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </button>
+            <h1 className="all-episodes-title">
+              ALL EPISODES OF TRULY AND HONESTLY  WITH<br />
+               YINKA & DICTA.
+            </h1>
+          </div>
           <button className="filter-button">
             <span>Date - Newest First</span>
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none">

@@ -19,6 +19,38 @@
   text-align: left;
 }
 
+/* All Episodes Title Section with Back Arrow */
+.all-episodes-title-section {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+/* Back Arrow Button */
+.back-arrow-btn {
+  background: transparent;
+  border: none;
+  padding: 8px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #270E07;
+  flex-shrink: 0;
+  margin-top: 0.25rem;
+}
+
+.back-arrow-btn:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+  transform: translateX(-2px);
+}
+
+.back-arrow-btn:active {
+  transform: translateX(-2px) scale(0.95);
+}
+
 .all-episodes-title {
   font-size: 2rem;
   font-weight: 700;
@@ -188,6 +220,20 @@
 
 /* Mobile Responsive */
 @media (max-width: 767px) {
+  .all-episodes-title-section {
+    gap: 0.75rem;
+  }
+
+  .back-arrow-btn {
+    padding: 6px;
+    margin-top: 0.125rem;
+  }
+
+  .back-arrow-btn svg {
+    width: 20px;
+    height: 20px;
+  }
+
   .all-episodes-section {
     padding: 2rem 0 3rem 0;
     margin-top: 3.5rem;
@@ -239,5 +285,17 @@
   .all-episode-category,
   .all-episode-date {
     font-size: 0.7rem;
+  }
+}
+
+/* Small Mobile (0px - 480px) */
+@media (max-width: 480px) {
+  .back-arrow-btn {
+    padding: 5px;
+  }
+
+  .back-arrow-btn svg {
+    width: 18px;
+    height: 18px;
   }
 }

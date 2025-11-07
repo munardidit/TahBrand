@@ -98,6 +98,7 @@
 .menu-logo img {
   height: 2.5rem;
   width: auto;
+  display: none;
 }
 
 .menu-close {
@@ -415,3 +416,4 @@ html {
 body.menu-open {
   overflow: hidden;
 }
+

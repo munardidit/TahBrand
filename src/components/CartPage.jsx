@@ -34,7 +34,6 @@ function CartPage() {
 
   const handleEdit = (item, index) => {
     if (editingIndex === index) {
-   
       const updatedCart = [...cartItems];
       
       // Get the original item that was being edited
@@ -53,14 +52,11 @@ function CartPage() {
         );
         
         if (existingItemIndex > -1) {
-          
           updatedCart[existingItemIndex].quantity += editingItem.quantity;
         } else {
-         
           updatedCart.push(editingItem);
         }
       } else {
-        
         updatedCart[index] = editingItem;
       }
       
@@ -70,7 +66,6 @@ function CartPage() {
       setEditingItem(null);
       setEditingIndex(null);
     } else {
-      
       setEditingItem({ 
         id: item.id,
         name: item.name,
@@ -119,7 +114,21 @@ function CartPage() {
 
   return (
     <div className="cart-page">
-      <h1 className="cart-title">Your Cart</h1>
+      {/* Back Arrow Button */}
+      <div className="cart-header">
+        <button className="back-arrow-btn" onClick={() => navigate(-1)}>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path 
+              d="M19 12H5M12 19l-7-7 7-7" 
+              stroke="currentColor" 
+              strokeWidth="2" 
+              strokeLinecap="round" 
+              strokeLinejoin="round"
+            />
+          </svg>
+        </button>
+        <h1 className="cart-title">Your Cart</h1>
+      </div>
 
       {cartItems.length === 0 ? (
         <p className="empty-cart">Your cart is empty.</p>
