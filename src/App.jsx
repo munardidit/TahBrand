@@ -14,9 +14,12 @@ import ShopMerch2 from './components/ShopMerch2';
 import Payment from './components/Payment';
 import CartPage from './components/CartPage'; 
 import EpisodeDetail from './components/EpisodeDetailPage';
+import PaymentPage from "./components/PaymentPage";
+import Success from "./components/Success"
 import './App.css';
 
-// Home Page Component
+
+
 function HomePage() {
   return (
     <>
@@ -93,6 +96,11 @@ function App() {
         <Route path="/allepisodes" element={<AllEpisodesPage />} />
          <Route path="/merch" element={<ShopMerch />} />
          <Route path="/cart" element={<CartPage />} />
+         <Route path="/pay" element={<PaymentPage />} />
+         <Route path="/payment/checkout" element={<PaymentPage />} /> 
+      {/*<Route path="/success" element={<h1>Payment Successful </h1>} />*/}
+      <Route path="/payment-page" element={<PaymentPage />} />
+      <Route path="/success" element={<Success />} />
       </Routes>
     </Router>
     </CartProvider>

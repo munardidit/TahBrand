@@ -6,7 +6,17 @@ import logo from "../assets/navlogopic.png";
 function Payment() {
   const [cartItems, setCartItems] = useState([]);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [showModal, setShowModal] = useState(false);
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    city: "",
+    state: "",
+    country: "",
+    zip: "",
+    phone: "",
+    streetAddress: "",
+    aptNumber: "",
+  });
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -24,23 +34,38 @@ function Payment() {
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
-  const handlePayment = () => {
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handlePayment = (e) => {
+    e.preventDefault();
+
     if (cartItems.length === 0) {
       alert("Your cart is empty.");
       return;
     }
 
-    // Simulate payment success
-    setTimeout(() => {
-      localStorage.removeItem("tahCart");
-      setCartItems([]);
-      setShowModal(true);
-    }, 1000);
-  };
+    // Basic validation
+    if (!formData.firstName || !formData.lastName || !formData.phone) {
+      alert("Please fill in all required fields.");
+      return;
+    }
 
-  const closeModal = () => {
-    setShowModal(false);
-    navigate("/"); // Redirect to homepage after closing modal
+    // Navigate to Stripe payment page with order data
+    navigate("/payment-page", {
+      state: {
+        cartItems,
+        subtotal,
+        shippingCost,
+        total,
+        shippingAddress: formData,
+      },
+    });
   };
 
   return (
@@ -99,145 +124,124 @@ function Payment() {
             {/* Shipping Address */}
             <div className="payment-form-section">
               <h2 className="payment-section-title">Shipping Address</h2>
-
-              <div className="payment-form">
+              <form className="payment-form" onSubmit={handlePayment}>
                 <div className="form-row">
                   <div className="form-group half">
-                    <label className="form-label">First Name</label>
-                    <input type="text" className="form-input" />
+                    <label className="form-label">First Name *</label>
+                    <input
+                      type="text"
+                      name="firstName"
+                      className="form-input"
+                      value={formData.firstName}
+                      onChange={handleInputChange}
+                      required
+                    />
                   </div>
                   <div className="form-group half">
-                    <label className="form-label">Last Name</label>
-                    <input type="text" className="form-input" />
+                    <label className="form-label">Last Name *</label>
+                    <input
+                      type="text"
+                      name="lastName"
+                      className="form-input"
+                      value={formData.lastName}
+                      onChange={handleInputChange}
+                      required
+                    />
                   </div>
                 </div>
 
                 <div className="form-group">
                   <label className="form-label">City</label>
-                  <input type="text" className="form-input" />
+                  <input
+                    type="text"
+                    name="city"
+                    className="form-input"
+                    value={formData.city}
+                    onChange={handleInputChange}
+                  />
                 </div>
 
                 <div className="form-row">
                   <div className="form-group third">
                     <label className="form-label">State</label>
-                    <input type="text" className="form-input" />
+                    <input
+                      type="text"
+                      name="state"
+                      className="form-input"
+                      value={formData.state}
+                      onChange={handleInputChange}
+                    />
                   </div>
                   <div className="form-group third">
                     <label className="form-label">Country</label>
-                    <input type="text" className="form-input" />
+                    <input
+                      type="text"
+                      name="country"
+                      className="form-input"
+                      value={formData.country}
+                      onChange={handleInputChange}
+                    />
                   </div>
                   <div className="form-group third">
                     <label className="form-label">Zip</label>
-                    <input type="text" className="form-input" />
+                    <input
+                      type="text"
+                      name="zip"
+                      className="form-input"
+                      value={formData.zip}
+                      onChange={handleInputChange}
+                    />
                   </div>
                 </div>
 
                 <div className="form-group">
-                  <label className="form-label">Phone Number</label>
-                  <input type="tel" className="form-input" />
+                  <label className="form-label">Phone Number *</label>
+                  <input
+                    type="tel"
+                    name="phone"
+                    className="form-input"
+                    value={formData.phone}
+                    onChange={handleInputChange}
+                    required
+                  />
                 </div>
-              </div>
-            </div>
 
-            {/* Payment Method */}
-            <div className="payment-form-section">
-              <h2 className="payment-section-title">Payment Method</h2>
+                <div className="form-group">
+                  <label className="form-label">Street Address</label>
+                  <input
+                    type="text"
+                    name="streetAddress"
+                    className="form-input"
+                    value={formData.streetAddress}
+                    onChange={handleInputChange}
+                  />
+                </div>
 
-              <div className="payment-method-option">
-                <input type="radio" id="card" name="payment" defaultChecked />
-                <label htmlFor="card" className="payment-method-label">
-                  Credit or Debit card
-                  <div className="payment-logos">
-                    <span className="payment-logo stripe">stripe</span>
-                    <svg width="40" height="24" viewBox="0 0 40 24" fill="none">
-                      <rect width="40" height="24" rx="4" fill="#0570DE" />
-                      <path
-                        d="M14 12h12M20 6l6 6-6 6"
-                        stroke="white"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
+                <div className="form-row">
+                  <div className="form-group third">
+                    <label className="form-label">Apt Number</label>
+                    <input
+                      type="text"
+                      name="aptNumber"
+                      className="form-input"
+                      value={formData.aptNumber}
+                      onChange={handleInputChange}
+                    />
                   </div>
-                </label>
-              </div>
-
-              <div className="card-input-group">
-                <div className="card-number-input">
-                  <span className="card-dots">•••• •••• ••••</span>
-                  <span className="card-number">3456</span>
-                  <span className="card-type">VISA</span>
                 </div>
-              </div>
 
-              <div className="form-row card-details">
-                <div className="form-group">
-                  <label className="form-label">MM / YY</label>
-                  <input
-                    type="text"
-                    placeholder="•••"
-                    className="form-input small"
-                  />
-                </div>
-                <div className="form-group">
-                  <label className="form-label">CCV</label>
-                  <input
-                    type="text"
-                    placeholder="•••"
-                    className="form-input small"
-                  />
-                </div>
-                <div className="form-group">
-                  <label className="form-label">Postal Code</label>
-                  <input
-                    type="text"
-                    placeholder="10012"
-                    className="form-input small"
-                  />
-                </div>
-              </div>
+                <p className="payment-note">
+                  🔒︎ Your payment is secure and encrypted
+                </p>
 
-              <div className="form-checkbox">
-                <input type="checkbox" id="saveCard" defaultChecked />
-                <label htmlFor="saveCard">Save this card for faster use</label>
-              </div>
-
-              <p className="billing-note">
-                Billing address is the same as shipping address
-              </p>
-
-              <div className="billing-address-group">
-                <label className="form-label">Street Address</label>
-                <input type="text" className="form-input" />
-              </div>
-
-              <div className="form-row">
-                <div className="form-group third">
-                  <label className="form-label">Apt Number</label>
-                  <input type="text" className="form-input" />
-                </div>
-                <div className="form-group third">
-                  <label className="form-label">State</label>
-                  <input type="text" className="form-input" />
-                </div>
-                <div className="form-group third">
-                  <label className="form-label">Zip</label>
-                  <input type="text" className="form-input" />
-                </div>
-              </div>
-
-              <p className="payment-note">
-                🔒︎ Your payment is secure and encrypted
-              </p>
-
-              <button className="pay-now-button" onClick={handlePayment}>
-                Pay Now
-              </button>
-              <p className="security-note">
-                Payments processed securely through{" "}
-                <span className="stripe-text">Stripe</span> Inc.
-              </p>
+                <button type="submit" className="pay-now-button">
+                  Continue to Payment
+                </button>
+                <p className="security-note">
+                  Payments processed securely through{" "}
+                  <span className="stripe-text">Stripe</span> Inc.
+                </p>
+              </form>
             </div>
           </div>
 
@@ -263,7 +267,9 @@ function Payment() {
                       </div>
                       <div className="order-summary-row">
                         <span className="summary-label">Size</span>
-                        <span className="summary-value">{item.selectedSize}</span>
+                        <span className="summary-value">
+                          {item.selectedSize}
+                        </span>
                       </div>
                       <div className="order-summary-row">
                         <span className="summary-label">Color</span>
@@ -286,45 +292,22 @@ function Payment() {
 
               <div className="order-summary-row">
                 <span className="summary-label">Subtotal</span>
-                <span className="summary-value">USD {subtotal.toFixed(2)}</span>
+                <span className="summary-value">£{subtotal.toFixed(2)}</span>
               </div>
               <div className="order-summary-row">
                 <span className="summary-label">Shipping</span>
-                <span className="summary-value">USD {shippingCost.toFixed(2)}</span>
+                <span className="summary-value">
+                  £{shippingCost.toFixed(2)}
+                </span>
               </div>
 
               <div className="order-total">
                 <span className="total-label">Total</span>
-                <span className="total-value">USD {total.toFixed(2)}</span>
+                <span className="total-value">£{total.toFixed(2)}</span>
               </div>
             </div>
           </div>
         </div>
-
-        {/* Modal with checkmark */}
-        {showModal && (
-          <div className="modal-overlay" onClick={closeModal}>
-            <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-              <div className="success-icon" style={{ marginBottom: "1rem" }}>
-                <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
-                  <circle cx="30" cy="30" r="30" fill="#22C55E" />
-                  <path
-                    d="M17 30L26 39L43 22"
-                    stroke="white"
-                    strokeWidth="4"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </div>
-              <h3>Payment Successful!</h3>
-              <p>Thank you for your purchase. Your order has been confirmed.</p>
-              <button onClick={closeModal} className="close-modal-btn">
-                Close
-              </button>
-            </div>
-          </div>
-        )}
       </section>
     </>
   );
