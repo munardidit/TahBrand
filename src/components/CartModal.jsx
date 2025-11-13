@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./CartModal.css";
-import SuccessModal from "./SuccessModal";
+import Modal from "./Modal";
 
 function CartModal({ isOpen, onClose, product, selectedSize, selectedColor }) {
   const [quantity, setQuantity] = useState(1);
@@ -163,7 +163,7 @@ function CartModal({ isOpen, onClose, product, selectedSize, selectedColor }) {
 
                   <div className="cart-product-total">
                     <span className="product-total-price">
-                      USD {subtotal.toFixed(2)}
+                      USD {subtotal.toFixed(1)}
                     </span>
                     <span className="product-shipping">
                       Shipping: ${shippingCost}
@@ -206,7 +206,7 @@ function CartModal({ isOpen, onClose, product, selectedSize, selectedColor }) {
       )}
 
       {/* Success Modal */}
-      <SuccessModal
+      <Modal
         isOpen={showSuccess}
         onClose={() => setShowSuccess(false)}
         product={product}

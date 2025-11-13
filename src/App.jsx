@@ -16,6 +16,7 @@ import CartPage from './components/CartPage';
 import EpisodeDetail from './components/EpisodeDetailPage';
 import PaymentPage from "./components/PaymentPage";
 import Success from "./components/Success"
+import Modal from "./components/Modal"
 import './App.css';
 
 
@@ -98,7 +99,6 @@ function App() {
          <Route path="/cart" element={<CartPage />} />
          <Route path="/pay" element={<PaymentPage />} />
          <Route path="/payment/checkout" element={<PaymentPage />} /> 
-      {/*<Route path="/success" element={<h1>Payment Successful </h1>} />*/}
       <Route path="/payment-page" element={<PaymentPage />} />
       <Route path="/success" element={<Success />} />
       </Routes>

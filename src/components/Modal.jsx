@@ -1,8 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import { useEffect, useRef } from "react";
-import "./SuccessModal.css";
+import "./Modal.css";
 
-function SuccessModal({
+function Modal({
   isOpen,
   onClose,
   product,
@@ -69,25 +69,25 @@ function SuccessModal({
 
   return (
     <div 
-      className="successes-modal-overlay" 
+      className="modal-overlay" 
       onClick={onClose}
       role="dialog"
       aria-modal="true"
-      aria-labelledby="success-modal-title"
+      aria-labelledby="modal-title"
     >
       <div
         ref={modalRef}
-        className="successes-modal"
+        className="modal"
         onClick={(e) => e.stopPropagation()}
         onKeyDown={handleKeyDown}
         tabIndex={-1}
       >
-        <div className="successes-modal-header">
-          <h2 id="success-modal-title" className="successes-modal-title">
+        <div className="modal-header">
+          <h2 id="modal-title" className="modal-title">
             Your Cart
           </h2>
           <button 
-            className="successes-modal-close" 
+            className="modal-close" 
             onClick={onClose}
             aria-label="Close modal"
           >
@@ -95,8 +95,8 @@ function SuccessModal({
           </button>
         </div>
 
-        <div className="successes-modal-content">
-          <div className="successes-icon" aria-hidden="true">
+        <div className="modal-content">
+          <div className="modal-icon" aria-hidden="true">
             <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
               <circle cx="30" cy="30" r="30" fill="#22C55E" />
               <path
@@ -109,20 +109,20 @@ function SuccessModal({
             </svg>
           </div>
 
-          <p className="successes-message">
+          <p className="modal-message">
             Your item has been successfully <br /> added to cart.
           </p>
 
-          <div className="successes-actions">
+          <div className="modal-actions">
             <button
-              className="successes-btn continue-shopping-btn"
+              className="modal-btn continue-shopping-btn"
               onClick={onClose}
             >
               Continue Shopping
             </button>
 
             <button
-              className="successes-btn checkout-now-btn"
+              className="modal-btn checkout-now-btn"
               onClick={handleCheckout}
               autoFocus
             >
@@ -135,4 +135,4 @@ function SuccessModal({
   );
 }
 
-export default SuccessModal;
+export default Modal;
