@@ -154,7 +154,7 @@ function Modal({
     padding: '0.75rem 1.3rem',
     borderRadius: '50px',
     fontFamily: '"Kumbh Sans", sans-serif',
-    fontSize: '0.875rem',
+    fontSize: '0.785rem',
     fontWeight: 600,
     cursor: 'pointer',
     transition: 'all 0.3s ease',
