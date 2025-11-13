@@ -183,7 +183,7 @@ function Payment() {
                     />
                   </div>
                   <div className="form-group third">
-                    <label className="form-label">Zip</label>
+                    <label className="form-label">Zip/Postal Address</label>
                     <input
                       type="text"
                       name="zip"

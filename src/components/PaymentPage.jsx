@@ -12,6 +12,57 @@ import "./PaymentPage.css";
 
 const stripePromise = loadStripe("pk_test_51SQyb4PBhoWYbFy77kJQSZe5W2jGqQ1Mj9kcPRXxO3Ex1nOi8lwgBWZLs7e1xLe4gD4CPeulMmIpuDH6ZSuO63qL000apBaKvn");
 
+// Country name to ISO code mapping (same as backend for consistency)
+const countryCodes = {
+  'nigeria': 'NG',
+  'united states': 'US',
+  'united states of america': 'US',
+  'usa': 'US',
+  'united kingdom': 'GB',
+  'uk': 'GB',
+  'great britain': 'GB',
+  'canada': 'CA',
+  'australia': 'AU',
+  'germany': 'DE',
+  'france': 'FR',
+  'italy': 'IT',
+  'spain': 'ES',
+  'netherlands': 'NL',
+  'belgium': 'BE',
+  'sweden': 'SE',
+  'norway': 'NO',
+  'denmark': 'DK',
+  'finland': 'FI',
+  'ireland': 'IE',
+  'portugal': 'PT',
+  'austria': 'AT',
+  'switzerland': 'CH',
+  'japan': 'JP',
+  'south korea': 'KR',
+  'china': 'CN',
+  'india': 'IN',
+  'brazil': 'BR',
+  'mexico': 'MX',
+  'south africa': 'ZA',
+  'egypt': 'EG',
+  'kenya': 'KE',
+  'ghana': 'GH',
+};
+
+// Function to convert country name to ISO code
+const getCountryCode = (countryName) => {
+  if (!countryName) return 'GB';
+  
+  const normalized = countryName.toString().toLowerCase().trim();
+  
+  // Check if it's already a 2-letter code
+  if (/^[A-Z]{2}$/i.test(normalized)) {
+    return normalized.toUpperCase();
+  }
+  
+  return countryCodes[normalized] || 'GB';
+};
+
 const CheckoutForm = ({ orderData }) => {
   const stripe = useStripe();
   const elements = useElements();
@@ -22,28 +73,38 @@ const CheckoutForm = ({ orderData }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
+    setMessage("");
 
     if (!stripe || !elements) {
       setLoading(false);
       return;
     }
 
-    const { error, paymentIntent } = await stripe.confirmPayment({
-      elements,
-      confirmParams: {
-        return_url: `${window.location.origin}/success`,
-      },
-      redirect: "if_required", // Handle redirect-based payments
-    });
+    try {
+      const { error, paymentIntent } = await stripe.confirmPayment({
+        elements,
+        confirmParams: {
+          return_url: `${window.location.origin}/success`,
+        },
+        redirect: "if_required",
+      });
 
-    if (error) {
-      setMessage(error.message);
-      setLoading(false);
-    } else if (paymentIntent && paymentIntent.status === "succeeded") {
-      localStorage.removeItem("tahCart");
-      navigate("/success");
-    } else {
-      
+      if (error) {
+        console.error("Payment confirmation error:", error);
+        setMessage(error.message);
+      } else if (paymentIntent && paymentIntent.status === "succeeded") {
+        localStorage.removeItem("tahCart");
+        navigate("/success", { 
+          state: { 
+            paymentIntentId: paymentIntent.id,
+            orderData: orderData 
+          } 
+        });
+      }
+    } catch (err) {
+      console.error("Unexpected payment error:", err);
+      setMessage("An unexpected error occurred. Please try again.");
+    } finally {
       setLoading(false);
     }
   };
@@ -93,20 +154,35 @@ const CheckoutForm = ({ orderData }) => {
             {orderData?.shippingAddress?.firstName}{" "}
             {orderData?.shippingAddress?.lastName}
           </p>
+          <p>{orderData?.shippingAddress?.streetAddress}, {orderData?.shippingAddress?.city}</p>
+          <p>{orderData?.shippingAddress?.country} ({orderData?.shippingAddress?.country && getCountryCode(orderData.shippingAddress.country)})</p>
           <p>{orderData?.shippingAddress?.phone}</p>
         </div>
 
-        <PaymentElement />
+        <div className="payment-element-container">
+          <PaymentElement />
+        </div>
         
         <button
           disabled={!stripe || loading}
-          className="stripe-pay-button"
+          className={`stripe-pay-button ${loading ? 'loading' : ''}`}
           type="submit"
         >
-          {loading ? "Processing..." : `Pay £${orderData?.total?.toFixed(2)}`}
+          {loading ? (
+            <>
+              <div className="button-spinner"></div>
+              Processing...
+            </>
+          ) : (
+            `Pay £${orderData?.total?.toFixed(2)}`
+          )}
         </button>
         
-        {message && <div className="error-message">{message}</div>}
+        {message && (
+          <div className={`message ${message.includes('error') ? 'error-message' : 'info-message'}`}>
+            {message}
+          </div>
+        )}
         
         <p className="secure-text">🔒 Secure payment powered by Stripe</p>
       </form>
@@ -120,6 +196,8 @@ const PaymentPage = () => {
   const orderData = location.state;
   const [clientSecret, setClientSecret] = useState("");
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(true);
+  const [retryCount, setRetryCount] = useState(0);
 
   useEffect(() => {
     // Redirect if no order data
@@ -131,22 +209,120 @@ const PaymentPage = () => {
     // Create payment intent
     const createPaymentIntent = async () => {
       try {
+        console.log("🔄 Creating payment intent with data:", {
+          amount: Math.round(orderData.total * 100),
+          total: orderData.total,
+          currency: "gbp",
+          hasShipping: !!orderData.shippingAddress,
+          itemCount: orderData.cartItems.length,
+          country: orderData.shippingAddress?.country
+        });
+
+        // Prepare cart items data safely
+        const cartItems = orderData.cartItems.map(item => ({
+          name: item.name || "Product",
+          price: item.price || "0.00",
+          quantity: item.quantity || 1,
+          image: item.image || ""
+        }));
+
+        // Prepare shipping data safely with country conversion
+        const shippingData = orderData.shippingAddress ? {
+          firstName: orderData.shippingAddress.firstName || "",
+          lastName: orderData.shippingAddress.lastName || "",
+          email: orderData.shippingAddress.email || "",
+          phone: orderData.shippingAddress.phone || "",
+          streetAddress: orderData.shippingAddress.streetAddress || "",
+          aptNumber: orderData.shippingAddress.aptNumber || "",
+          city: orderData.shippingAddress.city || "",
+          state: orderData.shippingAddress.state || "",
+          zip: orderData.shippingAddress.zip || "",
+          country: orderData.shippingAddress.country || "United Kingdom" // Use full name
+        } : null;
+
+        // Log country conversion for debugging
+        if (shippingData?.country) {
+          const countryCode = getCountryCode(shippingData.country);
+          console.log(`🌍 Country conversion: "${shippingData.country}" → "${countryCode}"`);
+        }
+
+        const requestData = {
+          amount: Math.round(orderData.total * 100), // Convert to pence
+          currency: "gbp",
+          shipping: shippingData,
+          cartItems: cartItems
+        };
+
+        console.log("📤 Sending request data:", {
+          ...requestData,
+          shipping: {
+            ...requestData.shipping,
+            // Don't log sensitive data
+            email: requestData.shipping?.email ? '***' : undefined,
+            phone: requestData.shipping?.phone ? '***' : undefined
+          }
+        });
+
         const response = await axios.post(
-          "https://tahbackend.onrender.com/create-payment-intent", 
+          "https://tahbackend.onrender.com/create-payment-intent",
+          requestData,
           {
-            amount: Math.round(orderData.total * 100), 
-            currency: "gbp",
+            timeout: 15000,
+            headers: {
+              'Content-Type': 'application/json',
+            }
           }
         );
+
+        console.log("✅ Payment intent created:", {
+          id: response.data.paymentIntentId,
+          detectedCountry: response.data.detectedCountry,
+          usedCountryCode: response.data.usedCountryCode
+        });
+        
         setClientSecret(response.data.clientSecret);
+        setError("");
+        setRetryCount(0); // Reset retry count on success
+
       } catch (err) {
-        console.error("Payment intent error:", err);
-        setError("Failed to initialize payment. Please try again.");
+        console.error("❌ Payment intent error details:", {
+          message: err.message,
+          response: err.response?.data,
+          status: err.response?.status,
+          code: err.code
+        });
+
+        // Handle specific error cases
+        let errorMessage = "Failed to initialize payment. Please try again.";
+        
+        if (err.response?.data?.error) {
+          errorMessage = err.response.data.error;
+          
+          // Provide user-friendly messages for common errors
+          if (err.response.data.error.includes('country') || err.response.data.error.includes('Country')) {
+            errorMessage = "We've updated our payment system. Your country has been automatically converted for processing.";
+          }
+        } else if (err.code === 'ERR_NETWORK') {
+          errorMessage = "Network error. Please check your internet connection and try again.";
+        } else if (err.response?.status === 500) {
+          errorMessage = "Server error. Please try again in a moment.";
+        }
+
+        setError(errorMessage);
+        
+      } finally {
+        setLoading(false);
       }
     };
 
     createPaymentIntent();
-  }, [orderData, navigate]);
+  }, [orderData, navigate, retryCount]); // Added retryCount as dependency
+
+  const handleRetry = () => {
+    setRetryCount(prev => prev + 1);
+    setError("");
+    setLoading(true);
+  };
 
   const appearance = {
     theme: "stripe",
@@ -159,28 +335,62 @@ const PaymentPage = () => {
       spacingUnit: "4px",
       borderRadius: "8px",
     },
+    rules: {
+      '.Input': {
+        border: '1px solid #e1e5e9',
+        padding: '12px',
+      },
+      '.Input:focus': {
+        borderColor: '#5856d6',
+        boxShadow: '0 0 0 1px #5856d6',
+      }
+    }
   };
 
   const options = {
     clientSecret,
     appearance,
+    loader: "always"
   };
 
   if (error) {
     return (
       <div className="payment-error-container">
-        <h2>Payment Error</h2>
-        <p>{error}</p>
-        <button onClick={() => navigate("/cart")}>Return to Cart</button>
+        <div className="error-content">
+          <h2>Payment Setup Error</h2>
+          <p>{error}</p>
+          {error.includes('country') && (
+            <div className="country-info">
+              <p><strong>Note:</strong> We now use standard country codes for better compatibility.</p>
+              <p>Your country "<strong>{orderData?.shippingAddress?.country}</strong>" will be automatically converted.</p>
+            </div>
+          )}
+          <div className="error-actions">
+            <button onClick={() => navigate("/cart")} className="secondary-button">
+              Return to Cart
+            </button>
+            <button onClick={handleRetry} className="primary-button">
+              Try Again
+            </button>
+          </div>
+          {retryCount > 0 && (
+            <p className="retry-count">Attempt {retryCount + 1} of 3</p>
+          )}
+        </div>
       </div>
     );
   }
 
-  if (!clientSecret) {
+  if (loading || !clientSecret) {
     return (
       <div className="payment-loading">
         <div className="spinner"></div>
         <p>Preparing your payment...</p>
+        {orderData?.shippingAddress?.country && (
+          <p className="loading-note">
+            Processing shipping to {orderData.shippingAddress.country}
+          </p>
+        )}
       </div>
     );
   }

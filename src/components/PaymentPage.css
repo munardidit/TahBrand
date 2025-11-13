@@ -261,3 +261,76 @@
     font-size: 1.25rem;
   }
 }
+/* Add these styles to your PaymentPage.css */
+.payment-loading .loading-note {
+  font-size: 0.9rem;
+  color: #666;
+  margin-top: 10px;
+}
+
+.country-info {
+  background: #f8f9fa;
+  padding: 15px;
+  border-radius: 8px;
+  margin: 15px 0;
+  border-left: 4px solid #5856d6;
+}
+
+.country-info p {
+  margin: 5px 0;
+}
+
+.retry-count {
+  text-align: center;
+  color: #666;
+  font-size: 0.9rem;
+  margin-top: 10px;
+}
+
+.button-spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid transparent;
+  border-top: 2px solid #fff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-right: 8px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.stripe-pay-button.loading {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.stripe-pay-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.error-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.primary-button {
+  background: #5856d6;
+  color: white;
+}
+
+.secondary-button {
+  background: #6c757d;
+  color: white;
+}
+
+.primary-button:hover,
+.secondary-button:hover {
+  opacity: 0.9;
+}
