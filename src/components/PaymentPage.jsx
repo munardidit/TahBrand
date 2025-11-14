@@ -10,7 +10,7 @@ import {
 import axios from "axios";
 import "./PaymentPage.css";
 
-const stripePromise = loadStripe("pk_test_51SQyb4PBhoWYbFy77kJQSZe5W2jGqQ1Mj9kcPRXxO3Ex1nOi8lwgBWZLs7e1xLe4gD4CPeulMmIpuDH6ZSuO63qL000apBaKvn");
+const stripePromise = loadStripe("pk_live_51SQyZbAmHV8jSelWiXrF06irPeMkZNLM1DPsZcLiW0w6LJEtE7VSRT6UJ16nnuNj6O2iMgUAhwW4VjmXM7hLYXPh00rhe0RwXm");
 
 // Country name to ISO code mapping (same as backend for consistency)
 const countryCodes = {
@@ -316,8 +316,7 @@ const PaymentPage = () => {
     };
 
     createPaymentIntent();
-  }, [orderData, navigate, retryCount]); // Added retryCount as dependency
-
+  }, [orderData, navigate, retryCount]); 
   const handleRetry = () => {
     setRetryCount(prev => prev + 1);
     setError("");
