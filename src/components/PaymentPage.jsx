@@ -12,7 +12,6 @@ import "./PaymentPage.css";
 
 const stripePromise = loadStripe("pk_live_51SQyZbAmHV8jSelWiXrF06irPeMkZNLM1DPsZcLiW0w6LJEtE7VSRT6UJ16nnuNj6O2iMgUAhwW4VjmXM7hLYXPh00rhe0RwXm");
 
-// Country name to ISO code mapping (same as backend for consistency)
 const countryCodes = {
   'nigeria': 'NG',
   'united states': 'US',
@@ -237,7 +236,7 @@ const PaymentPage = () => {
           city: orderData.shippingAddress.city || "",
           state: orderData.shippingAddress.state || "",
           zip: orderData.shippingAddress.zip || "",
-          country: orderData.shippingAddress.country || "United Kingdom" // Use full name
+          country: orderData.shippingAddress.country || "United Kingdom" 
         } : null;
 
         // Log country conversion for debugging
@@ -298,7 +297,7 @@ const PaymentPage = () => {
         if (err.response?.data?.error) {
           errorMessage = err.response.data.error;
           
-          // Provide user-friendly messages for common errors
+          
           if (err.response.data.error.includes('country') || err.response.data.error.includes('Country')) {
             errorMessage = "We've updated our payment system. Your country has been automatically converted for processing.";
           }
