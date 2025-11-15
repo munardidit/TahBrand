@@ -13,65 +13,38 @@ const ShopMerch2 = () => {
   const [selectedSize, setSelectedSize] = useState(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
-  const [cartItemsCount, setCartItemsCount] = useState(0); // Add cart items count state
+  const [cartItemsCount, setCartItemsCount] = useState(0);
 
   const sizes = ["XS", "S", "M", "L", "XL"];
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
-  // Function to get cart items count from localStorage
   const getCartItemsCount = () => {
-    const existingCart = JSON.parse(localStorage.getItem('tahCart') || '[]');
+    const existingCart = JSON.parse(localStorage.getItem("tahCart") || "[]");
     return existingCart.reduce((total, item) => total + item.quantity, 0);
   };
 
-  // Update cart count on component mount and when cart updates
   useEffect(() => {
-    // Set initial cart count
     setCartItemsCount(getCartItemsCount());
 
-    // Listen for cart updates from other components
     const handleCartUpdate = () => {
       setCartItemsCount(getCartItemsCount());
     };
 
-    window.addEventListener('cartUpdated', handleCartUpdate);
+    window.addEventListener("cartUpdated", handleCartUpdate);
 
-    // Cleanup
     return () => {
-      window.removeEventListener('cartUpdated', handleCartUpdate);
+      window.removeEventListener("cartUpdated", handleCartUpdate);
     };
   }, []);
 
   const handleCartClick = () => navigate("/cart");
-
-  const addToCart = () => {
-    if (!selectedSize) return;
-
-    const newItem = {
-      id: product.id,
-      name: product.name,
-      price: product.price,
-      image: product.image,
-      selectedSize,
-      color: product.color,
-      quantity: 1,
-    };
-
-    const existingCart = JSON.parse(localStorage.getItem("tahCart") || "[]");
-    existingCart.push(newItem);
-    localStorage.setItem("tahCart", JSON.stringify(existingCart));
-
-    window.dispatchEvent(new Event("cartUpdated"));
-  };
 
   const handleContinue = () => {
     if (!selectedSize) {
       alert("Please select a size before continuing.");
       return;
     }
-
-    addToCart();
     setIsCartOpen(true);
   };
 
@@ -109,10 +82,9 @@ const ShopMerch2 = () => {
                     strokeLinejoin="round"
                   />
                 </svg>
-                {/* Conditionally render badge - ONLY when items exist */}
                 {cartItemsCount > 0 && (
                   <span className="cart-badge">
-                    {cartItemsCount > 99 ? '99+' : cartItemsCount}
+                    {cartItemsCount > 99 ? "99+" : cartItemsCount}
                   </span>
                 )}
               </button>
@@ -170,10 +142,18 @@ const ShopMerch2 = () => {
                 </svg>
               </button>
               <div className="shop-dropdown-content">
-                <a href="https://youtube.com" target="_blank" rel="noopener noreferrer">
+                <a
+                  href="https://youtube.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   YouTube
                 </a>
-                <a href="https://spotify.com" target="_blank" rel="noopener noreferrer">
+                <a
+                  href="https://spotify.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   Spotify
                 </a>
                 <a
@@ -200,17 +180,23 @@ const ShopMerch2 = () => {
       <section className="product-detail-section">
         <div className="product-detail-container">
           <div className="product-header-top">
-           <button className="back-arrow-btn" onClick={() => navigate(-1)}>
-  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path 
-      d="M19 12H5M12 19l-7-7 7-7" 
-      stroke="currentColor" 
-      strokeWidth="2" 
-      strokeLinecap="round" 
-      strokeLinejoin="round"
-    />
-  </svg>
-</button>
+            <button className="back-arrow-btn" onClick={() => navigate(-1)}>
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M19 12H5M12 19l-7-7 7-7"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </button>
           </div>
 
           <div className="product-header">
@@ -252,7 +238,9 @@ const ShopMerch2 = () => {
                   })}
                 </div>
                 {!selectedSize && (
-                  <p className="size-hint">Please select a size before continuing.</p>
+                  <p className="size-hint">
+                    Please select a size before continuing.
+                  </p>
                 )}
               </div>
 
@@ -275,10 +263,10 @@ const ShopMerch2 = () => {
             <div className="details-section">
               <h3 className="details-title">Details</h3>
               <p className="details-description">
-                This {product.color.toLowerCase()} {product.type} from TAH is crafted
-                for both comfort and bold street style. Made from premium fabric and
-                finished with the TAH logo, it's perfect for all-day wear during cool
-                seasons.
+                This {product.color.toLowerCase()} {product.type} from TAH is
+                crafted for both comfort and bold street style. Made from premium
+                fabric and finished with the TAH logo, it's perfect for all-day
+                wear during cool seasons.
               </p>
             </div>
           </div>
