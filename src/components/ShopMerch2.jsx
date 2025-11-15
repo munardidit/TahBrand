@@ -45,6 +45,7 @@ const ShopMerch2 = () => {
       alert("Please select a size before continuing.");
       return;
     }
+    // Don't add to cart here - let CartModal handle it
     setIsCartOpen(true);
   };
 

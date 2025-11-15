@@ -70,23 +70,43 @@ function CartModal({ isOpen, onClose, product, selectedSize, selectedColor }) {
   };
 
   const handleCheckout = () => {
-    setShowSuccess(false);
-    navigate("/payment", {
-      state: {
-        product: {
-          ...product,
-          image: product?.image,
-          name: product?.name,
-          price: pricePerItem,
-        },
-        selectedSize,
-        selectedColor,
-        quantity,
-        total,
-        shippingCost,
-        subtotal,
-      },
-    });
+    // Create a temporary cart item for direct checkout
+    const checkoutItem = {
+      id: product.id,
+      name: product.name,
+      price: product.price,
+      image: product.image,
+      selectedSize: selectedSize,
+      color: selectedColor,
+      type: product.type,
+      quantity: quantity
+    };
+
+    // Get existing cart
+    const existingCart = JSON.parse(localStorage.getItem('tahCart') || '[]');
+    
+    // Check if item with same id and size already exists
+    const existingItemIndex = existingCart.findIndex(
+      item => item.id === product.id && item.selectedSize === selectedSize
+    );
+    
+    if (existingItemIndex > -1) {
+      // Update quantity if item exists
+      existingCart[existingItemIndex].quantity += quantity;
+    } else {
+      // Add new item
+      existingCart.push(checkoutItem);
+    }
+    
+    // Save to localStorage
+    localStorage.setItem('tahCart', JSON.stringify(existingCart));
+    
+    // Dispatch custom event to notify other components
+    window.dispatchEvent(new Event('cartUpdated'));
+
+    // Close modal and navigate to payment
+    onClose();
+    navigate("/payment");
   };
 
   const isReadyToAdd = selectedSize && selectedColor;
@@ -119,30 +139,26 @@ function CartModal({ isOpen, onClose, product, selectedSize, selectedColor }) {
 
               {/* Product Item */}
               <div className="cart-product-item">
-                <div className="cart-product-left">
-                  <div className="cart-product-image">
-                    <img
-                      src={product?.image}
-                      alt={product?.name || "Product"}
-                      onError={(e) => {
-                        e.target.src = "/fallback-image.png"; 
-                      }}
-                    />
-                  </div>
-
-                  <div className="cart-product-info">
-                    <h3 className="cart-product-name">{product?.name}</h3>
-                    <p className="cart-product-price">USD {pricePerItem}</p>
-                    <p className="cart-product-color">
-                      Colour: {selectedColor || "Not selected"}
-                    </p>
-                    <p className="cart-product-size">
-                      Size: {selectedSize || "Not selected"}
-                    </p>
-                  </div>
+                <div className="cart-product-image">
+                  <img
+                    src={product?.image}
+                    alt={product?.name || "Product"}
+                    onError={(e) => {
+                      e.target.src = "/fallback-image.png"; 
+                    }}
+                  />
                 </div>
 
-                <div className="cart-product-right">
+                <div className="cart-product-details">
+                  <h3 className="cart-product-name">{product?.name}</h3>
+                  <p className="cart-product-price">USD {pricePerItem}</p>
+                  <p className="cart-product-color">
+                    Colour: {selectedColor || "Not selected"}
+                  </p>
+                  <p className="cart-product-size">
+                    Size: {selectedSize || "Not selected"}
+                  </p>
+
                   <div className="quantity-controls">
                     <label className="quantity-label">Quantity</label>
                     <div className="quantity-input-group">
@@ -160,15 +176,15 @@ function CartModal({ isOpen, onClose, product, selectedSize, selectedColor }) {
                       </button>
                     </div>
                   </div>
+                </div>
 
-                  <div className="cart-product-total">
-                    <span className="product-total-price">
-                      USD {subtotal.toFixed(1)}
-                    </span>
-                    <span className="product-shipping">
-                      Shipping: ${shippingCost}
-                    </span>
-                  </div>
+                <div className="cart-product-total">
+                  <span className="product-total-price">
+                    USD {subtotal.toFixed(1)}
+                  </span>
+                  <span className="product-shipping">
+                    Shipping: ${shippingCost}
+                  </span>
                 </div>
               </div>
 
