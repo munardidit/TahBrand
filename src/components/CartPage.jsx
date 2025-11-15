@@ -167,7 +167,7 @@ function CartPage() {
                         
                         <div className="quantity-edit">
                           <label>Quantity:</label>
-                          <div className="quantity-controls">
+                          <div className="quantity-controlss">
                             <button
                               className="qty-btn"
                               onClick={() => handleQuantityChange(editingItem.quantity - 1)}

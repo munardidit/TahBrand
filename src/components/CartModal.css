@@ -147,11 +147,13 @@
 
 /* Quantity Controls */
 .quantity-controls {
-  margin-top: auto;
-  padding-top: 1rem;
-  position: relative;
-  top: 10%;
-  left: 5px;
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    /* background: #f8faff; */
+    border-radius: 8px;
+    padding: .25rem;
+    /* border: 1px solid #e8edff; */
 }
 
 .quantity-label {
