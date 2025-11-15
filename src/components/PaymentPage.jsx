@@ -159,7 +159,18 @@ const CheckoutForm = ({ orderData }) => {
         </div>
 
         <div className="payment-element-container">
-          <PaymentElement />
+          <PaymentElement 
+            options={{
+              layout: {
+                type: 'tabs',
+                defaultCollapsed: false,
+              },
+              wallets: {
+                applePay: 'auto',
+                googlePay: 'auto',
+              },
+            }}
+          />
         </div>
         
         <button
@@ -276,7 +287,8 @@ const PaymentPage = () => {
         console.log("✅ Payment intent created:", {
           id: response.data.paymentIntentId,
           detectedCountry: response.data.detectedCountry,
-          usedCountryCode: response.data.usedCountryCode
+          usedCountryCode: response.data.usedCountryCode,
+          availablePaymentMethods: response.data.availablePaymentMethods
         });
         
         setClientSecret(response.data.clientSecret);
@@ -297,7 +309,6 @@ const PaymentPage = () => {
         if (err.response?.data?.error) {
           errorMessage = err.response.data.error;
           
-          
           if (err.response.data.error.includes('country') || err.response.data.error.includes('Country')) {
             errorMessage = "We've updated our payment system. Your country has been automatically converted for processing.";
           }
@@ -316,6 +327,7 @@ const PaymentPage = () => {
 
     createPaymentIntent();
   }, [orderData, navigate, retryCount]); 
+
   const handleRetry = () => {
     setRetryCount(prev => prev + 1);
     setError("");
@@ -348,7 +360,7 @@ const PaymentPage = () => {
   const options = {
     clientSecret,
     appearance,
-    loader: "always"
+    loader: "auto"
   };
 
   if (error) {
