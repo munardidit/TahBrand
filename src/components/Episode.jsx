@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import './Episode.css';
 import hostImage from '../assets/hostimage.png';
@@ -6,6 +6,8 @@ import hostImage from '../assets/hostimage.png';
 function Episode() {
   const [showAll, setShowAll] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef(null);
 
   const episodes = [
     {
@@ -49,22 +51,53 @@ function Episode() {
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      {
+        threshold: 0.2,
+        rootMargin: '0px 0px -50px 0px'
+      }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
+    };
+  }, []);
+
   const displayedEpisodes = isMobile && !showAll ? episodes.slice(0, 2) : episodes;
 
   return (
-    <section className="episodes-section">
+    <section className="episodes-section" ref={sectionRef}>
       <div className="episodes-container">
-        <h2 className="episodes-heading">Latest Episodes</h2>
+        <h2 className={`episodes-heading ${isVisible ? 'fade-in' : ''}`}>
+          Latest Episodes
+        </h2>
 
         <div className="episodes-grid">
-          {displayedEpisodes.map((episode) => (
+          {displayedEpisodes.map((episode, index) => (
             <Link
               to={`/episode/${episode.id}`}
               key={episode.id}
               className="episode-card-link"
               onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
             >
-              <div className="episode-card">
+              <div 
+                className={`episode-card ${isVisible ? 'scale-in' : ''}`}
+                style={{ 
+                  transitionDelay: `${0.3 * index}s` 
+                }}
+              >
                 <div className="episode-thumbnail">
                   <img src={episode.thumbnail} alt={episode.title} />
                 </div>
@@ -84,8 +117,9 @@ function Episode() {
         {isMobile && !showAll && episodes.length > 2 && (
           <div className="view-more-container">
             <button 
-              className="view-more-btn" 
+              className={`view-more-btn ${isVisible ? 'fade-in' : ''}`}
               onClick={() => setShowAll(true)}
+              style={{ transitionDelay: '0.6s' }}
             >
               View More Episodes
             </button>

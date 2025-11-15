@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './PopularEpisodes.css';
 import popular1 from '../assets/hostimage.png';
@@ -7,11 +7,37 @@ import popular3 from '../assets/hostimage.png';
 
 function PopularEpisodes() {
   const navigate = useNavigate();
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef(null);
 
   const handleViewAllClick = () => {
     navigate('/allepisodes');
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      {
+        threshold: 0.2,
+        rootMargin: '0px 0px -50px 0px'
+      }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
+    };
+  }, []);
 
   const popularEpisodes = [
     {
@@ -38,13 +64,21 @@ function PopularEpisodes() {
   ];
 
   return (
-    <section className="popular-episodes-section">
+    <section className="popular-episodes-section" ref={sectionRef}>
       <div className="popular-episodes-container">
-        <h2 className="popular-episodes-heading">Most Popular Episodes</h2>
+        <h2 className={`popular-episodes-heading ${isVisible ? 'fade-in' : ''}`}>
+          Most Popular Episodes
+        </h2>
 
         <div className="popular-episodes-grid">
-          {popularEpisodes.map((episode) => (
-            <div key={episode.id} className="popular-episode-card">
+          {popularEpisodes.map((episode, index) => (
+            <div 
+              key={episode.id} 
+              className={`popular-episode-card ${isVisible ? 'scale-in' : ''}`}
+              style={{ 
+                transitionDelay: `${0.1 * index}s` 
+              }}
+            >
               <div className="popular-episode-thumbnail">
                 <img src={episode.thumbnail} alt={episode.title} />
               </div>
@@ -62,7 +96,11 @@ function PopularEpisodes() {
         </div>
 
         <div className="view-all-button-container">
-          <button onClick={handleViewAllClick} className="view-all-button">
+          <button 
+            onClick={handleViewAllClick} 
+            className={`view-all-button ${isVisible ? 'fade-in' : ''}`}
+            style={{ transitionDelay: '0.4s' }}
+          >
             View All Episodes
           </button>
         </div>

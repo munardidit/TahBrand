@@ -1,7 +1,11 @@
+import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import "./Testimonial.css";
 
 function Testimonial() {
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef(null);
+
   const testimonials = [
     {
       id: 1,
@@ -53,13 +57,37 @@ function Testimonial() {
     },
   ];
 
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      {
+        threshold: 0.2,
+        rootMargin: '0px 0px -50px 0px'
+      }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
+    };
+  }, []);
+
   const loopedTestimonials = [...testimonials, ...testimonials];
 
   return (
-    <section className="testimonial-section">
+    <section className="testimonial-section" ref={sectionRef}>
       <div className="testimonial-container">
         <div className="testimonial-header">
-          <h2 className="testimonial-heading">
+          <h2 className={`testimonial-heading ${isVisible ? 'fade-in' : ''}`}>
             Thank you for always
             <br />
             listening to us...

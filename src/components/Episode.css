@@ -16,6 +16,14 @@
   color: #270E07;
   text-align: left;
   font-family: "Kumbh Sans", sans-serif;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.6s ease-out;
+}
+
+.episodes-heading.fade-in {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .episodes-grid {
@@ -33,15 +41,22 @@
 .episode-card {
   background-color: #ffffff;
   overflow: hidden;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
   cursor: pointer;
   height: 100%;
   display: flex;
   flex-direction: column;
+  opacity: 0;
+  transform: scale(0.8);
+}
+
+.episode-card.scale-in {
+  opacity: 1;
+  transform: scale(1);
 }
 
 .episode-card:hover {
-  transform: translateY(-4px);
+  transform: translateY(-4px) scale(1);
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
 }
 
@@ -115,6 +130,13 @@
   font-family: "Kumbh Sans", sans-serif;
   width: 100%;
   max-width: 320px;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.view-more-btn.fade-in {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .view-more-btn:hover {
@@ -156,13 +178,14 @@
   }
 }
 
-
+/* Desktop (1025px - 1440px) */
 @media (min-width: 1025px) and (max-width: 1440px) {
   .episodes-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
+/* Large Desktop (> 1440px) */
 @media (min-width: 1441px) {
   .episodes-container {
     max-width: 1400px;
@@ -174,7 +197,7 @@
   }
 }
 
-
+/* Landscape Orientation for Mobile Devices */
 @media (max-height: 500px) and (orientation: landscape) {
   .episodes-section {
     padding: 1.5rem 0;
@@ -185,21 +208,42 @@
   }
 }
 
-
+/* High DPI Displays (Retina) */
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
   .episode-card {
     border: 0.5px solid rgba(0, 0, 0, 0.05);
   }
 }
 
-
+/* Hover-capable devices only */
 @media (hover: hover) and (pointer: fine) {
   .episode-card:active {
     transform: translateY(-2px);
   }
 }
 
+/* Reduced Motion Preference */
+@media (prefers-reduced-motion: reduce) {
+  .episodes-heading,
+  .episode-card,
+  .view-more-btn {
+    transition: none;
+    animation: none;
+  }
 
+  .episodes-heading.fade-in,
+  .episode-card.scale-in,
+  .view-more-btn.fade-in {
+    opacity: 1;
+    transform: none;
+  }
+
+  .episode-card:hover {
+    transform: none;
+  }
+}
+
+/* Touch devices - larger tap targets */
 @media (hover: none) and (pointer: coarse) {
   .episode-card {
     min-height: 44px; 
@@ -210,7 +254,7 @@
   }
 }
 
-
+/* Print styles */
 @media print {
   .episodes-section {
     padding: 1rem 0;

@@ -113,6 +113,7 @@
 
 /* Slider Dots */
 .slider-dots {
+  
   position: absolute;
   bottom: -2rem;
   left: 50%;
@@ -123,6 +124,7 @@
 }
 
 .dot {
+  display: none;
   width: 10px;
   height: 10px;
   border-radius: 50%;
