@@ -20,7 +20,7 @@ function Header() {
     },
   ];
 
-  // Premium typewriter animation without cursor
+  
   const typewriterVariants = {
     hidden: { 
       opacity: 0 
@@ -30,7 +30,7 @@ function Header() {
       transition: {
         duration: 0.1,
         when: "beforeChildren",
-        staggerChildren: 0.05 // Crisp, professional typing speed
+        staggerChildren: 0.05 
       }
     },
     exit: {
@@ -94,7 +94,7 @@ function Header() {
                     TRULY & <br /> HONESTLY
                   </h1>
                   
-                  {/* Premium Typewriter Animation - No Cursor */}
+                
                   <AnimatePresence mode="wait">
                     {index === currentSlide && (
                       <motion.p 
@@ -104,7 +104,7 @@ function Header() {
                         animate="visible"
                         exit="exit"
                         key="hosts-text"
-                        style={{ pointerEvents: 'none' }} // Add this line
+                        style={{ pointerEvents: 'none' }} 
                       >
                         {hostsText.split('').map((char, i) => (
                           <motion.span
@@ -115,7 +115,7 @@ function Header() {
                               fontFamily: '"Licorice", cursive',
                               fontStyle: 'italic',
                               fontWeight: 600,
-                              pointerEvents: 'none' // Add this line
+                              pointerEvents: 'none' 
                             }}
                           >
                             {char === ' ' ? '\u00A0' : char}
@@ -149,8 +149,8 @@ function Header() {
                         TRULY & HONESTLY <br /> MERCHS AVAILABLE!
                       </h2>
                       <p className="merch-description">
-                        Lorem ipsum dolor sit 
-                        do eiusmod tempor incididunt ut dolor sit dolor sit dolor sit z
+                        Truly and Honestly brand merchs are currently available for sale.
+                        Click below to get yours today.
                       </p>
                       <button
                         className="btn-merch"
