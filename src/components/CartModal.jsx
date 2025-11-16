@@ -13,7 +13,7 @@ function CartModal({ isOpen, onClose, product, selectedSize, selectedColor }) {
     ? parseFloat(product.price.replace(/[^\d.]/g, ""))
     : 200;
 
-  const shippingCost = 70;
+  const shippingCost = 0.00;
   const subtotal = pricePerItem * quantity;
   const total = subtotal + shippingCost;
 

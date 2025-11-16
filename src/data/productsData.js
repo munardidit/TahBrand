@@ -13,7 +13,7 @@ export const productsData = [
   {
     id: 1,
     name: 'Orange TAH Oversized Hoodie',
-    price: 'USD 200',
+    price: 'USD 10',
     image: orangeHoodie1,
     type: 'hoodie',
     color: 'Orange'
@@ -21,7 +21,7 @@ export const productsData = [
   {
     id: 2,
     name: 'Black TAH Hoodie',
-    price: 'USD 200',
+    price: 'USD 10',
     image: blackHoodie1,
     type: 'hoodie',
     color: 'Black'
@@ -29,7 +29,7 @@ export const productsData = [
   {
     id: 3,
     name: 'Orange TAH Oversized Hoodie',
-    price: 'USD 200',
+    price: 'USD 10',
     image: orangeHoodie2,
     type: 'hoodie',
     color: 'Orange'
@@ -37,7 +37,7 @@ export const productsData = [
   {
     id: 4,
     name: 'Orange TAH Oversized Hoodie',
-    price: 'USD 200',
+    price: 'USD 10',
     image: orangeHoodie3,
     type: 'hoodie',
     color: 'Orange'
@@ -45,7 +45,7 @@ export const productsData = [
   {
     id: 5,
     name: 'Black TAH Hoodie',
-    price: 'USD 200',
+    price: 'USD 10',
     image: blackHoodie2,
     type: 'hoodie',
     color: 'Black'
@@ -53,7 +53,7 @@ export const productsData = [
   {
     id: 6,
     name: 'Orange TAH Oversized Hoodie',
-    price: 'USD 200',
+    price: 'USD 10',
     image: orangeHoodie4,
     type: 'hoodie',
     color: 'Orange'
@@ -61,7 +61,7 @@ export const productsData = [
   {
     id: 7,
     name: 'Orange TAH Oversized Hoodie',
-    price: 'USD 200',
+    price: 'USD 10',
     image: orangeHoodie5,
     type: 'hoodie',
     color: 'Orange'
@@ -69,7 +69,7 @@ export const productsData = [
   {
     id: 8,
     name: 'Black TAH Hoodie',
-    price: 'USD 200',
+    price: 'USD 10',
     image: blackHoodie3,
     type: 'hoodie',
     color: 'Black'
@@ -77,7 +77,7 @@ export const productsData = [
   {
     id: 9,
     name: 'Orange TAH Oversized Hoodie',
-    price: 'USD 200',
+    price: 'USD 10',
     image: orangeHoodie6,
     type: 'hoodie',
     color: 'Orange'

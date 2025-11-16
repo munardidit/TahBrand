@@ -9,9 +9,7 @@ import {
 } from "@stripe/react-stripe-js";
 import axios from "axios";
 import "./PaymentPage.css";
-
-// Use environment variable for API URL
-const API_URL = process.env.REACT_APP_API_URL || "https://api.thetahbrand.com";
+const API_URL = "https://api.thetahbrand.com";
 
 const stripePromise = loadStripe("pk_live_51SQyZbAmHV8jSelWiXrF06irPeMkZNLM1DPsZcLiW0w6LJEtE7VSRT6UJ16nnuNj6O2iMgUAhwW4VjmXM7hLYXPh00rhe0RwXm");
 

@@ -29,7 +29,7 @@ function Payment() {
     return acc + price * item.quantity;
   }, 0);
 
-  const shippingCost = cartItems.length > 0 ? 70 : 0;
+  const shippingCost = cartItems.length > 0 ? 0.00 : 0;
   const total = subtotal + shippingCost;
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
