@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useRef, useEffect, useState } from 'react';
 import './NewMerch.css';
-import hoodieImage from '../assets/Sweater.png';
+import hoodieImage from '../assets/hoodie.png';
 import hoodieImage2 from '../assets/Bhoodie.png'; 
 
 function NewMerch() {
@@ -198,11 +198,11 @@ function NewMerch() {
               </motion.div>
 
               {/* Navigation Dots */}
-              <div className="slider-dots">
+              <div className="slider-dotss">
                 {images.map((_, index) => (
                   <button
                     key={index}
-                    className={`dot ${index === currentImageIndex ? 'active' : ''}`}
+                    className={`dots ${index === currentImageIndex ? 'active' : ''}`}
                     onClick={() => setCurrentImageIndex(index)}
                   />
                 ))}

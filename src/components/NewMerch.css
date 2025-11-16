@@ -116,7 +116,7 @@
 }
 
 /* Slider Dots */
-.slider-dots {
+.slider-dotss {
   
   position: absolute;
   bottom: -2rem;
@@ -127,7 +127,7 @@
   z-index: 3;
 }
 
-.dot {
+.dots {
   display: none;
   width: 10px;
   height: 10px;
@@ -271,6 +271,38 @@
 
 /* Small mobile devices (0px - 480px) */
 @media (max-width: 480px) {
+  
+.new-merch-title {
+  font-size: clamp(2rem, 6vw, 3.5rem);
+  font-weight: 600;
+  color: #FFF2EE;
+  line-height: 1.2;
+  position: relative;
+  left: 0;
+  margin: 0 0 clamp(1.5rem, 4vw, 2rem) 0;
+  text-align: center;
+  font-family: "Kumbh Sans", sans-serif;
+  width: 100%;
+}
+
+.new-merch-button {
+  background-color: transparent;
+  color: #FFF2EE;
+  border: 1px solid #FFF2EE;
+  border-radius: 50px;
+  padding: clamp(0.65rem, 2vw, 0.75rem) clamp(1.25rem, 4vw, 2rem);
+  font-size: clamp(0.9rem, 2.5vw, 1rem);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: "Kumbh Sans", sans-serif;
+  box-sizing: border-box;
+  position: relative;
+  left: 0;
+  width: auto;
+  min-width: min(200px, 70vw);
+  max-width: 250px;
+}
   .slider-arrow {
     width: 35px;
     height: 35px;

@@ -10,6 +10,9 @@ import {
 import axios from "axios";
 import "./PaymentPage.css";
 
+// Use environment variable for API URL
+const API_URL = process.env.REACT_APP_API_URL || "https://api.thetahbrand.com";
+
 const stripePromise = loadStripe("pk_live_51SQyZbAmHV8jSelWiXrF06irPeMkZNLM1DPsZcLiW0w6LJEtE7VSRT6UJ16nnuNj6O2iMgUAhwW4VjmXM7hLYXPh00rhe0RwXm");
 
 const countryCodes = {
@@ -48,13 +51,11 @@ const countryCodes = {
   'ghana': 'GH',
 };
 
-// Function to convert country name to ISO code
 const getCountryCode = (countryName) => {
   if (!countryName) return 'GB';
   
   const normalized = countryName.toString().toLowerCase().trim();
   
-  // Check if it's already a 2-letter code
   if (/^[A-Z]{2}$/i.test(normalized)) {
     return normalized.toUpperCase();
   }
@@ -210,13 +211,11 @@ const PaymentPage = () => {
   const [retryCount, setRetryCount] = useState(0);
 
   useEffect(() => {
-    // Redirect if no order data
     if (!orderData || !orderData.cartItems || orderData.cartItems.length === 0) {
       navigate("/cart");
       return;
     }
 
-    // Create payment intent
     const createPaymentIntent = async () => {
       try {
         console.log("🔄 Creating payment intent with data:", {
@@ -228,7 +227,6 @@ const PaymentPage = () => {
           country: orderData.shippingAddress?.country
         });
 
-        // Prepare cart items data safely
         const cartItems = orderData.cartItems.map(item => ({
           name: item.name || "Product",
           price: item.price || "0.00",
@@ -236,7 +234,6 @@ const PaymentPage = () => {
           image: item.image || ""
         }));
 
-        // Prepare shipping data safely with country conversion
         const shippingData = orderData.shippingAddress ? {
           firstName: orderData.shippingAddress.firstName || "",
           lastName: orderData.shippingAddress.lastName || "",
@@ -250,31 +247,23 @@ const PaymentPage = () => {
           country: orderData.shippingAddress.country || "United Kingdom" 
         } : null;
 
-        // Log country conversion for debugging
         if (shippingData?.country) {
           const countryCode = getCountryCode(shippingData.country);
           console.log(`🌍 Country conversion: "${shippingData.country}" → "${countryCode}"`);
         }
 
         const requestData = {
-          amount: Math.round(orderData.total * 100), // Convert to pence
+          amount: Math.round(orderData.total * 100),
           currency: "gbp",
           shipping: shippingData,
           cartItems: cartItems
         };
 
-        console.log("📤 Sending request data:", {
-          ...requestData,
-          shipping: {
-            ...requestData.shipping,
-            // Don't log sensitive data
-            email: requestData.shipping?.email ? '***' : undefined,
-            phone: requestData.shipping?.phone ? '***' : undefined
-          }
-        });
+        console.log("📤 Sending request to:", `${API_URL}/create-payment-intent`);
 
+        // Using environment variable for API URL
         const response = await axios.post(
-          "https://tahbackend.onrender.com/create-payment-intent",
+          `${API_URL}/create-payment-intent`,
           requestData,
           {
             timeout: 15000,
@@ -293,7 +282,7 @@ const PaymentPage = () => {
         
         setClientSecret(response.data.clientSecret);
         setError("");
-        setRetryCount(0); // Reset retry count on success
+        setRetryCount(0);
 
       } catch (err) {
         console.error("❌ Payment intent error details:", {
@@ -303,7 +292,6 @@ const PaymentPage = () => {
           code: err.code
         });
 
-        // Handle specific error cases
         let errorMessage = "Failed to initialize payment. Please try again.";
         
         if (err.response?.data?.error) {
