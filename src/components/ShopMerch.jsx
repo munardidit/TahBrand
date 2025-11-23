@@ -10,7 +10,7 @@ const ShopMerch = () => {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [cartItemsCount, setCartItemsCount] = useState(0); // Track cart items count
+  const [cartItemsCount, setCartItemsCount] = useState(0); 
   const navigate = useNavigate();
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);

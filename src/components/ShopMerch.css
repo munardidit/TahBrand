@@ -399,9 +399,9 @@
 }
 
 .product-image img {
-  width: 100%;
+  width: 70%;
   height: 100%;
-  object-fit: contain;
+  object-fit:cover;
 }
 
 .product-info {
@@ -410,7 +410,7 @@
 
 .product-name {
   font-size: 1rem;
-  font-weight: 500;
+  font-weight: 700;
   color: var(--color-secondary);
   margin: 0 0 var(--space-sm) 0;
   line-height: 1.4;

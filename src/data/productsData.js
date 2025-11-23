@@ -1,18 +1,18 @@
 
-import orangeHoodie1 from '../assets/Bhoodie.png';
-import blackHoodie1 from '../assets/redhood.png';
-import orangeHoodie2 from '../assets/redhood.png';
-import orangeHoodie3 from '../assets/redhood.png';
-import blackHoodie2 from '../assets/redhood.png';
+import orangeHoodie1 from '../assets/pjstacked.png';
+import blackHoodie1 from '../assets/Pinktoteshowcase.png';
+import orangeHoodie2 from '../assets/blacktote.png';
+import orangeHoodie3 from '../assets/Lifestyletotebag.png';
+import blackHoodie2 from '../assets/bhoodie.png';
 import orangeHoodie4 from '../assets/redhood.png';
-import orangeHoodie5 from '../assets/redhood.png';
+/*import orangeHoodie5 from '../assets/redhood.png';
 import blackHoodie3 from '../assets/redhood.png';
-import orangeHoodie6 from '../assets/redhood.png';
+import orangeHoodie6 from '../assets/redhood.png';*/
 
 export const productsData = [
   {
     id: 1,
-    name: 'Orange TAH Oversized Hoodie',
+    name: 'TAH Christmas Pyjamas',
     price: 'USD 10',
     image: orangeHoodie1,
     type: 'hoodie',
@@ -57,7 +57,7 @@ export const productsData = [
     image: orangeHoodie4,
     type: 'hoodie',
     color: 'Orange'
-  },
+  }/*,
   {
     id: 7,
     name: 'Orange TAH Oversized Hoodie',
@@ -81,5 +81,5 @@ export const productsData = [
     image: orangeHoodie6,
     type: 'hoodie',
     color: 'Orange'
-  }
+  }*/
 ];
