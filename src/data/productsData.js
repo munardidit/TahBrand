@@ -3,7 +3,7 @@ import orangeHoodie1 from '../assets/pjstacked.png';
 import blackHoodie1 from '../assets/Pinktoteshowcase.png';
 import orangeHoodie2 from '../assets/blacktote.png';
 import orangeHoodie3 from '../assets/Lifestyletotebag.png';
-import blackHoodie2 from '../assets/bhoodie.png';
+import blackHoodie2 from '../assets/Bhoodie.png';
 import orangeHoodie4 from '../assets/redhood.png';
 /*import orangeHoodie5 from '../assets/redhood.png';
 import blackHoodie3 from '../assets/redhood.png';
