@@ -1,3 +1,4 @@
+// src/components/ShopMerch.jsx
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import logo from '../assets/navlogopic.png';
@@ -10,7 +11,7 @@ const ShopMerch = () => {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [cartItemsCount, setCartItemsCount] = useState(0); 
+  const [cartItemsCount, setCartItemsCount] = useState(0);
   const navigate = useNavigate();
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
@@ -25,17 +26,14 @@ const ShopMerch = () => {
 
   // Update cart count on component mount and when cart updates
   useEffect(() => {
-    // Set initial cart count
     setCartItemsCount(getCartItemsCount());
 
-    // Listen for cart updates from other components
     const handleCartUpdate = () => {
       setCartItemsCount(getCartItemsCount());
     };
 
     window.addEventListener('cartUpdated', handleCartUpdate);
 
-    // Cleanup
     return () => {
       window.removeEventListener('cartUpdated', handleCartUpdate);
     };
@@ -61,13 +59,13 @@ const ShopMerch = () => {
         <div className="shop-navbar-container">
           <div className="shop-navbar-content">
             <div className="shop-navbar-logo">
-              <a href="/">
+              <Link to="/">
                 <img src={logo} alt="Tah Logo" />
-              </a>
+              </Link>
             </div>
 
             <div className="shop-navbar-actions">
-              <button onClick={() => navigate("/cart")} className="cart-icon">
+              <button onClick={() => navigate('/cart')} className="cart-icon">
                 <svg
                   width="24"
                   height="24"
@@ -84,22 +82,14 @@ const ShopMerch = () => {
                     strokeLinejoin="round"
                   />
                 </svg>
-                {/* Conditionally render badge - ONLY when items exist */}
                 {cartItemsCount > 0 && (
-                  <span className="cart-badge">
-                    {cartItemsCount > 99 ? '99+' : cartItemsCount}
-                  </span>
+                  <span className="cart-badge">{cartItemsCount > 99 ? '99+' : cartItemsCount}</span>
                 )}
               </button>
 
               <button className="shop-menu-button" onClick={toggleMenu}>
                 <svg fill="#270E07" stroke="currentColor" viewBox="1 1 24 24">
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={4}
-                    d="M4 6h16M4 12h16M4 18h16"
-                  />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={4} d="M4 6h16M4 12h16M4 18h16" />
                 </svg>
               </button>
             </div>
@@ -120,61 +110,39 @@ const ShopMerch = () => {
 
         <div className="shop-menu-content">
           <nav className="shop-menu-nav">
-            <a href="/episodes" onClick={toggleMenu}>
+            <Link to="/episodes" onClick={toggleMenu}>
               View All Episodes
-            </a>
-            <a href="/merch" onClick={toggleMenu}>
+            </Link>
+            <Link to="/merch" onClick={toggleMenu}>
               Shop TAH Merchs
-            </a>
+            </Link>
 
             <div className="shop-menu-section">
               <button className="shop-menu-dropdown">
                 Subscribe to our channels
-                <svg
-                  className="shop-dropdown-icon"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M19 9l-7 7-7-7"
-                  />
+                <svg className="shop-dropdown-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                 </svg>
               </button>
               <div className="shop-dropdown-content">
-                <a
-                  href="https://youtube.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
+                <a href="https://youtube.com" target="_blank" rel="noopener noreferrer">
                   Youtube
                 </a>
-                <a
-                  href="https://spotify.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
+                <a href="https://spotify.com" target="_blank" rel="noopener noreferrer">
                   Spotify
                 </a>
-                <a
-                  href="https://podcasts.apple.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
+                <a href="https://podcasts.apple.com" target="_blank" rel="noopener noreferrer">
                   Apple Podcast
                 </a>
               </div>
             </div>
 
-            <a href="/newsletter" onClick={toggleMenu}>
+            <Link to="/newsletter" onClick={toggleMenu}>
               Subscribe to our weekly newsletter
-            </a>
-            <a href="/hosts" onClick={toggleMenu}>
+            </Link>
+            <Link to="/hosts" onClick={toggleMenu}>
               About the Hosts
-            </a>
+            </Link>
           </nav>
         </div>
       </div>
@@ -185,32 +153,17 @@ const ShopMerch = () => {
           <div className="shop-merch-header">
             <button className="back-button" onClick={goBack}>
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path 
-                  d="M19 12H5M12 19l-7-7 7-7" 
-                  stroke="currentColor" 
-                  strokeWidth="2" 
-                  strokeLinecap="round" 
-                  strokeLinejoin="round"
-                />
+                <path d="M19 12H5M12 19l-7-7 7-7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
             </button>
 
             <h1 className="shop-merch-title">SHOP TAH MERCH</h1>
 
             <div className="dropdown-container">
-              <button
-                className="filter-newest-button"
-                onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-              >
+              <button className="filter-newest-button" onClick={() => setIsDropdownOpen(!isDropdownOpen)}>
                 <span>{selectedCategory === 'All' ? 'Filter by Category' : selectedCategory}</span>
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                  <path
-                    d="M4 6L8 10L12 6"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
+                  <path d="M4 6L8 10L12 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
               </button>
 
@@ -235,7 +188,10 @@ const ShopMerch = () => {
               >
                 <div className="product-card">
                   <div className="product-image">
-                    <img src={product.image} alt={product.name} />
+                    <img
+                      src={Array.isArray(product.images) ? product.images[0] : product.images || '/fallback-image.png'}
+                      alt={product.name}
+                    />
                   </div>
 
                   <div className="product-info">

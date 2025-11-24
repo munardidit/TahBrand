@@ -1,85 +1,67 @@
-
-import orangeHoodie1 from '../assets/pjstacked.png';
-import blackHoodie1 from '../assets/Pinktoteshowcase.png';
-import orangeHoodie2 from '../assets/blacktote.png';
-import orangeHoodie3 from '../assets/Lifestyletotebag.png';
-import blackHoodie2 from '../assets/Bhoodie.png';
-import orangeHoodie4 from '../assets/redhood.png';
-/*import orangeHoodie5 from '../assets/redhood.png';
-import blackHoodie3 from '../assets/redhood.png';
-import orangeHoodie6 from '../assets/redhood.png';*/
+// src/data/productsData.js
+import pjstacked from '../assets/pjstacked.png';
+import pinktoteshowcase from '../assets/Pinktoteshowcase.png';
+import blacktote from '../assets/blacktote.png';
+import lifestyletotebag from '../assets/Lifestyletotebag.png';
+import bhoodie from '../assets/Bhoodie.png';
+import blacktote2 from '../assets/blacktotenewmerch.png';
+import pjhang from '../assets/pjhang.png';
+import redhood from '../assets/redhood.png';
+import pinktote2nd from '../assets/pinktote2nd.png';
 
 export const productsData = [
   {
     id: 1,
     name: 'TAH Christmas Pyjamas',
     price: 'USD 10',
-    image: orangeHoodie1,
+    images: [pjstacked, pjhang], // array with 1 image
     type: 'hoodie',
-    color: 'Orange'
+    color: 'Orange',
+    category: 'Apparels',
   },
   {
     id: 2,
     name: 'Black TAH Hoodie',
     price: 'USD 10',
-    image: blackHoodie1,
+    images: [pinktoteshowcase, pinktote2nd], // multiple images
     type: 'hoodie',
-    color: 'Black'
+    color: 'Black',
+    category: 'Hoodies',
   },
   {
     id: 3,
     name: 'Orange TAH Oversized Hoodie',
     price: 'USD 10',
-    image: orangeHoodie2,
+    images: [blacktote, blacktote2],
     type: 'hoodie',
-    color: 'Orange'
+    color: 'Orange',
+    category: 'Hoodies',
   },
   {
     id: 4,
     name: 'Orange TAH Oversized Hoodie',
     price: 'USD 10',
-    image: orangeHoodie3,
+    images: [lifestyletotebag],
     type: 'hoodie',
-    color: 'Orange'
+    color: 'Orange',
+    category: 'Hoodies',
   },
   {
     id: 5,
     name: 'Black TAH Hoodie',
     price: 'USD 10',
-    image: blackHoodie2,
+    images: [bhoodie],
     type: 'hoodie',
-    color: 'Black'
+    color: 'Black',
+    category: 'Hoodies',
   },
   {
     id: 6,
     name: 'Orange TAH Oversized Hoodie',
     price: 'USD 10',
-    image: orangeHoodie4,
+    images: [redhood],
     type: 'hoodie',
-    color: 'Orange'
-  }/*,
-  {
-    id: 7,
-    name: 'Orange TAH Oversized Hoodie',
-    price: 'USD 10',
-    image: orangeHoodie5,
-    type: 'hoodie',
-    color: 'Orange'
+    color: 'Orange',
+    category: 'Hoodies',
   },
-  {
-    id: 8,
-    name: 'Black TAH Hoodie',
-    price: 'USD 10',
-    image: blackHoodie3,
-    type: 'hoodie',
-    color: 'Black'
-  },
-  {
-    id: 9,
-    name: 'Orange TAH Oversized Hoodie',
-    price: 'USD 10',
-    image: orangeHoodie6,
-    type: 'hoodie',
-    color: 'Orange'
-  }*/
 ];

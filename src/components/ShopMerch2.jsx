@@ -45,7 +45,6 @@ const ShopMerch2 = () => {
       alert("Please select a size before continuing.");
       return;
     }
-    // Don't add to cart here - let CartModal handle it
     setIsCartOpen(true);
   };
 
@@ -210,12 +209,11 @@ const ShopMerch2 = () => {
 
           <div className="product-content-detail">
             <div className="product-images-grid">
-              <div className="product-image-item">
-                <img src={product.image} alt={`${product.name} Front`} />
-              </div>
-              <div className="product-image-item">
-                <img src={product.image} alt={`${product.name} Back`} />
-              </div>
+              {product.images.map((img, idx) => (
+                <div key={idx} className="product-image-item">
+                  <img src={img} alt={`${product.name} view ${idx + 1}`} />
+                </div>
+              ))}
             </div>
 
             <div className="size-and-actions">

@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import './Header.css';
-import hoodie from '../assets/hoodie.png';
+import hoodie from '../assets/pjstacked.png';
 import hostsBg from '../assets/navbar.png';
 
 function Header() {
@@ -146,7 +146,7 @@ function Header() {
                   <div className="merch-content">
                     <div className="merch-text">
                       <h2 className="merch-title">
-                        TRULY & HONESTLY <br /> MERCHS AVAILABLE!
+                        TRULY & HONESTLY <br /> CHRISTMAS MERCHS AVAILABLE!
                       </h2>
                       <p className="merch-description">
                         Truly and Honestly brand merchs are currently available for sale.

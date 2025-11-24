@@ -12,7 +12,6 @@
 .navbar-container {
   width: 100%;
   max-width: 100%;
-  padding: 1rem 2rem;
   margin: 0 auto;
   background-color: #ffffff;
 }
@@ -22,6 +21,7 @@
   align-items: center;
   justify-content: space-between;
   width: 100%;
+  padding:0;
   position: relative;
   left: -3.5rem;
 }
@@ -243,6 +243,7 @@
 
   .menu-logo img {
     height: 2.25rem;
+    display: none;
   }
 
   .menu-content {
@@ -273,6 +274,7 @@
 
   .navbar-logo img {
     height: 2.5rem;
+    display: none;
   }
 
   .mobile-menu-button {
@@ -321,6 +323,7 @@
 
   .navbar-logo img {
     height: 2.75rem;
+    display: none;
   }
 
   .mobile-menu-button {
