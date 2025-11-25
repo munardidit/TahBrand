@@ -9,8 +9,10 @@ import redhood from '../assets/redhood.png';
 import pinktote2nd from '../assets/pinktote2nd.png';
 import pj2 from '../assets/pjhang2.png';
 import pj3 from '../assets/pjhang02.png';
-import pj4 from '../assets/pjhang3.png';
+import pj4 from '../assets/pjlast.jpeg';
 import lifestyle2 from '../assets/lifestyle3rd.png';
+import lifestyleman from '../assets/lifestyleman.jpeg';
+import blacktote3 from '../assets/blacktote2.jpeg';
 
 
 export const productsData = [
@@ -36,7 +38,7 @@ export const productsData = [
     id: 3,
     name: 'Orange TAH Oversized Hoodie',
     price: 'USD 10',
-    images: [blacktote, blacktote2],
+    images: [blacktote, blacktote2, blacktote3],
     type: 'hoodie',
     color: 'Orange',
     category: 'Hoodies',
@@ -45,7 +47,7 @@ export const productsData = [
     id: 4,
     name: 'Orange TAH Oversized Hoodie',
     price: 'USD 10',
-    images: [lifestyletotebag, lifestyle2],
+    images: [lifestyletotebag, lifestyle2, lifestyleman],
     type: 'hoodie',
     color: 'Orange',
     category: 'Hoodies',
