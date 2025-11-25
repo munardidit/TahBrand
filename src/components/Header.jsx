@@ -20,7 +20,6 @@ function Header() {
     },
   ];
 
-  
   const typewriterVariants = {
     hidden: { 
       opacity: 0 
@@ -94,7 +93,6 @@ function Header() {
                     TRULY & <br /> HONESTLY
                   </h1>
                   
-                
                   <AnimatePresence mode="wait">
                     {index === currentSlide && (
                       <motion.p 
@@ -159,9 +157,50 @@ function Header() {
                         Shop Merch
                       </button>
                     </div>
+
+                    {/* MERCH IMAGE ANIMATION */}
                     <div className="merch-image">
-                      <img src={slide.hoodieImage} alt="Orange Hoodie Merch" />
+                      <motion.img
+                        src={slide.hoodieImage}
+                        alt="Orange Hoodie Merch"
+                        initial={{ opacity: 0, y: 50, scale: 0.7, filter: "brightness(0.6)" }}
+                        animate={
+                          index === currentSlide
+                            ? {
+                                opacity: 1,
+                                y: [0, -10, 0],
+                                scale: [1, 1.05, 1],
+                                filter: ["brightness(1)", "brightness(1.25)", "brightness(1)"],
+                              }
+                            : {
+                                opacity: 0,
+                                y: 50,
+                                scale: 0.7,
+                                filter: "brightness(0.6)",
+                              }
+                        }
+                        transition={{
+                          opacity: { duration: 0.6, ease: "easeOut" },
+                          scale: {
+                            duration: 3,
+                            repeat: Infinity,
+                            ease: "easeInOut",
+                          },
+                          y: {
+                            duration: 4,
+                            repeat: Infinity,
+                            ease: "easeInOut",
+                          },
+                          filter: {
+                            duration: 2.5,
+                            repeat: Infinity,
+                            ease: "easeInOut",
+                          },
+                        }}
+                        style={{ width: "100%", height: "auto" }}
+                      />
                     </div>
+
                   </div>
                 </div>
               </>
