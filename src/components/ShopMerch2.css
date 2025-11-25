@@ -776,6 +776,7 @@
 
 /* Mobile First (0px - 767px) */
 @media (max-width: 767px) {
+  
    .product-carousel-container {
   position: relative;
   left: 1%;
@@ -931,6 +932,11 @@
 
 /* Small Mobile (0px - 480px) */
 @media (max-width: 480px) {
+  .product-price-main {
+   position: relative;
+   top:2em;
+   font-size: 1rem;
+  }
   .product-carousel-container {
   position: relative;
   left: 1%;
