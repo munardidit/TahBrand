@@ -180,38 +180,53 @@ const ShopMerch = () => {
 
           {/* Product Grid */}
           <div className="shop-merch-grid">
-            {filteredProducts.map((product) => (
-              <div
-                key={product.id}
-                className="product-card-link"
-                onClick={() => navigate(`/merch/product/${product.id}`)}
-              >
-                <div className="product-card">
-                  <div className="product-image">
-                    <img
-                      src={Array.isArray(product.images) ? product.images[0] : product.images || '/fallback-image.png'}
-                      alt={product.name}
-                    />
-                  </div>
+            {filteredProducts.map((product, index) => {
+              const isAvailable = index < filteredProducts.length - 2;
+              
+              return (
+                <div
+                  key={product.id}
+                  className={`product-card-link ${!isAvailable ? 'unavailable' : ''}`}
+                  onClick={() => isAvailable && navigate(`/merch/product/${product.id}`)}
+                >
+                  <div className={`product-card ${!isAvailable ? 'unavailable' : ''}`}>
+                    <div className="product-image">
+                      <img
+                        src={Array.isArray(product.images) ? product.images[0] : product.images || '/fallback-image.png'}
+                        alt={product.name}
+                        className={!isAvailable ? 'unavailable-image' : ''}
+                      />
+                      {!isAvailable && (
+                        <div className="unavailable-overlay">
+                          <span></span>
+                        </div>
+                      )}
+                    </div>
 
-                  <div className="product-info">
-                    <h3 className="product-name">{product.name}</h3>
-                    <div className="product-footer">
-                      <span className="product-price">{product.price}</span>
-                      <button
-                        className="add-to-cart-button"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          navigate(`/merch/product/${product.id}`);
-                        }}
-                      >
-                        ⟶︎
-                      </button>
+                    <div className="product-info">
+                      <h3 className="product-name">{product.name}</h3>
+                      <div className="product-footer">
+                        <span className="product-price">
+                          {isAvailable ? product.price : 'Coming Soon'}
+                        </span>
+                        <button
+                          className={`add-to-cart-button ${!isAvailable ? 'unavailable' : ''}`}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            if (isAvailable) {
+                              navigate(`/merch/product/${product.id}`);
+                            }
+                          }}
+                          disabled={!isAvailable}
+                        >
+                          {isAvailable ? '⟶︎' : '—'}
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
 
           {/* Pagination */}
