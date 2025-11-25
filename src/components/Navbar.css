@@ -243,7 +243,7 @@
 
   .menu-logo img {
     height: 2.25rem;
-    display: none;
+;
   }
 
   .menu-content {
@@ -274,7 +274,6 @@
 
   .navbar-logo img {
     height: 2.5rem;
-    display: none;
   }
 
   .mobile-menu-button {
@@ -323,7 +322,7 @@
 
   .navbar-logo img {
     height: 2.75rem;
-    display: none;
+    
   }
 
   .mobile-menu-button {

@@ -4,6 +4,7 @@ import { productsData } from "../data/productsData";
 import CartModal from "../components/CartModal";
 import logo from "../assets/navlogopic.png";
 import "./ShopMerch2.css";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const ShopMerch2 = () => {
   const { id } = useParams();
@@ -14,6 +15,8 @@ const ShopMerch2 = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [cartItemsCount, setCartItemsCount] = useState(0);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [isAnimating, setIsAnimating] = useState(false);
 
   const sizes = ["XS", "S", "M", "L", "XL"];
 
@@ -46,6 +49,31 @@ const ShopMerch2 = () => {
       return;
     }
     setIsCartOpen(true);
+  };
+
+  const nextImage = () => {
+    if (isAnimating) return;
+    setIsAnimating(true);
+    setCurrentImageIndex((prev) => 
+      prev === product.images.length - 1 ? 0 : prev + 1
+    );
+    setTimeout(() => setIsAnimating(false), 500);
+  };
+
+  const prevImage = () => {
+    if (isAnimating) return;
+    setIsAnimating(true);
+    setCurrentImageIndex((prev) => 
+      prev === 0 ? product.images.length - 1 : prev - 1
+    );
+    setTimeout(() => setIsAnimating(false), 500);
+  };
+
+  const goToImage = (index) => {
+    if (isAnimating || index === currentImageIndex) return;
+    setIsAnimating(true);
+    setCurrentImageIndex(index);
+    setTimeout(() => setIsAnimating(false), 500);
   };
 
   if (!product) {
@@ -208,12 +236,68 @@ const ShopMerch2 = () => {
           </div>
 
           <div className="product-content-detail">
-            <div className="product-images-grid">
-              {product.images.map((img, idx) => (
-                <div key={idx} className="product-image-item">
-                  <img src={img} alt={`${product.name} view ${idx + 1}`} />
+            <div className="product-carousel-container">
+              <div className="product-carousel-wrapper">
+                <div className="product-carousel">
+                  {/* Navigation Buttons */}
+                  <button 
+                    className="carousel-nav-btn carousel-prev" 
+                    onClick={prevImage}
+                    aria-label="Previous image"
+                  >
+                    <ChevronLeft size={20} strokeWidth={2.5} />
+                  </button>
+                  
+                  {/* Main Image Display with Slide Animation */}
+                  <div className="carousel-track">
+                    {product.images.map((img, idx) => (
+                      <div
+                        key={idx}
+                        className={`carousel-slide ${
+                          idx === currentImageIndex ? "active" : ""
+                        } ${idx < currentImageIndex ? "prev" : ""} ${
+                          idx > currentImageIndex ? "next" : ""
+                        }`}
+                      >
+                        <img 
+                          src={img} 
+                          alt={`${product.name} view ${idx + 1}`} 
+                        />
+                      </div>
+                    ))}
+                  </div>
+
+                  <button 
+                    className="carousel-nav-btn carousel-next" 
+                    onClick={nextImage}
+                    aria-label="Next image"
+                  >
+                    <ChevronRight size={20} strokeWidth={2.5} />
+                  </button>
+
+                  {/* Image Counter */}
+                  <div className="carousel-counter">
+                    <span className="counter-current">{currentImageIndex + 1}</span>
+                    <span className="counter-divider">/</span>
+                    <span className="counter-total">{product.images.length}</span>
+                  </div>
                 </div>
-              ))}
+
+                {/* Thumbnail Navigation */}
+                <div className="carousel-thumbnails">
+                  {product.images.map((img, idx) => (
+                    <button
+                      key={idx}
+                      className={`thumbnail-item ${idx === currentImageIndex ? 'active' : ''}`}
+                      onClick={() => goToImage(idx)}
+                      aria-label={`View image ${idx + 1}`}
+                    >
+                      <img src={img} alt={`Thumbnail ${idx + 1}`} />
+                      <div className="thumbnail-overlay"></div>
+                    </button>
+                  ))}
+                </div>
+              </div>
             </div>
 
             <div className="size-and-actions">
@@ -263,9 +347,9 @@ const ShopMerch2 = () => {
               <h3 className="details-title">Details</h3>
               <p className="details-description">
                 This {product.color.toLowerCase()} {product.type} from TAH is
-                crafted for both comfort and bold street style. Made from premium
-                fabric and finished with the TAH logo, it's perfect for all-day
-                wear during cool seasons.
+                crafted for both comfort and bold street style. Made from
+                premium fabric and finished with the TAH logo, it's perfect for
+                all-day wear during cool seasons.
               </p>
             </div>
           </div>

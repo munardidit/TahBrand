@@ -1,4 +1,3 @@
-// src/data/productsData.js
 import pjstacked from '../assets/pjstacked.png';
 import pinktoteshowcase from '../assets/Pinktoteshowcase.png';
 import blacktote from '../assets/blacktote.png';
@@ -8,13 +7,18 @@ import blacktote2 from '../assets/blacktotenewmerch.png';
 import pjhang from '../assets/pjhang.png';
 import redhood from '../assets/redhood.png';
 import pinktote2nd from '../assets/pinktote2nd.png';
+import pj2 from '../assets/pjhang2.png';
+import pj3 from '../assets/pjhang02.png';
+import pj4 from '../assets/pjhang3.png';
+import lifestyle2 from '../assets/lifestyle3rd.png';
+
 
 export const productsData = [
   {
     id: 1,
     name: 'TAH Christmas Pyjamas',
     price: 'USD 10',
-    images: [pjstacked, pjhang], // array with 1 image
+    images: [pjstacked, pjhang, pj2, pj3, pj4,], 
     type: 'hoodie',
     color: 'Orange',
     category: 'Apparels',
@@ -23,7 +27,7 @@ export const productsData = [
     id: 2,
     name: 'Black TAH Hoodie',
     price: 'USD 10',
-    images: [pinktoteshowcase, pinktote2nd], // multiple images
+    images: [pinktoteshowcase, pinktote2nd], 
     type: 'hoodie',
     color: 'Black',
     category: 'Hoodies',
@@ -41,7 +45,7 @@ export const productsData = [
     id: 4,
     name: 'Orange TAH Oversized Hoodie',
     price: 'USD 10',
-    images: [lifestyletotebag],
+    images: [lifestyletotebag, lifestyle2],
     type: 'hoodie',
     color: 'Orange',
     category: 'Hoodies',
@@ -50,7 +54,7 @@ export const productsData = [
     id: 5,
     name: 'Black TAH Hoodie',
     price: 'USD 10',
-    images: [bhoodie],
+    images: [bhoodie, bhoodie],
     type: 'hoodie',
     color: 'Black',
     category: 'Hoodies',
@@ -59,7 +63,7 @@ export const productsData = [
     id: 6,
     name: 'Orange TAH Oversized Hoodie',
     price: 'USD 10',
-    images: [redhood],
+    images: [redhood, redhood],
     type: 'hoodie',
     color: 'Orange',
     category: 'Hoodies',
