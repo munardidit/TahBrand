@@ -92,6 +92,76 @@
   color: white;
 }
 
+.image-container {
+  position: relative;
+  display: inline-block;
+}
+
+.glow-effect {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 110%;
+  height: 110%;
+  background: radial-gradient(
+    circle at center,
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(255, 255, 255, 0.05) 30%,
+    transparent 70%
+  );
+  border-radius: 50%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.particle {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(178, 3, 3, 0.3) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.particle-1 {
+  width: 80px;
+  height: 80px;
+  top: 10%;
+  left: 10%;
+}
+
+.particle-2 {
+  width: 60px;
+  height: 60px;
+  bottom: 15%;
+  right: 10%;
+}
+
+.particle-3 {
+  width: 40px;
+  height: 40px;
+  top: 60%;
+  left: 5%;
+}
+
+/* Smooth image rendering */
+.merch-image img {
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}
+
+/* Enhanced hover states */
+.merch-image:hover .glow-effect {
+  background: radial-gradient(
+    circle at center,
+    rgba(255, 255, 255, 0.15) 0%,
+    rgba(255, 255, 255, 0.08) 30%,
+    transparent 70%
+  );
+}
+
 .merch-title {
   font-size: 2.8rem;
   font-weight: 700;

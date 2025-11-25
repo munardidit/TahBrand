@@ -8,6 +8,7 @@ import hostsBg from '../assets/navbar.png';
 function Header() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const navigate = useNavigate();
+  const hostsText = "With Yinka & Dicta";
 
   const slides = [
     {
@@ -61,7 +62,95 @@ function Header() {
     }
   };
 
-  const hostsText = "With Yinka & Dicta";
+  // Modern 2025 animation variants for merch image
+  const merchImageVariants = {
+    initial: {
+      opacity: 0,
+      scale: 0.8,
+      y: 60,
+      rotateY: -15,
+      filter: "blur(12px) brightness(0.8)",
+    },
+    animate: {
+      opacity: 1,
+      scale: 1,
+      y: 0,
+      rotateY: 0,
+      filter: "blur(0px) brightness(1)",
+      transition: {
+        opacity: { duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] },
+        scale: { duration: 1.2, ease: [0.34, 1.56, 0.64, 1] },
+        y: { duration: 1, ease: [0.25, 0.46, 0.45, 0.94] },
+        rotateY: { duration: 1, ease: "circOut" },
+        filter: { duration: 1, ease: "easeOut" },
+      }
+    },
+    hover: {
+      scale: 1.02,
+      y: -8,
+      rotateY: 5,
+      filter: "brightness(1.1) drop-shadow(0 20px 40px rgba(255,255,255,0.15))",
+      transition: {
+        duration: 0.4,
+        ease: [0.25, 0.46, 0.45, 0.94]
+      }
+    },
+    exit: {
+      opacity: 0,
+      scale: 0.9,
+      y: 40,
+      rotateY: 10,
+      filter: "blur(8px) brightness(0.7)",
+      transition: {
+        duration: 0.6,
+        ease: [0.25, 0.46, 0.45, 0.94]
+      }
+    }
+  };
+
+  const floatingAnimation = {
+    animate: {
+      y: [0, -15, 0],
+      rotateZ: [0, -1, 0],
+      transition: {
+        y: {
+          duration: 4,
+          repeat: Infinity,
+          ease: "easeInOut",
+        },
+        rotateZ: {
+          duration: 5,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }
+      }
+    }
+  };
+
+  const glowEffectVariants = {
+    animate: {
+      opacity: [0.3, 0.7, 0.3],
+      scale: [1, 1.05, 1],
+      transition: {
+        duration: 3,
+        repeat: Infinity,
+        ease: "easeInOut"
+      }
+    }
+  };
+
+  const particlesVariants = {
+    animate: {
+      opacity: [0, 1, 0],
+      scale: [0.8, 1.2, 0.8],
+      transition: {
+        duration: 2,
+        repeat: Infinity,
+        ease: "easeInOut",
+        staggerChildren: 0.2
+      }
+    }
+  };
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -159,48 +248,63 @@ function Header() {
                     </div>
 
                     {/* MERCH IMAGE ANIMATION */}
-                    <div className="merch-image">
-                      <motion.img
-                        src={slide.hoodieImage}
-                        alt="Orange Hoodie Merch"
-                        initial={{ opacity: 0, y: 50, scale: 0.7, filter: "brightness(0.6)" }}
-                        animate={
-                          index === currentSlide
-                            ? {
-                                opacity: 1,
-                                y: [0, -10, 0],
-                                scale: [1, 1.05, 1],
-                                filter: ["brightness(1)", "brightness(1.25)", "brightness(1)"],
-                              }
-                            : {
-                                opacity: 0,
-                                y: 50,
-                                scale: 0.7,
-                                filter: "brightness(0.6)",
-                              }
-                        }
-                        transition={{
-                          opacity: { duration: 0.6, ease: "easeOut" },
-                          scale: {
-                            duration: 3,
-                            repeat: Infinity,
-                            ease: "easeInOut",
-                          },
-                          y: {
-                            duration: 4,
-                            repeat: Infinity,
-                            ease: "easeInOut",
-                          },
-                          filter: {
-                            duration: 2.5,
-                            repeat: Infinity,
-                            ease: "easeInOut",
-                          },
-                        }}
-                        style={{ width: "100%", height: "auto" }}
-                      />
-                    </div>
+                    <motion.div 
+                      className="merch-image"
+                      whileHover="hover"
+                    >
+                      {/* Main Image Container */}
+                      <motion.div
+                        className="image-container"
+                        variants={merchImageVariants}
+                        initial="initial"
+                        animate={index === currentSlide ? "animate" : "exit"}
+                        whileHover="hover"
+                      >
+                        {/* Floating Animation */}
+                        <motion.div
+                          variants={floatingAnimation}
+                          animate="animate"
+                        >
+                          {/* Glow Effect */}
+                          <motion.div
+                            className="glow-effect"
+                            variants={glowEffectVariants}
+                            animate="animate"
+                          />
+                          
+                          {/* Main Image */}
+                          <motion.img
+                            src={slide.hoodieImage}
+                            alt="Orange Hoodie Merch"
+                            style={{ 
+                              width: "100%", 
+                              height: "auto",
+                              position: "relative",
+                              zIndex: 2
+                            }}
+                          />
+                        </motion.div>
 
+                        {/* Subtle Particles/Orbs */}
+                        <motion.div
+                          className="particle particle-1"
+                          variants={particlesVariants}
+                          animate="animate"
+                        />
+                        <motion.div
+                          className="particle particle-2"
+                          variants={particlesVariants}
+                          animate="animate"
+                          style={{ animationDelay: '0.5s' }}
+                        />
+                        <motion.div
+                          className="particle particle-3"
+                          variants={particlesVariants}
+                          animate="animate"
+                          style={{ animationDelay: '1s' }}
+                        />
+                      </motion.div>
+                    </motion.div>
                   </div>
                 </div>
               </>
