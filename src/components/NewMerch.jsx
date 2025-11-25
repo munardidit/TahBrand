@@ -2,8 +2,9 @@ import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useRef, useEffect, useState } from 'react';
 import './NewMerch.css';
-import hoodieImage from '../assets/hoodie.png';
-import hoodieImage2 from '../assets/Bhoodie.png'; 
+import hoodieImage from '../assets/pinktotenewmerch.png';
+import hoodieImage2 from '../assets/blacktote.png'; 
+import last from '../assets/pjstacked.png';
 
 function NewMerch() {
   const navigate = useNavigate();
@@ -14,7 +15,8 @@ function NewMerch() {
   
   const images = [
     { src: hoodieImage, alt: "Orange Hoodie Front" },
-    { src: hoodieImage2, alt: "Orange Hoodie Back" } 
+    { src: hoodieImage2, alt: "Orange Hoodie Back" },
+    { src: last, alt: "Christmas Pyjamas" } 
   ];
 
   const handleShopNowClick = () => {
