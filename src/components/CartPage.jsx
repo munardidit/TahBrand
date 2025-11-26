@@ -230,13 +230,13 @@ function CartPage() {
 
           <div className="cart-summary">
             <h3>
-              Subtotal: <span>USD {subtotal.toFixed(2)}</span>
+              Subtotal: <span><strong>GBP</strong> {subtotal.toFixed(2)}</span>
             </h3>
             <h3>
-              Shipping: <span>USD {shippingCost.toFixed(2)}</span>
+              Shipping: <span><strong>GBP</strong> {shippingCost.toFixed(2)}</span>
             </h3>
             <h3>
-              Total: <span className="total-amount">USD {total.toFixed(2)}</span>
+              Total: <span className="total-amount"><strong>GBP</strong> {total.toFixed(2)}</span>
             </h3>
             <button className="checkout-btn" onClick={handleCheckout}>
               Proceed to Checkout

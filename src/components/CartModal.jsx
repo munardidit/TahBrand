@@ -151,7 +151,7 @@ function CartModal({ isOpen, onClose, product, selectedSize, selectedColor }) {
 
               <div className="cart-product-details">
                 <h3 className="cart-product-name">{product?.name}</h3>
-                <p className="cart-product-price">USD {pricePerItem.toFixed(2)}</p>
+                <p className="cart-product-price"> <strong>GBP</strong> {pricePerItem.toFixed(2)}</p>
                 <p className="cart-product-color">
                   Colour: {selectedColor || "Not selected"}
                 </p>
@@ -180,10 +180,10 @@ function CartModal({ isOpen, onClose, product, selectedSize, selectedColor }) {
 
               <div className="cart-product-total">
                 <span className="product-total-price">
-                  USD {subtotal.toFixed(2)}
+                 <strong>GBP</strong> {subtotal.toFixed(2)}
                 </span>
                 <span className="product-shipping">
-                  Shipping: USD {shippingCost.toFixed(2)}
+                  Shipping: <strong>GBP</strong> {shippingCost.toFixed(2)}
                 </span>
               </div>
             </div>
@@ -191,7 +191,7 @@ function CartModal({ isOpen, onClose, product, selectedSize, selectedColor }) {
             {/* Total Summary */}
             <div className="cart-estimated-total">
               <span className="estimated-label">Estimated Total</span>
-              <span className="estimated-amount">USD {total.toFixed(2)}</span>
+              <span className="estimated-amount"><strong>GBP</strong> {total.toFixed(2)}</span>
             </div>
 
             {/* Buttons */}
