@@ -18,13 +18,12 @@ const ShopMerch = () => {
   const openCart = () => setIsCartOpen(true);
   const closeCart = () => setIsCartOpen(false);
 
-  // Function to get cart items count from localStorage
   const getCartItemsCount = () => {
     const existingCart = JSON.parse(localStorage.getItem('tahCart') || '[]');
     return existingCart.reduce((total, item) => total + item.quantity, 0);
   };
 
-  // Update cart count on component mount and when cart updates
+  
   useEffect(() => {
     setCartItemsCount(getCartItemsCount());
 
@@ -46,7 +45,7 @@ const ShopMerch = () => {
     setIsDropdownOpen(false);
   };
 
-  // Filter products based on category
+  // Filter by category
   const filteredProducts =
     selectedCategory === 'All'
       ? productsData
@@ -172,7 +171,7 @@ const ShopMerch = () => {
                   <li onClick={() => handleCategorySelect('All')}>All</li>
                   <li onClick={() => handleCategorySelect('Apparels')}>Apparels</li>
                   <li onClick={() => handleCategorySelect('Hoodies')}>Hoodies</li>
-                  <li onClick={() => handleCategorySelect('Caps')}>Caps</li>
+                  <li onClick={() => handleCategorySelect('Bags')}>Bags</li>
                 </ul>
               )}
             </div>
