@@ -29,7 +29,7 @@ export const productsData = [
   },
   {
     id: 2,
-    name: 'Black TAH Hoodie',
+    name: 'Pink TAH ToteBag',
     price: '£32',
     images: [pinktoteshowcase, pinktote2nd], 
     type: 'hoodie',
@@ -38,7 +38,7 @@ export const productsData = [
   },
   {
     id: 3,
-    name: 'Orange TAH Oversized Hoodie',
+    name: 'Black TAH ToteBag',
     price: '£32',
     images: [blacktote, blacktote2, blacktote3],
     type: 'hoodie',
@@ -47,7 +47,7 @@ export const productsData = [
   },
   {
     id: 4,
-    name: 'Orange TAH Oversized Hoodie',
+    name: 'Nude TAH Totebag',
     price: '£32',
     images: [lifestyletotebag, life, lifestyleman, lifestyle2, lifes],
     type: 'hoodie',
