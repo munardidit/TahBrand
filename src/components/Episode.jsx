@@ -1,5 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import './Episode.css';
+// Import your images
+import hostImage from '../assets/hostimage.png'; // Adjust the path based on your file structure
 
 function Episode() {
   const [showAll, setShowAll] = useState(false);
@@ -13,30 +15,31 @@ function Episode() {
       category: 'Relationship & Finance',
       date: 'October 3rd, 2025',
       title: 'Growing your household finance together.',
-      thumbnail: 'src/assets/hostimage.png',
+      thumbnail: hostImage,
     },
     {
       id: 2,
       category: 'Relationship & Finance', 
       date: 'October 3rd, 2025',
       title: 'Finding the right person (PT1)',
-      thumbnail: 'src/assets/hostimage.png',
+      thumbnail: hostImage,
     },
     {
       id: 3,
       category: 'Relationship & Finance',
       date: 'October 3rd, 2025',
       title: 'Building wealth as a couple',
-       thumbnail: 'src/assets/hostimage.png',
+      thumbnail: hostImage, 
     },
     {
       id: 4,
       category: 'Relationship & Finance',
       date: 'October 3rd, 2025',
       title: 'Investment strategies for families',
-      thumbnail: 'src/assets/hostimage.png',
+      thumbnail: hostImage, 
     },
   ];
+
 
   useEffect(() => {
     const checkMobile = () => {
