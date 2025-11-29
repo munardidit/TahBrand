@@ -1106,6 +1106,7 @@
 }
 
 .policy-card {
+  text-align: left;
   display: flex;
   gap: 1rem;
   padding: 1.5rem;
@@ -1125,8 +1126,8 @@
   width: 48px;
   height: 48px;
   display: flex;
-  align-items: left;
-  justify-content:left;
+  align-items:center;
+  justify-content:center;
   background: #270E07;
   color: #FFF2EE;
   border-radius: 50%;
