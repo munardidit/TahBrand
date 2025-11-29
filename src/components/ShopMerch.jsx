@@ -170,7 +170,12 @@ const ShopMerch = () => {
                 <ul className="category-dropdown">
                   <li onClick={() => handleCategorySelect('All')}>All</li>
                   <li onClick={() => handleCategorySelect('Apparels')}>Apparels</li>
-                  <li onClick={() => handleCategorySelect('Hoodies')}>Hoodies</li>
+                  <li 
+                    onClick={() => handleCategorySelect('Hoodies')}
+                    className="unavailable-category"
+                  >
+                    Hoodies <span className="coming-soon-tag">Coming Soon</span>
+                  </li>
                   <li onClick={() => handleCategorySelect('Bags')}>Bags</li>
                 </ul>
               )}
@@ -179,8 +184,8 @@ const ShopMerch = () => {
 
           {/* Product Grid */}
           <div className="shop-merch-grid">
-            {filteredProducts.map((product, index) => {
-              const isAvailable = index < filteredProducts.length - 2;
+            {filteredProducts.map((product) => {
+              const isAvailable = product.category !== 'Hoodies';
               
               return (
                 <div
@@ -197,7 +202,7 @@ const ShopMerch = () => {
                       />
                       {!isAvailable && (
                         <div className="unavailable-overlay">
-                          <span></span>
+                          <span>Coming Soon</span>
                         </div>
                       )}
                     </div>

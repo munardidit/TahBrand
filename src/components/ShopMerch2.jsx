@@ -4,7 +4,7 @@ import { productsData } from "../data/productsData";
 import CartModal from "../components/CartModal";
 import logo from "../assets/navlogopic.png";
 import "./ShopMerch2.css";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight, Package, RefreshCw, Shield } from "lucide-react";
 
 const ShopMerch2 = () => {
   const { id } = useParams();
@@ -255,8 +255,6 @@ const ShopMerch2 = () => {
                         key={idx}
                         className={`carousel-slide ${
                           idx === currentImageIndex ? "active" : ""
-                        } ${idx < currentImageIndex ? "prev" : ""} ${
-                          idx > currentImageIndex ? "next" : ""
                         }`}
                       >
                         <img 
@@ -305,14 +303,11 @@ const ShopMerch2 = () => {
                 <label className="size-label-main">Size</label>
                 <div className="size-buttons-grid">
                   {sizes.map((size) => {
-                    const isDefault = size === "XS" && !selectedSize;
                     const isSelected = selectedSize === size;
                     return (
                       <button
                         key={size}
-                        className={`size-btn ${isDefault ? "default-xs" : ""} ${
-                          isSelected ? "selected" : ""
-                        }`}
+                        className={`size-btn ${isSelected ? "selected" : ""}`}
                         onClick={() => setSelectedSize(size)}
                       >
                         {size}
@@ -328,9 +323,12 @@ const ShopMerch2 = () => {
               </div>
 
               <div className="product-actions">
-                <Link to="/merch" className="action-btn backs-btn">
+                <button 
+                  onClick={() => navigate(-1)} 
+                  className="action-btn backs-btn"
+                >
                   Back
-                </Link>
+                </button>
                 <button
                   className={`action-btn continue-btn ${
                     !selectedSize ? "disabled" : ""
@@ -351,6 +349,64 @@ const ShopMerch2 = () => {
                 premium fabric and finished with the TAH logo, it's perfect for
                 all-day wear during cool seasons.
               </p>
+            </div>
+
+            {/* RETURN POLICY SECTION */}
+            <div className="return-policy-section">
+              <h3 className="policy-title">Shipping & Returns</h3>
+              
+              <div className="policy-cards">
+                <div className="policy-card">
+                  <div className="policy-icon">
+                    <Package size={24} />
+                  </div>
+                  <div className="policy-content">
+                    <h4 className="policy-card-title">Free Shipping</h4>
+                    <p className="policy-card-text">
+                      Free standard shipping on all orders over $50. Delivery within 5-7 business days.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="policy-card">
+                  <div className="policy-icon">
+                    <RefreshCw size={24} />
+                  </div>
+                  <div className="policy-content">
+                    <h4 className="policy-card-title">30-Day Returns</h4>
+                    <p className="policy-card-text">
+                      Not satisfied? Return unworn items within 30 days for a full refund or exchange.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="policy-card">
+                  <div className="policy-icon">
+                    <Shield size={24} />
+                  </div>
+                  <div className="policy-content">
+                    <h4 className="policy-card-title">Secure Checkout</h4>
+                    <p className="policy-card-text">
+                      Your payment information is encrypted and secure. We never store your card details.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="policy-details">
+                <h4 className="policy-subtitle">Return Policy Details</h4>
+                <ul className="policy-list">
+                  {/*<li>Items must be unworn, unwashed, and in original condition with all tags attached</li>
+                  <li>Original packaging must be included</li>
+                  <li>Refunds will be processed within 5-10 business days after we receive your return</li>
+                  <li>Sale items and gift cards are final sale and cannot be returned</li>
+                  <li>Customer is responsible for return shipping costs unless the item is defective</li>*/}
+                </ul>
+                
+                <p className="policy-contact">
+                  Questions about returns? <a href="mailto:support@tahbrand.com">Contact Support</a>
+                </p>
+              </div>
             </div>
           </div>
         </div>

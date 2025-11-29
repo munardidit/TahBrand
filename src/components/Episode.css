@@ -26,7 +26,9 @@
   transform: translateY(0);
 }
 
-.episodes-grid {
+/* Stack container for the cards */
+.stack-container {
+  position: relative;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
   gap: clamp(1.25rem, 2.5vw, 1.5rem);
@@ -41,23 +43,68 @@
 .episode-card {
   background-color: #ffffff;
   overflow: hidden;
-  transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   cursor: pointer;
   height: 100%;
   display: flex;
   flex-direction: column;
+  position: relative;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  
+  /* Initial state for animation */
   opacity: 0;
-  transform: scale(0.8);
+  transform: translateY(30px) scale(0.95);
 }
 
-.episode-card.scale-in {
+/* Stacked animation states */
+.episode-card.visible:nth-child(1) {
   opacity: 1;
-  transform: scale(1);
+  transform: translateY(0) scale(1);
+  transition-delay: 0.1s;
+  z-index: 4;
 }
 
+.episode-card.visible:nth-child(2) {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  transition-delay: 0.2s;
+  z-index: 3;
+}
+
+.episode-card.visible:nth-child(3) {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  transition-delay: 0.3s;
+  z-index: 2;
+}
+
+.episode-card.visible:nth-child(4) {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  transition-delay: 0.4s;
+  z-index: 1;
+}
+
+/* Hover effects with stacking enhancement */
 .episode-card:hover {
-  transform: translateY(-4px) scale(1);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 
+    0 12px 28px rgba(0, 0, 0, 0.15),
+    0 8px 12px rgba(0, 0, 0, 0.1);
+  z-index: 10 !important;
+}
+
+/* Stack effect on hover - adjacent cards react */
+.stack-container:hover .episode-card:not(:hover) {
+  transform: translateY(4px) scale(0.98);
+  opacity: 0.8;
+}
+
+/* Individual card hover with smooth transition */
+.episode-card:hover ~ .episode-card {
+  transform: translateY(8px) scale(0.96);
+  opacity: 0.7;
 }
 
 .episode-thumbnail {
@@ -66,12 +113,18 @@
   background: #5F58F4;
   overflow: hidden;
   flex-shrink: 0;
+  position: relative;
 }
 
 .episode-thumbnail img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.episode-card:hover .episode-thumbnail img {
+  transform: scale(1.05);
 }
 
 .episode-info {
@@ -79,6 +132,9 @@
   flex-grow: 1;
   display: flex;
   flex-direction: column;
+  position: relative;
+  z-index: 2;
+  background: #ffffff;
 }
 
 .episode-meta {
@@ -106,6 +162,11 @@
   line-height: 1.4;
   text-align: left;
   font-family: "Kumbh Sans", sans-serif;
+  transition: color 0.3s ease;
+}
+
+.episode-card:hover .episode-title {
+  color: #FE4E1C;
 }
 
 .view-more-container {
@@ -132,11 +193,14 @@
   max-width: 320px;
   opacity: 0;
   transform: translateY(20px);
+  position: relative;
+  z-index: 5;
 }
 
 .view-more-btn.fade-in {
   opacity: 1;
   transform: translateY(0);
+  transition-delay: 0.5s;
 }
 
 .view-more-btn:hover {
@@ -146,46 +210,53 @@
   box-shadow: 0 4px 12px rgba(255, 87, 34, 0.4);
 }
 
-/* Extra Small Devices (< 375px) */
-@media (max-width: 374px) {
-  .episodes-container {
-    padding: 0.5rem 0.75rem;
-  }
-
-  .episode-info {
-    padding: 0.875rem;
-  }
-}
-
-/* Small Mobile (375px - 480px) */
-@media (min-width: 375px) and (max-width: 480px) {
-  .episodes-grid {
+/* Enhanced mobile stacking */
+@media (max-width: 767px) {
+  .stack-container {
     grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .episode-card {
+    transform: translateY(20px) scale(0.98);
+  }
+  
+  .episode-card.visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  
+  /* Simpler hover effects for mobile */
+  .episode-card:active {
+    transform: scale(0.98);
   }
 }
 
-/* Large Mobile (481px - 767px) */
-@media (min-width: 481px) and (max-width: 767px) {
-  .episodes-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-/* Tablet Portrait (768px - 1024px) */
-@media (min-width: 768px) and (max-width: 1024px) {
-  .episodes-grid {
+/* Tablet and Desktop stacking */
+@media (min-width: 768px) {
+  .stack-container {
     grid-template-columns: repeat(2, 1fr);
   }
-}
-
-/* Desktop (1025px - 1440px) */
-@media (min-width: 1025px) and (max-width: 1440px) {
-  .episodes-grid {
-    grid-template-columns: repeat(2, 1fr);
+  
+  /* Enhanced stacking for larger screens */
+  .episode-card:nth-child(odd) {
+    transform: translateY(25px) rotate(1deg);
+  }
+  
+  .episode-card:nth-child(even) {
+    transform: translateY(15px) rotate(-1deg);
+  }
+  
+  .episode-card.visible:nth-child(odd) {
+    transform: translateY(0) rotate(0deg);
+  }
+  
+  .episode-card.visible:nth-child(even) {
+    transform: translateY(0) rotate(0deg);
   }
 }
 
-/* Large Desktop (> 1440px) */
+/* Large Desktop */
 @media (min-width: 1441px) {
   .episodes-container {
     max-width: 1400px;
@@ -197,75 +268,25 @@
   }
 }
 
-/* Landscape Orientation for Mobile Devices */
-@media (max-height: 500px) and (orientation: landscape) {
-  .episodes-section {
-    padding: 1.5rem 0;
-  }
-
-  .episode-thumbnail {
-    aspect-ratio: 21 / 9;
-  }
-}
-
-/* High DPI Displays (Retina) */
-@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-  .episode-card {
-    border: 0.5px solid rgba(0, 0, 0, 0.05);
-  }
-}
-
-/* Hover-capable devices only */
-@media (hover: hover) and (pointer: fine) {
-  .episode-card:active {
-    transform: translateY(-2px);
-  }
-}
-
-/* Reduced Motion Preference */
+/* Reduced motion support */
 @media (prefers-reduced-motion: reduce) {
-  .episodes-heading,
   .episode-card,
-  .view-more-btn {
+  .episode-card.visible {
     transition: none;
-    animation: none;
-  }
-
-  .episodes-heading.fade-in,
-  .episode-card.scale-in,
-  .view-more-btn.fade-in {
+    transform: none !important;
     opacity: 1;
-    transform: none;
   }
-
+  
   .episode-card:hover {
-    transform: none;
+    transform: none !important;
   }
 }
 
-/* Touch devices - larger tap targets */
+/* Touch devices */
 @media (hover: none) and (pointer: coarse) {
-  .episode-card {
-    min-height: 44px; 
-  }
-
-  .view-more-btn {
-    min-height: 48px; 
-  }
-}
-
-/* Print styles */
-@media print {
-  .episodes-section {
-    padding: 1rem 0;
-  }
-
-  .episode-card:hover {
+  .stack-container:hover .episode-card:not(:hover),
+  .episode-card:hover ~ .episode-card {
     transform: none;
-    box-shadow: none;
-  }
-
-  .view-more-btn {
-    display: none;
+    opacity: 1;
   }
 }

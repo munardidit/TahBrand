@@ -1082,3 +1082,190 @@
     padding: 0 2rem;
   }
 }
+/* RETURN POLICY SECTION */
+.return-policy-section {
+  margin-top: 3rem;
+  padding-top: 2.5rem;
+  border-top: 1px solid #e5e5e5;
+  font-family: "Kumbh Sans", sans-serif;
+}
+
+.policy-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #270E07;
+  margin: 0 0 2rem 0;
+  text-align: left;
+}
+
+.policy-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.policy-card {
+  display: flex;
+  gap: 1rem;
+  padding: 1.5rem;
+  background: #f8f9fa;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.policy-card:hover {
+  background: #FFF2EE;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.policy-icon {
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: left;
+  justify-content:left;
+  background: #270E07;
+  color: #FFF2EE;
+  border-radius: 50%;
+}
+
+.policy-content {
+  flex: 1;
+}
+
+.policy-card-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #270E07;
+  margin: 0 0 0.5rem 0;
+}
+
+.policy-card-text {
+  font-size: 0.9rem;
+  color: #666;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.policy-details {
+  background: #f8f9fa;
+  padding: 2rem;
+  border-radius: 12px;
+}
+
+.policy-subtitle {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #270E07;
+  margin: 0 0 1rem 0;
+}
+
+.policy-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.5rem 0;
+}
+
+.policy-list li {
+  position: relative;
+  padding-left: 1.5rem;
+  font-size: 0.9rem;
+  color: #666;
+  line-height: 1.8;
+  margin-bottom: 0.75rem;
+}
+
+.policy-list li:before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: #5F58F4;
+  font-weight: 700;
+}
+
+.policy-contact {
+  font-size: 0.9rem;
+  color: #666;
+  margin: 0;
+  padding-top: 1rem;
+  border-top: 1px solid #e5e5e5;
+}
+
+.policy-contact a {
+  color: #5F58F4;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.policy-contact a:hover {
+  color: #270E07;
+  text-decoration: underline;
+}
+
+/* Mobile Responsive for Return Policy */
+@media (max-width: 767px) {
+  .return-policy-section {
+    margin-top: 2rem;
+    padding-top: 2rem;
+  }
+
+  .policy-title {
+    font-size: 1.25rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .policy-cards {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .policy-card {
+    padding: 1.25rem;
+  }
+
+  .policy-icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .policy-card-title {
+    font-size: 0.95rem;
+  }
+
+  .policy-card-text {
+    font-size: 0.85rem;
+  }
+
+  .policy-details {
+    padding: 1.5rem;
+  }
+
+  .policy-subtitle {
+    font-size: 1rem;
+  }
+
+  .policy-list li {
+    font-size: 0.85rem;
+    padding-left: 1.25rem;
+  }
+
+  .policy-contact {
+    font-size: 0.85rem;
+  }
+}
+
+/* Tablet Responsive */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .policy-cards {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  .policy-card {
+    flex-direction: row;
+  }
+}
